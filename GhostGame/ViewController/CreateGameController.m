@@ -10,6 +10,7 @@
 #import "Game.h"
 #import "PickRoleController.h"
 @implementation CreateGameController
+@synthesize playerNumber;
 @synthesize ghostNumber;
 @synthesize civilianNumber;
 @synthesize foolNumber;
@@ -34,6 +35,7 @@
     [wordLength release];
     [civilianWord release];
     [foolWord release];
+    [playerNumber release];
     [super dealloc];
 }
 
@@ -48,12 +50,64 @@
 
 - (void)performTapGesture:(UITapGestureRecognizer *)tap
 {
-    [ghostNumber resignFirstResponder];
-    [civilianNumber resignFirstResponder];
-    [foolNumber resignFirstResponder];
-    [wordLength resignFirstResponder];
-    [civilianWord resignFirstResponder];
-    [foolWord resignFirstResponder];
+//    [ghostNumber resignFirstResponder];
+//    [civilianNumber resignFirstResponder];
+//    [foolNumber resignFirstResponder];
+//    [wordLength resignFirstResponder];
+//    [civilianWord resignFirstResponder];
+//    [foolWord resignFirstResponder];
+    if (_currentTextField) {
+        [_currentTextField resignFirstResponder];
+        if (_currentTextField == self.playerNumber) {
+            NSInteger count = [_currentTextField.text integerValue];
+            switch (count) {
+                case 8:
+                {
+                    self.ghostNumber.text = @"2";
+                    self.foolNumber.text = @"1";
+                    self.civilianNumber.text = @"4";
+                }
+                    break;
+                case 9:
+                {
+                    self.ghostNumber.text = @"2";
+                    self.foolNumber.text = @"1";
+                    self.civilianNumber.text = @"5";
+                }
+                    break;
+                case 10:
+                {
+                    self.ghostNumber.text = @"3";
+                    self.foolNumber.text = @"1";
+                    self.civilianNumber.text = @"5";
+                }
+                    break;
+                case 11:
+                {
+                    self.ghostNumber.text = @"3";
+                    self.foolNumber.text = @"1";
+                    self.civilianNumber.text = @"6";
+                }
+                    break;
+                case 12:
+                {
+                    self.ghostNumber.text = @"3";
+                    self.foolNumber.text = @"2";
+                    self.civilianNumber.text = @"6";
+                }
+                    break;
+                case 13:
+                {
+                    self.ghostNumber.text = @"4";
+                    self.foolNumber.text = @"1";
+                    self.civilianNumber.text = @"7";
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 }
 #pragma mark - View lifecycle
 
@@ -70,6 +124,7 @@
     [self setWordLength:nil];
     [self setCivilianWord:nil];
     [self setFoolWord:nil];
+    [self setPlayerNumber:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -104,9 +159,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    _currentTextField = textField;
     [self setTapGestureRecognizerEnable:YES];
 
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self setTapGestureRecognizerEnable:NO];

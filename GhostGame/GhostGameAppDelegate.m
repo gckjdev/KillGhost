@@ -8,7 +8,7 @@
 
 #import "GhostGameAppDelegate.h"
 
-#import "CreateGameController.h"
+#import "MainMenuController.h"
 
 @implementation GhostGameAppDelegate
 

@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GhostGameViewController;
-@class CreateGameController;
+@class MainMenuController;
 
 @interface GhostGameAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -17,6 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet CreateGameController *viewController;
+@property (nonatomic, retain) IBOutlet MainMenuController *viewController;
 
 @end

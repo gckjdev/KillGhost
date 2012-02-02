@@ -12,5 +12,7 @@
 {
     
 }
+- (IBAction)clickHelp:(id)sender;
 
+- (IBAction)clickStartGame:(id)sender;
 @end

@@ -23,6 +23,10 @@
 		CA0A20CA14DA6C0F00577C02 /* VoteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20C814DA6C0F00577C02 /* VoteController.xib */; };
 		CA0A20CE14DA6C2800577C02 /* ResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20CC14DA6C2700577C02 /* ResultController.m */; };
 		CA0A20CF14DA6C2800577C02 /* ResultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20CD14DA6C2700577C02 /* ResultController.xib */; };
+		CA0A20D414DA776800577C02 /* civilian.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D114DA776800577C02 /* civilian.png */; };
+		CA0A20D514DA776800577C02 /* fool.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D214DA776800577C02 /* fool.png */; };
+		CA0A20D614DA776800577C02 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D314DA776800577C02 /* ghost.png */; };
+		CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20D914DA77B700577C02 /* PlayerCard.m */; };
 		CAE8ED7814DA2FF70003B6A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */; };
 		CAE8ED7A14DA2FF70003B6A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */; };
 		CAE8ED7C14DA2FF70003B6A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7B14DA2FF70003B6A1 /* CoreGraphics.framework */; };
@@ -74,6 +78,11 @@
 		CA0A20CB14DA6C2700577C02 /* ResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultController.h; sourceTree = "<group>"; };
 		CA0A20CC14DA6C2700577C02 /* ResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultController.m; sourceTree = "<group>"; };
 		CA0A20CD14DA6C2700577C02 /* ResultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultController.xib; sourceTree = "<group>"; };
+		CA0A20D114DA776800577C02 /* civilian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = civilian.png; sourceTree = "<group>"; };
+		CA0A20D214DA776800577C02 /* fool.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fool.png; sourceTree = "<group>"; };
+		CA0A20D314DA776800577C02 /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
+		CA0A20D814DA77B700577C02 /* PlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCard.h; sourceTree = "<group>"; };
+		CA0A20D914DA77B700577C02 /* PlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCard.m; sourceTree = "<group>"; };
 		CAE8ED7314DA2FF70003B6A1 /* GhostGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +172,25 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		CA0A20D014DA776800577C02 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CA0A20D114DA776800577C02 /* civilian.png */,
+				CA0A20D214DA776800577C02 /* fool.png */,
+				CA0A20D314DA776800577C02 /* ghost.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CA0A20D714DA779000577C02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CA0A20D814DA77B700577C02 /* PlayerCard.h */,
+				CA0A20D914DA77B700577C02 /* PlayerCard.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CAE8ED6814DA2FF60003B6A1 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +223,8 @@
 		CAE8ED7D14DA2FF70003B6A1 /* GhostGame */ = {
 			isa = PBXGroup;
 			children = (
+				CA0A20D714DA779000577C02 /* View */,
+				CA0A20D014DA776800577C02 /* Resource */,
 				CA0A209E14DA690400577C02 /* Manager */,
 				CA0A209F14DA690400577C02 /* Model */,
 				CA0A20A414DA690400577C02 /* ViewController */,
@@ -313,6 +343,9 @@
 				CA0A20C514DA6B7B00577C02 /* StateController.xib in Resources */,
 				CA0A20CA14DA6C0F00577C02 /* VoteController.xib in Resources */,
 				CA0A20CF14DA6C2800577C02 /* ResultController.xib in Resources */,
+				CA0A20D414DA776800577C02 /* civilian.png in Resources */,
+				CA0A20D514DA776800577C02 /* fool.png in Resources */,
+				CA0A20D614DA776800577C02 /* ghost.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +392,7 @@
 				CA0A20C414DA6B7B00577C02 /* StateController.m in Sources */,
 				CA0A20C914DA6C0F00577C02 /* VoteController.m in Sources */,
 				CA0A20CE14DA6C2800577C02 /* ResultController.m in Sources */,
+				CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

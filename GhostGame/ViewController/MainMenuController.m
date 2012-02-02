@@ -7,6 +7,8 @@
 //
 
 #import "MainMenuController.h"
+#import "CreateGameController.h"
+#import "StateController.h"
 
 @implementation MainMenuController
 
@@ -48,4 +50,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)clickHelp:(id)sender {
+    StateController *sc = [[StateController alloc] init];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
+}
+
+- (IBAction)clickStartGame:(id)sender {
+    CreateGameController *cc = [[CreateGameController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
+}
 @end

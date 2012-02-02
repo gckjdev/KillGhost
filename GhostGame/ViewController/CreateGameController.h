@@ -17,6 +17,7 @@
     UITextField *wordLength;
     UITextField *civilianWord;
     UITextField *foolWord;
+    UITextField *_currentTextField;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *ghostNumber;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *civilianWord;
 @property (nonatomic, retain) IBOutlet UITextField *foolWord;
 - (IBAction)clickNewGame:(id)sender;
+@property (retain, nonatomic) IBOutlet UITextField *playerNumber;
 
 //Ghost civilians fool
 @end

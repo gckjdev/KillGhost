@@ -6,6 +6,13 @@
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
 
+
+enum PlayerType {
+    GhostType = 0,
+    CivilianType = 1,
+    FoolType = 2
+};
+
 #import <Foundation/Foundation.h>
 
 
@@ -16,5 +23,5 @@
 @property(nonatomic, assign) NSInteger type;
 @property(nonatomic, assign, getter = isAlive) BOOL alive;
 @property(nonatomic, retain) NSString *word;
-
+- (id)initWithType:(NSInteger)type word:(NSString *)word alive:(BOOL)alive;
 @end

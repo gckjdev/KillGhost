@@ -8,7 +8,7 @@
 
 #import "PickRoleController.h"
 #import "Game.h"
-
+#import "Player.h"
 @implementation PickRoleController
 @synthesize game = _game;
 
@@ -58,34 +58,45 @@
         NSInteger gCount = _game.ghostNumber;
         NSInteger cCount = _game.civilianNumber;
         for (int i = 0; i < count; ++ i) {
+            Player *player = nil;
             int r = rand() % total;
             if (r < fCount) {
                 //fool
+                player = [[Player alloc] initWithType:FoolType word:_game.foolWord alive:YES];
                 fCount -- ;
             }else if( r < fCount + gCount){
                 //ghost
+                player = [[Player alloc] initWithType:GhostType word:_game.ghostWord alive:YES];
                 gCount --;
             }else{
                 //civilian
+                player = [[Player alloc] 
+                          initWithType:CivilianType word:_game.civilianWord alive:YES];
                 cCount --;
             }
             total --;
+            [_playerList addObject:player];
+            [player release];
         }
     }
 }
-- (void)createSeats
+- (void)createCards
 {
     //NSInteger count = _game.civilianNumber + _game.foolNumber + _game.ghostNumber;
-    NSInteger count = 8;
-    for (int i = 0; i < count; ++ i) {
+    //NSInteger count = 8;
+    [_cardList removeAllObjects];
+    [self createPlayerList];
+    NSInteger i = 0;
+    NSInteger count = [_playerList count];
+    for (Player *player in _playerList) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setTitle:@"12" forState:UIControlStateNormal];
+        [button setTitle:player.word forState:UIControlStateNormal];
         [button addTarget:self action:@selector(clickCard) forControlEvents:UIControlEventTouchUpInside];
         button.frame = CGRectMake(0, 0, 50, 50);
         CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count) * 120 + 160, sinf(M_PI * 2.0 / count * i) * 160 + 200);
         button.center = center;
         [self.view addSubview:button];
-        
+        ++ i;
     }
     
 }
@@ -95,7 +106,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createSeats];
+    [self createCards];
 }
 
 - (void)viewDidUnload
