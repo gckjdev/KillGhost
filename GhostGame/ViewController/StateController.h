@@ -10,4 +10,18 @@
 
 @interface StateController : UIViewController
 
+
+@property (retain, nonatomic) NSArray * operationTipsArray;
+@property (retain, nonatomic) IBOutlet UILabel *operationTips;
+@property (assign,nonatomic) int selectIndex;
+
+@property (retain, nonatomic) IBOutlet UIButton *previousButton;
+@property (retain, nonatomic) IBOutlet UIButton *nextButton;
+
+@property (retain, nonatomic) IBOutlet UIView *operationView;
+
+- (IBAction)previous:(id)sender;
+- (IBAction)next:(id)sender;
+- (void)updateView;
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ED053C14DA817300AC8C67 /* QuartzCore.framework */; };
 		CA0A20B014DA690400577C02 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A114DA690400577C02 /* Game.m */; };
 		CA0A20B114DA690400577C02 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A314DA690400577C02 /* Player.m */; };
 		CA0A20B214DA690400577C02 /* CreateGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A614DA690400577C02 /* CreateGameController.m */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A3ED053C14DA817300AC8C67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CA0A20A014DA690400577C02 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		CA0A20A114DA690400577C02 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		CA0A20A214DA690400577C02 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */,
 				CAE8ED7814DA2FF70003B6A1 /* UIKit.framework in Frameworks */,
 				CAE8ED7A14DA2FF70003B6A1 /* Foundation.framework in Frameworks */,
 				CAE8ED7C14DA2FF70003B6A1 /* CoreGraphics.framework in Frameworks */,
@@ -213,6 +216,7 @@
 		CAE8ED7614DA2FF70003B6A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3ED053C14DA817300AC8C67 /* QuartzCore.framework */,
 				CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */,
 				CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */,
 				CAE8ED7B14DA2FF70003B6A1 /* CoreGraphics.framework */,
