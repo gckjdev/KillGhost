@@ -58,6 +58,10 @@
 //    [foolWord resignFirstResponder];
     if (_currentTextField) {
         [_currentTextField resignFirstResponder];
+        if (_currentTextField == self.civilianWord) {
+            self.wordLength.text = [NSString stringWithFormat:@"%d",_currentTextField.text.length];
+        }
+        
         if (_currentTextField == self.playerNumber) {
             NSInteger count = [_currentTextField.text integerValue];
             switch (count) {
