@@ -24,4 +24,5 @@ enum PlayerType {
 @property(nonatomic, assign, getter = isAlive) BOOL alive;
 @property(nonatomic, retain) NSString *word;
 - (id)initWithType:(NSInteger)type word:(NSString *)word alive:(BOOL)alive;
+- (NSString *)name;
 @end

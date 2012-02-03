@@ -9,6 +9,7 @@
 #import "PickRoleController.h"
 #import "Game.h"
 #import "Player.h"
+#import "PlayerCard.h"
 @implementation PickRoleController
 @synthesize game = _game;
 
@@ -89,13 +90,10 @@
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setTitle:player.word forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(clickCard) forControlEvents:UIControlEventTouchUpInside];
-        button.frame = CGRectMake(0, 0, 50, 50);
-        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count) * 120 + 160, sinf(M_PI * 2.0 / count * i) * 160 + 200);
-        button.center = center;
-        [self.view addSubview:button];
+        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count) * 128 + 160, sinf(M_PI * 2.0 / count * i) * 160 + 200);
+        PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
+        [self.view addSubview:card];
+        [card release];
         ++ i;
     }
     

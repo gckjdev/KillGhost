@@ -26,6 +26,19 @@
     return self;
 }
 
+- (NSString *)name
+{
+    switch (_type) {
+        case GhostType:
+            return @"鬼";
+        case CivilianType:
+            return @"平";
+        case FoolType:
+            return @"傻";
+        default:
+            return nil;
+    }
+}
 - (void)dealloc
 {
     [_word release];
