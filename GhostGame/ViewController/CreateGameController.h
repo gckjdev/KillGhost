@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "GRViewController.h"
-@interface CreateGameController : GRViewController {
+@interface CreateGameController : GRViewController<UITableViewDataSource, UITableViewDelegate> {
     
     UITextField *ghostNumber;
     UITextField *civilianNumber;
@@ -20,15 +20,18 @@
     UITextField *_currentTextField;
 }
 
-@property (nonatomic, retain) IBOutlet UITextField *ghostNumber;
-@property (nonatomic, retain) IBOutlet UITextField *civilianNumber;
-@property (nonatomic, retain) IBOutlet UITextField *foolNumber;
+@property (nonatomic, retain)  UITextField *ghostNumber;
+@property (nonatomic, retain)  UITextField *civilianNumber;
+@property (nonatomic, retain)  UITextField *foolNumber;
 
-@property (nonatomic, retain) IBOutlet UITextField *wordLength;
-@property (nonatomic, retain) IBOutlet UITextField *civilianWord;
-@property (nonatomic, retain) IBOutlet UITextField *foolWord;
+@property (nonatomic, retain)  UITextField *wordLength;
+@property (nonatomic, retain)  UITextField *civilianWord;
+@property (nonatomic, retain)  UITextField *foolWord;
+@property (retain, nonatomic)  UITextField *playerNumber;
+@property (retain, nonatomic)  UITableView *stepTable;
+
+
 - (IBAction)clickNewGame:(id)sender;
-@property (retain, nonatomic) IBOutlet UITextField *playerNumber;
 
 //Ghost civilians fool
 @end

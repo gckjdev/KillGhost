@@ -10,14 +10,15 @@
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
 #import "Game.h"
+#import "PlayerCard.h"
 
-
-@interface PickRoleController : GRViewController {
+@interface PickRoleController : GRViewController<PlayerCardDelegate> {
     NSMutableArray *_playerList;
     NSMutableArray *_cardList;
     NSInteger _pickIndex;
 }
 
 @property(nonatomic, retain)Game *game;
+- (IBAction)clickNextButton:(id)sender;
 - (id)initWithGame:(Game *)aGame;
 @end

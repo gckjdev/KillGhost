@@ -10,6 +10,8 @@
 #import "Game.h"
 #import "Player.h"
 #import "PlayerCard.h"
+#import "StateController.h"
+
 @implementation PickRoleController
 @synthesize game = _game;
 
@@ -23,6 +25,12 @@
         _pickIndex = - 1;
     }
     return self;
+}
+
+- (IBAction)clickNextButton:(id)sender {
+    StateController *sc = [[StateController alloc] init];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 - (id)initWithGame:(Game *)aGame
@@ -91,9 +99,11 @@
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
-        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count) * 128 + 160, sinf(M_PI * 2.0 / count * i) * 160 + 200);
+        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 200);
         PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
+        card.delegate = self;
         [self.view addSubview:card];
+        [_cardList addObject:card];
         [card release];
         ++ i;
     }
@@ -119,6 +129,45 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+- (void)willClickPlayerCard:(PlayerCard *)playerCard
+{
+    if (playerCard) {
+        if (index < 0) {
+            return;
+        }
+        if (playerCard.status == UNSHOW) {
+            //first show
+            
+        }else if(playerCard.status == SHOWED){
+            //need password
+            
+        }
+    }
+}
+
+- (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
+{
+    if (playerCard) {
+        if (playerCard.status == SHOWING || playerCard.status == SHOWED) {
+            return YES;
+        }
+        NSInteger index = [_cardList indexOfObject:playerCard];
+        if (index < 0) {
+            return NO;
+        }
+        if (_pickIndex == -1 || (_pickIndex + 1) % [_cardList count] == index) {
+            _pickIndex = index;
+            return YES;
+        }
+    }
+    return NO;
+}
+- (void)didClickedPlayerCard:(PlayerCard *)playerCard
+{
+
 }
 
 @end
