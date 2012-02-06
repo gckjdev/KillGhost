@@ -10,4 +10,10 @@
 
 @interface Words : NSObject
 
+@property(nonatomic, retain)NSString *civilianWord;
+@property(nonatomic, retain)NSString *foolWord;
+
+- (id)initWithCivilianWord:(NSString *)civilianWordValue 
+                  foolWord:(NSString *)foolWordValue;
+
 @end

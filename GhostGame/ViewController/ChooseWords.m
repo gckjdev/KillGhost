@@ -9,6 +9,8 @@
 #import "ChooseWords.h"
 
 @implementation ChooseWords
+@synthesize wordsArray;
+@synthesize WordsTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +39,7 @@
 
 - (void)viewDidUnload
 {
+    [self setWordsTable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +51,9 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [wordsArray release];
+    [WordsTable release];
+    [super dealloc];
+}
 @end

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class Words;
+
 @interface ChooseWords : UIViewController
+
+@property (retain, nonatomic) NSArray *wordsArray;
+
+@property (retain, nonatomic) IBOutlet UITableView *WordsTable;
+
 
 @end

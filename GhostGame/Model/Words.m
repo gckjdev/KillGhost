@@ -10,4 +10,25 @@
 
 @implementation Words
 
+@synthesize civilianWord;
+@synthesize foolWord;
+
+- (id)initWithCivilianWord:(NSString *)civilianWordValue 
+                  foolWord:(NSString *)foolWordValue
+{
+    self = [super init];
+    if (self) {
+        self.civilianWord = civilianWordValue;
+        self.foolWord = foolWordValue;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [civilianWord release];
+    [foolWord release];
+    [super dealloc];
+}
+
 @end

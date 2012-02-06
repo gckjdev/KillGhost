@@ -10,4 +10,6 @@
 
 @interface WordsManager : NSObject
 
+//- (NSArray *)getAllWords;
+
 @end
