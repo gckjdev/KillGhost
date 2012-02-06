@@ -32,9 +32,9 @@
         case GhostType:
             return @"鬼";
         case CivilianType:
-            return @"平";
+            return @"平民";
         case FoolType:
-            return @"傻";
+            return @"傻子";
         default:
             return nil;
     }

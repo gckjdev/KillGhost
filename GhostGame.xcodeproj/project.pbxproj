@@ -33,6 +33,9 @@
 		CAC931B314DF7CA2001258FD /* PickerWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC931B114DF7CA2001258FD /* PickerWordsController.xib */; };
 		CAC931B614DF7DBD001258FD /* Phrase.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B514DF7DBD001258FD /* Phrase.m */; };
 		CAC931B914DF7DD3001258FD /* PhraseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B814DF7DD3001258FD /* PhraseManager.m */; };
+		CAC931C114DF88D9001258FD /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931C014DF88D9001258FD /* UIUtils.m */; };
+		CAC931C414DF8BFA001258FD /* DeviceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931C314DF8BFA001258FD /* DeviceDetection.m */; };
+		CAC931C714DF8C2A001258FD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC931C614DF8C2A001258FD /* MessageUI.framework */; };
 		CAE8ED7814DA2FF70003B6A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */; };
 		CAE8ED7A14DA2FF70003B6A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */; };
 		CAE8ED7C14DA2FF70003B6A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE8ED7B14DA2FF70003B6A1 /* CoreGraphics.framework */; };
@@ -98,6 +101,11 @@
 		CAC931B514DF7DBD001258FD /* Phrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phrase.m; sourceTree = "<group>"; };
 		CAC931B714DF7DD3001258FD /* PhraseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhraseManager.h; sourceTree = "<group>"; };
 		CAC931B814DF7DD3001258FD /* PhraseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhraseManager.m; sourceTree = "<group>"; };
+		CAC931BF14DF88D9001258FD /* UIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUtils.h; path = ../../Common_Iphone/UIUtils/UIUtils.h; sourceTree = "<group>"; };
+		CAC931C014DF88D9001258FD /* UIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUtils.m; path = ../../Common_Iphone/UIUtils/UIUtils.m; sourceTree = "<group>"; };
+		CAC931C214DF8BFA001258FD /* DeviceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceDetection.h; path = ../../Common_Iphone/Utils/DeviceDetection.h; sourceTree = "<group>"; };
+		CAC931C314DF8BFA001258FD /* DeviceDetection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceDetection.m; path = ../../Common_Iphone/Utils/DeviceDetection.m; sourceTree = "<group>"; };
+		CAC931C614DF8C2A001258FD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CAE8ED7314DA2FF70003B6A1 /* GhostGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -122,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC931C714DF8C2A001258FD /* MessageUI.framework in Frameworks */,
 				A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */,
 				CAE8ED7814DA2FF70003B6A1 /* UIKit.framework in Frameworks */,
 				CAE8ED7A14DA2FF70003B6A1 /* Foundation.framework in Frameworks */,
@@ -215,9 +224,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		CAC931BD14DF8884001258FD /* Common_Iphone */ = {
+			isa = PBXGroup;
+			children = (
+				CAC931C514DF8C01001258FD /* Utils */,
+				CAC931BE14DF88B4001258FD /* UIUtils */,
+			);
+			name = Common_Iphone;
+			sourceTree = "<group>";
+		};
+		CAC931BE14DF88B4001258FD /* UIUtils */ = {
+			isa = PBXGroup;
+			children = (
+				CAC931BF14DF88D9001258FD /* UIUtils.h */,
+				CAC931C014DF88D9001258FD /* UIUtils.m */,
+			);
+			name = UIUtils;
+			sourceTree = "<group>";
+		};
+		CAC931C514DF8C01001258FD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CAC931C214DF8BFA001258FD /* DeviceDetection.h */,
+				CAC931C314DF8BFA001258FD /* DeviceDetection.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		CAE8ED6814DA2FF60003B6A1 = {
 			isa = PBXGroup;
 			children = (
+				CAC931C614DF8C2A001258FD /* MessageUI.framework */,
 				CAE8ED7D14DA2FF70003B6A1 /* GhostGame */,
 				CAE8ED9D14DA2FF80003B6A1 /* GhostGameTests */,
 				CAE8ED7614DA2FF70003B6A1 /* Frameworks */,
@@ -248,6 +285,7 @@
 		CAE8ED7D14DA2FF70003B6A1 /* GhostGame */ = {
 			isa = PBXGroup;
 			children = (
+				CAC931BD14DF8884001258FD /* Common_Iphone */,
 				CA0A20D714DA779000577C02 /* View */,
 				CA0A20D014DA776800577C02 /* Resource */,
 				CA0A209E14DA690400577C02 /* Manager */,
@@ -423,6 +461,8 @@
 				CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */,
 				CAC931B614DF7DBD001258FD /* Phrase.m in Sources */,
 				CAC931B914DF7DD3001258FD /* PhraseManager.m in Sources */,
+				CAC931C114DF88D9001258FD /* UIUtils.m in Sources */,
+				CAC931C414DF8BFA001258FD /* DeviceDetection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
