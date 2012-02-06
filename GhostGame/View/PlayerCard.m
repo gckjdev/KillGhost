@@ -21,6 +21,7 @@
 @synthesize fontSize = _fontSize;
 @synthesize status = _status;
 @synthesize position = _position;
+@synthesize delegate = _delegate;
 
 - (CGRect)defaultFrame
 {

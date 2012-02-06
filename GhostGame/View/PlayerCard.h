@@ -12,9 +12,11 @@ enum CARD_STATUS {
     SHOWED = 2
 };
 
+
+
 #import <UIKit/UIKit.h>
 @class Player;
-
+@class PlayerCardDelegate;
 @interface PlayerCard : UIView<UIGestureRecognizerDelegate>
 {
     CGImageRef imageRef;
@@ -28,8 +30,16 @@ enum CARD_STATUS {
 @property(nonatomic, assign)CGFloat fontSize;
 @property(nonatomic ,assign)NSInteger status;
 @property(nonatomic, assign)CGPoint position;
+@property(nonatomic, assign)PlayerCardDelegate *delegate;
+
 
 - (id)initWithPlayer:(Player *)player position:(CGPoint)position;
 - (void)setScale:(CGFloat)scale center:(CGPoint)center;
+
+@end
+
+@protocol PlayerCardDelegate <NSObject>
+
+- (void)willClickPlayerCard:(PlayerCard *)playerCard;
 
 @end

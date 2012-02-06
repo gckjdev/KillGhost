@@ -6,13 +6,16 @@
 //  Copyright 2012年 __MyCompanyName__. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
 #import "Game.h"
 
+
 @interface PickRoleController : GRViewController {
     NSMutableArray *_playerList;
     NSMutableArray *_cardList;
+    NSInteger _pickIndex;
 }
 
 @property(nonatomic, retain)Game *game;

@@ -20,6 +20,7 @@
         // Custom initialization
         _playerList = [[NSMutableArray alloc] init];
         _cardList = [[NSMutableArray alloc] init];
+        _pickIndex = - 1;
     }
     return self;
 }
