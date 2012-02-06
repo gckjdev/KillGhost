@@ -35,4 +35,6 @@
 - (void)RightOutAnimation:(UIView*)view;
 
 
+- (IBAction)chooseWords:(id)sender;
+
 @end

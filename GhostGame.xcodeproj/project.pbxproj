@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3C815FD14DF88B20022D8AE /* ChooseWords.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C815FB14DF88B20022D8AE /* ChooseWords.m */; };
-		A3C815FE14DF88B20022D8AE /* ChooseWords.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C815FC14DF88B20022D8AE /* ChooseWords.xib */; };
 		A3C8160214DF88CD0022D8AE /* Words.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8160114DF88CD0022D8AE /* Words.m */; };
 		A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8160414DF88E30022D8AE /* WordsManager.m */; };
+		A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */; };
+		A3C8161E14DFD6000022D8AE /* PickerWordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */; };
 		A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ED053C14DA817300AC8C67 /* QuartzCore.framework */; };
 		CA0A20B014DA690400577C02 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A114DA690400577C02 /* Game.m */; };
 		CA0A20B114DA690400577C02 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A314DA690400577C02 /* Player.m */; };
@@ -63,13 +63,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A3C815FA14DF88B20022D8AE /* ChooseWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseWords.h; sourceTree = "<group>"; };
-		A3C815FB14DF88B20022D8AE /* ChooseWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseWords.m; sourceTree = "<group>"; };
-		A3C815FC14DF88B20022D8AE /* ChooseWords.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseWords.xib; sourceTree = "<group>"; };
 		A3C8160014DF88CD0022D8AE /* Words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Words.h; sourceTree = "<group>"; };
 		A3C8160114DF88CD0022D8AE /* Words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Words.m; sourceTree = "<group>"; };
 		A3C8160314DF88E30022D8AE /* WordsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordsManager.h; sourceTree = "<group>"; };
 		A3C8160414DF88E30022D8AE /* WordsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordsManager.m; sourceTree = "<group>"; };
+		A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsCell.h; sourceTree = "<group>"; };
+		A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsCell.m; sourceTree = "<group>"; };
+		A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsCell.xib; sourceTree = "<group>"; };
 		A3ED053C14DA817300AC8C67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CA0A20A014DA690400577C02 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		CA0A20A114DA690400577C02 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -206,9 +206,9 @@
 				CAC931AF14DF7CA2001258FD /* PickerWordsController.h */,
 				CAC931B014DF7CA2001258FD /* PickerWordsController.m */,
 				CAC931B114DF7CA2001258FD /* PickerWordsController.xib */,
-				A3C815FA14DF88B20022D8AE /* ChooseWords.h */,
-				A3C815FB14DF88B20022D8AE /* ChooseWords.m */,
-				A3C815FC14DF88B20022D8AE /* ChooseWords.xib */,
+				A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */,
+				A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */,
+				A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				CA0A20D614DA776800577C02 /* ghost.png in Resources */,
 				CA25628714DBE3C50004C427 /* mask.png in Resources */,
 				CAC931B314DF7CA2001258FD /* PickerWordsController.xib in Resources */,
-				A3C815FE14DF88B20022D8AE /* ChooseWords.xib in Resources */,
+				A3C8161E14DFD6000022D8AE /* PickerWordsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,9 +442,9 @@
 				CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */,
 				CAC931B614DF7DBD001258FD /* Phrase.m in Sources */,
 				CAC931B914DF7DD3001258FD /* PhraseManager.m in Sources */,
-				A3C815FD14DF88B20022D8AE /* ChooseWords.m in Sources */,
 				A3C8160214DF88CD0022D8AE /* Words.m in Sources */,
 				A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */,
+				A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

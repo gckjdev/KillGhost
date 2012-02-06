@@ -9,6 +9,8 @@
 #import "StateController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "PickerWordsController.h"
+
 @implementation StateController
 @synthesize previousButton;
 @synthesize nextButton;
@@ -200,6 +202,13 @@
 - (void)RightOutAnimation:(UIView*)view
 {
     [self translationOnX:view from:self.view.frame.size.width/2 to:320+self.view.frame.size.width/2];
+}
+
+- (IBAction)chooseWords:(id)sender
+{
+    PickerWordsController *cc = [[PickerWordsController alloc] init];
+    [self.navigationController pushViewController:cc animated:YES];
+    [cc release];
 }
 
 

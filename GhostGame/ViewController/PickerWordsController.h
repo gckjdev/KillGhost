@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PickerWordsController : UIViewController
+@interface PickerWordsController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (retain, nonatomic) NSArray *wordsArray;
+@property (retain, nonatomic) IBOutlet UITableView *wordsTable;
 
 @end
