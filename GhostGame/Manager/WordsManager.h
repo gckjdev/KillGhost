@@ -11,5 +11,7 @@
 @interface WordsManager : NSObject
 
 - (NSArray *)getAllWords;
-
++ (WordsManager *)defaultManager;
 @end
+
+extern WordsManager* GlobalGetWordsManager();

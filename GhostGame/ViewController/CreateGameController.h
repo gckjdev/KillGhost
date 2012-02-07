@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "GRViewController.h"
-@interface CreateGameController : GRViewController<UITableViewDataSource, UITableViewDelegate> {
+#import "PickerWordsController.h"
+
+@interface CreateGameController : GRViewController<UITableViewDataSource, UITableViewDelegate, PickWordsDelegate> {
     
     UITextField *ghostNumber;
     UITextField *civilianNumber;

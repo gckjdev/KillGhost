@@ -9,7 +9,29 @@
 #import "WordsManager.h"
 #import "Words.h"
 
+WordsManager *wordsManger;
+WordsManager *GlobalGetWordsManager()
+{
+    if (wordsManger == nil) {
+        wordsManger = [[WordsManager alloc] init];
+    }
+    return wordsManger;
+}
+
 @implementation WordsManager
+
+- (id)init
+{
+    if((self = [super init]) != nil)
+    {
+        
+    }
+    return self;
+}
++ (WordsManager *)defaultManager
+{
+    return GlobalGetWordsManager();
+}
 
 - (NSArray *)getAllWords
 {

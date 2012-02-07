@@ -15,7 +15,7 @@
 @synthesize wordsArray;
 @synthesize wordsTable;
 @synthesize selectCellIndex;
-
+@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -111,7 +111,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectCellIndex = indexPath.row;
-    [tableView reloadData];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (delegate && [delegate respondsToSelector:@selector(didPickedWords:)]) {
+        Words *word = [self.wordsArray objectAtIndex:indexPath.row];
+        [delegate didPickedWords:word];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

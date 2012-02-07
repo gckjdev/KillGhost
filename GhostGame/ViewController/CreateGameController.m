@@ -7,8 +7,10 @@
 //
 
 #import "CreateGameController.h"
-#import "Game.h"
 #import "PickRoleController.h"
+#import "Game.h"
+#import "Words.h"
+#import "WordsManager.h"
 #import "UIUtils.h"
 @implementation CreateGameController
 @synthesize playerNumber;
@@ -171,7 +173,11 @@
     if (textField == self.wordLength || 
         textField == self.foolWord || 
         textField == self.civilianWord) {
-        stepTable.frame = CGRectMake(0, -200, width, height);
+        if (textField == self.civilianWord) {
+            stepTable.frame = CGRectMake(0, -200, width, height);
+        }else{
+            stepTable.frame = CGRectMake(0, -160, width, height);
+        }
         NSIndexPath *path = [NSIndexPath indexPathForRow:3 inSection:2];
         [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
@@ -188,6 +194,47 @@
     CGFloat width = stepTable.frame.size.width;
     CGFloat height = stepTable.frame.size.height;
     stepTable.frame = CGRectMake(0, 0, width, height);
+}
+
+- (void)setFieldsWithWords:(Words *)words
+{
+    self.civilianWord.text = words.civilianWord;
+    self.foolWord.text = words.foolWord;
+    self.wordLength.text = [NSString stringWithFormat:@"%d",[words.civilianWord length]];
+}
+- (void)randomWords:(id)sender
+{
+    WordsManager *manager = [WordsManager defaultManager];
+    NSArray *wordsArray = [manager getAllWords];
+    NSInteger index = rand() % [wordsArray count];
+    Words *words = [wordsArray objectAtIndex:index];
+    [self setFieldsWithWords:words];
+}
+
+- (UIButton *)getRandomWordsButton
+{
+    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    randomWord.frame = CGRectMake(20, 2, 80, 40);
+    [randomWord setTitle:@"随即选词" forState:UIControlStateNormal];
+    [randomWord addTarget:self action:@selector(randomWords:) forControlEvents:UIControlEventTouchUpInside];
+    return randomWord;
+}
+
+- (void)pickWords:(id)sender
+{
+    PickerWordsController *pwc = [[PickerWordsController alloc] init];
+    [self.navigationController pushViewController:pwc animated:YES];
+    pwc.delegate = self;
+    [pwc release];
+}
+
+- (UIButton *)getPickWordsButton
+{
+    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    randomWord.frame = CGRectMake(180, 2, 80, 40);
+    [randomWord setTitle:@"选词" forState:UIControlStateNormal];
+    [randomWord addTarget:self action:@selector(pickWords:) forControlEvents:UIControlEventTouchUpInside];
+    return randomWord;
 }
 
 #pragma mark - table view delegate
@@ -260,6 +307,9 @@ enum
         case INDEX_ROLE_WORD:
             if (row == 0) {
                 //random or pick word
+                [cell.contentView addSubview:[self getRandomWordsButton]];     
+                [cell.contentView addSubview:[self getPickWordsButton]];
+                
             }else if(row == 1)
             {//ghost tips
                 UILabel *label = [self createLabelWithText:@"鬼提示"];
@@ -304,4 +354,9 @@ enum
     return INDEX_COUNT;
 }
 
+#pragma mark - pick words delegate
+- (void)didPickedWords:(Words *)words
+{
+    [self setFieldsWithWords:words];
+}
 @end
