@@ -12,5 +12,6 @@
 
 @property (retain, nonatomic) NSArray *wordsArray;
 @property (retain, nonatomic) IBOutlet UITableView *wordsTable;
+@property (assign,nonatomic) int selectCellIndex;
 
 @end

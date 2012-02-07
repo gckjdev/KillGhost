@@ -11,4 +11,5 @@
 @interface PickerWordsCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *civilianWordLabel;
 @property (retain, nonatomic) IBOutlet UILabel *foolWordLabel;
+
 @end

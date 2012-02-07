@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "PickerWordsController.h"
+#import "HelpController.h"
 
 @implementation StateController
 @synthesize previousButton;
@@ -44,20 +45,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.operationTipsArray = [NSArray arrayWithObjects:@"1.所有人闭眼",@"2.鬼睁开眼",@"3.鬼商量谁第一个发言",@"4.鬼闭眼",@"5.所有人睁眼",@"6.第一个发言者开始描述,直到全部人描述完毕",@"7.所有人描述完成，进入投票", nil];
+    self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言",@"3.法官宣布:鬼闭眼",@"4.法官宣布:所有玩家睁眼",@"5.第一个发言者开始描述,直到全部人描述完毕",@"6.所有人描述完成，进入投票", nil];
+    
+//    UILineBreakModeWordWrap = 0,            // Wrap at word boundaries
+//    UILineBreakModeCharacterWrap,           // Wrap at character boundaries
+//    UILineBreakModeClip,                    // Simply clip when it hits the end of the rect
+//    UILineBreakModeHeadTruncation,          // Truncate at head of line: "...wxyz". Will truncate multiline text on first line
+//    UILineBreakModeTailTruncation,          // Truncate at tail of line: "abcd...". Will truncate multiline text on last line
+//    UILineBreakModeMiddleTruncation,        // Truncate middle of line:  "ab...yz". Will truncate multiline text in the middle
     
     self.selectIndex = 0;
-    operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 180)];
-    self.operationView_0.backgroundColor = [UIColor blueColor];
-    operationLabel_0 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
+    operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 240)];
+    self.operationView_1.backgroundColor = [UIColor blueColor];
+    UIImageView *imageView_0 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
+    [self.operationView_0 addSubview:imageView_0];
+    [imageView_0 release];
+    operationLabel_0 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
     self.operationLabel_0.text = [operationTipsArray objectAtIndex:self.selectIndex];
+    self.operationLabel_0.backgroundColor = [UIColor clearColor];
+    self.operationLabel_0.numberOfLines = 0;
+    self.operationLabel_0.lineBreakMode = UILineBreakModeWordWrap;
     [self.operationView_0 addSubview:operationLabel_0];
     [self.view addSubview:operationView_0];
     
-    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(340, 100, 320, 180)];
+    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(340, 60, 320, 240)];
     self.operationView_1.backgroundColor = [UIColor blueColor];
-     operationLabel_1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 60)];
+    UIImageView *imageView_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
+    [self.operationView_1 addSubview:imageView_1];
+    [imageView_1 release];
+     operationLabel_1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
     //self.nextOrPreviousOperationLabel.text = [operationTipsArray objectAtIndex:self.selectIndex];
+    self.operationLabel_1.backgroundColor = [UIColor clearColor];
+    self.operationLabel_1.numberOfLines = 0;
+    self.operationLabel_1.lineBreakMode = UILineBreakModeWordWrap;
     [self.operationView_1 addSubview:operationLabel_1];
     [self.view addSubview:operationView_1];
 }
@@ -173,7 +193,7 @@
     CABasicAnimation *comeAnimation;
     comeAnimation=[CABasicAnimation animationWithKeyPath:@"position.x"];
     comeAnimation.delegate = self;
-    comeAnimation.duration = 0.5;
+    comeAnimation.duration = 0.4;
     comeAnimation.repeatCount = 0;
     comeAnimation.removedOnCompletion = FALSE;
     comeAnimation.fillMode = kCAFillModeForwards;
@@ -209,6 +229,13 @@
     PickerWordsController *cc = [[PickerWordsController alloc] init];
     [self.navigationController pushViewController:cc animated:YES];
     [cc release];
+}
+
+- (IBAction)help:(id)sender
+{
+    HelpController *hc =  [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
 }
 
 
