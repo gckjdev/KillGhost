@@ -9,7 +9,8 @@
 enum CARD_STATUS {
     UNSHOW = 0,
     SHOWING = 1,
-    SHOWED = 2
+    SHOWED = 2,
+    WILLSHOW = 3
 };
 
 
@@ -35,7 +36,10 @@ enum CARD_STATUS {
     CGImageRef imageRef;
     CGSize imageSize;
     CGSize cardSize;
+    NSInteger _status;
     id <PlayerCardDelegate> _delegate;
+    NSTimer *_flashTimer;
+    BOOL _flashShowed;
 }
 
 @property(nonatomic, retain)Player *player;
@@ -46,6 +50,8 @@ enum CARD_STATUS {
 @property(nonatomic, assign)CGPoint position;
 @property(nonatomic, assign)id <PlayerCardDelegate>delegate;
 
+- (void)show;
+- (void)cover;
 
 - (id)initWithPlayer:(Player *)player position:(CGPoint)position;
 - (void)setScale:(CGFloat)scale center:(CGPoint)center;

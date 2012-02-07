@@ -39,6 +39,7 @@
     return self;
 }
 
+
 - (void)setScale:(CGFloat)scale
 {
     _scale = scale;
@@ -51,7 +52,6 @@
 }
 - (void)setScale:(CGFloat)scale center:(CGPoint)center
 {
-    
     _scale = scale;
     cardSize = CGSizeMake(CARD_WIDTH * scale, CARD_HEIGHT * scale);
     imageSize = CGSizeMake(IMAGE_WIDHT * scale, IMAGE_HEIGHT * scale);
@@ -84,20 +84,68 @@
     return img;
 }
 
-- (void)scaleCardAnimation
+- (void)startFlashTimer
+{
+    //    _flashShowed = YES;
+    _flashTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeFrameColor:) userInfo:nil repeats:YES];
+    [_flashTimer fire];
+}
+
+- (void)stopFlashTimer
+{
+    if (_flashTimer && [_flashTimer isValid]) {
+        [_flashTimer invalidate];
+        _flashTimer = nil;
+    }
+}
+
+- (void)setStatus:(NSInteger)status
+{
+    _status = status;
+    switch (status) {
+        case WILLSHOW:
+        {
+            [self setScale:1 center:_position];
+            if (![_flashTimer isValid]) {
+                [self startFlashTimer];
+            }
+        }
+            break;
+        case UNSHOW:
+        case SHOWED:
+            [self stopFlashTimer];    
+            [self setScale:1 center:_position];
+            break;
+        default:
+            [self stopFlashTimer];
+            [self setScale:6 center:CGPointMake(160, 220)];
+            break;
+    }
+    [self setNeedsDisplay];
+}
+- (void)show
 {
     [self.superview bringSubviewToFront:self];
-    [UIView beginAnimations:@"span" context:NULL];
+    [UIView beginAnimations:@"ZoomIn" context:NULL];
     [UIView setAnimationDuration:1];
-    if (self.status == UNSHOW || self.status == SHOWED) {
-        [self setScale:6 center:CGPointMake(160, 220)];
-        self.status = SHOWING;
-    }else{
-        [self setScale:1 center:_position];
-        self.status = SHOWED;
-    }
+    self.status = SHOWING;
     [UIView commitAnimations];
 }
+- (void)cover
+{
+    [self.superview bringSubviewToFront:self];
+    [UIView beginAnimations:@"ZoomOut" context:NULL];
+    [UIView setAnimationDuration:1];
+    self.status = SHOWED;
+    [UIView commitAnimations];
+}
+
+- (void)changeFrameColor:(NSTimer *)theTimer
+{
+    _flashShowed = !_flashShowed;
+    self.status = WILLSHOW;
+}
+
 
 - (void)performTap:(UITapGestureRecognizer *)tap
 {
@@ -114,8 +162,10 @@
     if(self.status == SHOWED){
         //need password
         [UIUtils showTextView:@"请输入密码" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self secureTextEntry:YES];
-    }else{
-        [self scaleCardAnimation];        
+    }else if(self.status == SHOWING){
+        [self cover];        
+    }else if(self.status == WILLSHOW){
+        [self show];
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(didClickedPlayerCard:)]) {
@@ -129,9 +179,9 @@
         //ok button
         NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
         if (pw && [pw isEqualToString:self.passWord]) {
-            [self scaleCardAnimation];
+            [self show];
         }else{
-            
+            //wrong password
         }
     }
 }
@@ -157,7 +207,9 @@
         self.center = position;
         UIImage *img = [PlayerCard imageForPlayerType:player.type];
 		imageRef = CGImageRetain(img.CGImage);
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor clearColor];
+        _flashShowed = YES;
+        self.status = WILLSHOW;
         self.passWord = @"123";
     }
     return self;
@@ -171,32 +223,51 @@
 }
 
 
-- (void)drawRectCardBack
+- (void)drawWillShowCover:(CGContextRef)context
 {
-//    CGRect imageRect;
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//	imageRect.origin = CGPointMake(0, 0);
-//	imageRect.size = CGSizeMake(10, 10);
-//    CGContextClipToRect(context, CGRectMake(0.0, 0, self.bounds.size.width, self.bounds.size.height));
-//	CGContextDrawTiledImage(context, imageRect, [UIImage imageNamed:@"mask.png"].CGImage);
-    if (self.status != SHOWED) {
-        self.backgroundColor = [UIColor orangeColor];
+    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+    if (!_flashShowed) {
+        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
     }else{
-        self.backgroundColor = [UIColor grayColor];
+        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
     }
+    CGFloat lineWidth = 3.0;
+    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth);
+    CGContextFillRect(context, self.bounds);
+    CGContextSaveGState(context);
+    CGContextStrokeRectWithWidth(context, frame, lineWidth);    
+    CGContextSaveGState(context);
+
 }
 
-- (void)drawRectCardFront
+- (void)drawUnShowCover:(CGContextRef)context
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+//    self.backgroundColor = [UIColor grayColor];
+    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+}
+
+- (void)drawShowedCover:(CGContextRef)context
+{
+ //   self.backgroundColor = [UIColor grayColor];
+    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+}
+
+- (void)drawShowingRect:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+    CGContextSaveGState(context);
     
-    //text
-    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     [_player.name drawAtPoint:CGPointMake(10 * _scale, imageSize.width + 3) withFont:[UIFont systemFontOfSize:_fontSize]];
     [_player.word drawAtPoint:CGPointMake(10 * _scale, imageSize.width + 8 * _scale ) withFont:[UIFont systemFontOfSize:_fontSize]];
     
+    NSString *tips = @"(请记住你的身份和词语)";
+    [tips drawAtPoint:CGPointMake(5 * _scale, imageSize.width + 16 * _scale ) withFont:[UIFont systemFontOfSize:_fontSize/1.5]];
     //image
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
@@ -211,10 +282,22 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    if (self.status == SHOWING) {
-        [self drawRectCardFront];
-    }else{
-        [self drawRectCardBack];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    switch (self.status) {
+        case WILLSHOW:
+            [self drawWillShowCover:context];
+            break;
+        case UNSHOW:
+            [self drawUnShowCover:context];
+            break;
+        case SHOWING:
+            [self drawShowingRect:context];
+            break;
+        case SHOWED:
+            [self drawShowedCover:context];
+            break;
+        default:
+            break;
     }
 }
 

@@ -166,13 +166,28 @@
 {
     _currentTextField = textField;
     [self setTapGestureRecognizerEnable:YES];
+    CGFloat width = stepTable.frame.size.width;
+    CGFloat height = stepTable.frame.size.height;
+    if (textField == self.wordLength || 
+        textField == self.foolWord || 
+        textField == self.civilianWord) {
+        stepTable.frame = CGRectMake(0, -200, width, height);
+        NSIndexPath *path = [NSIndexPath indexPathForRow:3 inSection:2];
+        [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+    else if(textField == self.civilianNumber){
+        NSIndexPath *path = [NSIndexPath indexPathForRow:2 inSection:1];
+        [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [self setTapGestureRecognizerEnable:NO];
-
+    CGFloat width = stepTable.frame.size.width;
+    CGFloat height = stepTable.frame.size.height;
+    stepTable.frame = CGRectMake(0, 0, width, height);
 }
 
 #pragma mark - table view delegate

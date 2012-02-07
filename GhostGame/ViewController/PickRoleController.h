@@ -16,6 +16,7 @@
     NSMutableArray *_playerList;
     NSMutableArray *_cardList;
     NSInteger _pickIndex;
+    PlayerCard *_showingCard;
 }
 
 @property(nonatomic, retain)Game *game;

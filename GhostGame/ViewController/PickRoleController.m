@@ -92,8 +92,6 @@
 }
 - (void)createCards
 {
-    //NSInteger count = _game.civilianNumber + _game.foolNumber + _game.ghostNumber;
-    //NSInteger count = 8;
     [_cardList removeAllObjects];
     [self createPlayerList];
     NSInteger i = 0;
@@ -107,7 +105,6 @@
         [card release];
         ++ i;
     }
-    
 }
 
 #pragma mark - View lifecycle
@@ -132,34 +129,46 @@
 }
 
 
-- (void)willClickPlayerCard:(PlayerCard *)playerCard
+- (PlayerCard *)getNextWillShowCard
 {
-    if (playerCard) {
-        if (index < 0) {
-            return;
+    if ([_cardList count] != 0) {
+        if (_pickIndex < 0) {
+            return nil;
         }
-        if (playerCard.status == UNSHOW) {
-            //first show
-            
-        }else if(playerCard.status == SHOWED){
-            //need password
-            
+        NSInteger index = (_pickIndex + 1) % [_cardList count];
+        PlayerCard *card = [_cardList objectAtIndex:index];
+        if (card && card.status != SHOWED) {
+            return card;
         }
     }
+    return nil;
 }
+
+#pragma mark - player card delegate
 
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
+        
+        if (_showingCard && _showingCard != playerCard) {
+            return NO;
+        }
+        
         if (playerCard.status == SHOWING || playerCard.status == SHOWED) {
             return YES;
         }
-        NSInteger index = [_cardList indexOfObject:playerCard];
-        if (index < 0) {
-            return NO;
+        if (_pickIndex == -1) {
+            _pickIndex = [_cardList indexOfObject:playerCard];
+            for (PlayerCard *card in _cardList) {
+                if (card != playerCard) {
+                    card.status = UNSHOW;
+                }
+            }
+            return YES;
         }
-        if (_pickIndex == -1 || (_pickIndex + 1) % [_cardList count] == index) {
-            _pickIndex = index;
+        PlayerCard *card = [self getNextWillShowCard];
+        if (card == playerCard) {
+            _pickIndex = [_cardList indexOfObject:playerCard];
             return YES;
         }
     }
@@ -167,7 +176,15 @@
 }
 - (void)didClickedPlayerCard:(PlayerCard *)playerCard
 {
-
+    if (playerCard.scale != 1) {
+        _showingCard = playerCard;
+    }else{
+        _showingCard = nil;
+        PlayerCard *card = [self getNextWillShowCard];
+        if (card) {
+            card.status = WILLSHOW;
+        }
+    }
 }
 
 @end
