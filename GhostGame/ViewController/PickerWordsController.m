@@ -14,6 +14,7 @@
 @implementation PickerWordsController
 @synthesize wordsArray;
 @synthesize wordsTable;
+@synthesize selectCellIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +41,7 @@
     WordsManager *wordsManager = [[[WordsManager alloc] init] autorelease];
     self.wordsArray = [wordsManager getAllWords];
     //[wordsManager release];
+    self.selectCellIndex = -1;
 }
 
 - (void)viewDidUnload
@@ -89,6 +91,10 @@
     cell.civilianWordLabel.text = word.civilianWord;
     cell.foolWordLabel.text = word.foolWord;
     
+    if (self.selectCellIndex == indexPath.row) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    
     return cell;
 }
 
@@ -104,13 +110,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d",[self.wordsArray count]);
+    self.selectCellIndex = indexPath.row;
+    [tableView reloadData];
 }
 
 
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath { 
     return NO; 
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
 }
 
 @end
