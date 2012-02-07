@@ -39,8 +39,6 @@
 		CA25628714DBE3C50004C427 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25628614DBE3C50004C427 /* mask.png */; };
 		CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B014DF7CA2001258FD /* PickerWordsController.m */; };
 		CAC931B314DF7CA2001258FD /* PickerWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC931B114DF7CA2001258FD /* PickerWordsController.xib */; };
-		CAC931B614DF7DBD001258FD /* Phrase.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B514DF7DBD001258FD /* Phrase.m */; };
-		CAC931B914DF7DD3001258FD /* PhraseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B814DF7DD3001258FD /* PhraseManager.m */; };
 		CAC931DC14DFE669001258FD /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931DB14DFE669001258FD /* UIUtils.m */; };
 		CAC931DF14DFE68D001258FD /* DeviceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931DE14DFE68D001258FD /* DeviceDetection.m */; };
 		CAC931E114DFE6A3001258FD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC931E014DFE6A3001258FD /* MessageUI.framework */; };
@@ -117,10 +115,6 @@
 		CAC931AF14DF7CA2001258FD /* PickerWordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsController.h; sourceTree = "<group>"; };
 		CAC931B014DF7CA2001258FD /* PickerWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsController.m; sourceTree = "<group>"; };
 		CAC931B114DF7CA2001258FD /* PickerWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsController.xib; sourceTree = "<group>"; };
-		CAC931B414DF7DBD001258FD /* Phrase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phrase.h; sourceTree = "<group>"; };
-		CAC931B514DF7DBD001258FD /* Phrase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phrase.m; sourceTree = "<group>"; };
-		CAC931B714DF7DD3001258FD /* PhraseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhraseManager.h; sourceTree = "<group>"; };
-		CAC931B814DF7DD3001258FD /* PhraseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhraseManager.m; sourceTree = "<group>"; };
 		CAC931DA14DFE669001258FD /* UIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUtils.h; path = ../../Common_Iphone/UIUtils/UIUtils.h; sourceTree = "<group>"; };
 		CAC931DB14DFE669001258FD /* UIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUtils.m; path = ../../Common_Iphone/UIUtils/UIUtils.m; sourceTree = "<group>"; };
 		CAC931DD14DFE68D001258FD /* DeviceDetection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceDetection.h; path = ../../Common_Iphone/Utils/DeviceDetection.h; sourceTree = "<group>"; };
@@ -174,8 +168,6 @@
 		CA0A209E14DA690400577C02 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				CAC931B714DF7DD3001258FD /* PhraseManager.h */,
-				CAC931B814DF7DD3001258FD /* PhraseManager.m */,
 				A3C8160314DF88E30022D8AE /* WordsManager.h */,
 				A3C8160414DF88E30022D8AE /* WordsManager.m */,
 			);
@@ -189,8 +181,6 @@
 				CA0A20A114DA690400577C02 /* Game.m */,
 				CA0A20A214DA690400577C02 /* Player.h */,
 				CA0A20A314DA690400577C02 /* Player.m */,
-				CAC931B414DF7DBD001258FD /* Phrase.h */,
-				CAC931B514DF7DBD001258FD /* Phrase.m */,
 				A3C8160014DF88CD0022D8AE /* Words.h */,
 				A3C8160114DF88CD0022D8AE /* Words.m */,
 			);
@@ -495,8 +485,6 @@
 				CA0A20CE14DA6C2800577C02 /* ResultController.m in Sources */,
 				CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */,
 				CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */,
-				CAC931B614DF7DBD001258FD /* Phrase.m in Sources */,
-				CAC931B914DF7DD3001258FD /* PhraseManager.m in Sources */,
 				A3C8160214DF88CD0022D8AE /* Words.m in Sources */,
 				A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */,
 				A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */,
