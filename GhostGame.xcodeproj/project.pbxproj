@@ -37,6 +37,7 @@
 		CA0A20D614DA776800577C02 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D314DA776800577C02 /* ghost.png */; };
 		CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20D914DA77B700577C02 /* PlayerCard.m */; };
 		CA25628714DBE3C50004C427 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25628614DBE3C50004C427 /* mask.png */; };
+		CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8314E375BD000A07F8 /* PlayerCardManager.m */; };
 		CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B014DF7CA2001258FD /* PickerWordsController.m */; };
 		CAC931B314DF7CA2001258FD /* PickerWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC931B114DF7CA2001258FD /* PickerWordsController.xib */; };
 		CAC931DC14DFE669001258FD /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931DB14DFE669001258FD /* UIUtils.m */; };
@@ -112,6 +113,8 @@
 		CA0A20D814DA77B700577C02 /* PlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCard.h; sourceTree = "<group>"; };
 		CA0A20D914DA77B700577C02 /* PlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCard.m; sourceTree = "<group>"; };
 		CA25628614DBE3C50004C427 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
+		CA986C8214E375BD000A07F8 /* PlayerCardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCardManager.h; sourceTree = "<group>"; };
+		CA986C8314E375BD000A07F8 /* PlayerCardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCardManager.m; sourceTree = "<group>"; };
 		CAC931AF14DF7CA2001258FD /* PickerWordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsController.h; sourceTree = "<group>"; };
 		CAC931B014DF7CA2001258FD /* PickerWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsController.m; sourceTree = "<group>"; };
 		CAC931B114DF7CA2001258FD /* PickerWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsController.xib; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 			children = (
 				A3C8160314DF88E30022D8AE /* WordsManager.h */,
 				A3C8160414DF88E30022D8AE /* WordsManager.m */,
+				CA986C8214E375BD000A07F8 /* PlayerCardManager.h */,
+				CA986C8314E375BD000A07F8 /* PlayerCardManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				CAC931DC14DFE669001258FD /* UIUtils.m in Sources */,
 				CAC931DF14DFE68D001258FD /* DeviceDetection.m in Sources */,
 				A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */,
+				CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
