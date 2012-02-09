@@ -118,7 +118,7 @@
             break;
         default:
             [self stopFlashTimer];
-            [self setScale:6 center:CGPointMake(160, 220)];
+            [self setScale:7 center:CGPointMake(160, 210)];
             break;
     }
     [self setNeedsDisplay];

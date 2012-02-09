@@ -9,8 +9,8 @@
 #import "PickRoleController.h"
 #import "Game.h"
 #import "Player.h"
-#import "PlayerCard.h"
 #import "StateController.h"
+#import "PlayerCardManager.h"
 
 @implementation PickRoleController
 @synthesize game = _game;
@@ -21,8 +21,7 @@
     if (self) {
         // Custom initialization
         _playerList = [[NSMutableArray alloc] init];
-        _cardList = [[NSMutableArray alloc] init];
-        _pickIndex = - 1;
+        _playerCardManager = [PlayerCardManager defaultManager];
     }
     return self;
 }
@@ -45,7 +44,6 @@
 - (void)dealloc
 {
     [_playerList release];
-    [_cardList release];
     [super dealloc];
 }
 
@@ -92,19 +90,20 @@
 }
 - (void)createCards
 {
-    [_cardList removeAllObjects];
+    NSMutableArray *cardList = [[NSMutableArray alloc] init];
     [self createPlayerList];
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
         CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 200);
         PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
-        card.delegate = self;
+        card.delegate = _playerCardManager;
         [self.view addSubview:card];
-        [_cardList addObject:card];
+        [cardList addObject:card];
         [card release];
         ++ i;
     }
+    [_playerCardManager setPlayerCardList:cardList];
 }
 
 #pragma mark - View lifecycle
@@ -128,63 +127,5 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (PlayerCard *)getNextWillShowCard
-{
-    if ([_cardList count] != 0) {
-        if (_pickIndex < 0) {
-            return nil;
-        }
-        NSInteger index = (_pickIndex + 1) % [_cardList count];
-        PlayerCard *card = [_cardList objectAtIndex:index];
-        if (card && card.status != SHOWED) {
-            return card;
-        }
-    }
-    return nil;
-}
-
-#pragma mark - player card delegate
-
-- (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
-{
-    if (playerCard) {
-        
-        if (_showingCard && _showingCard != playerCard) {
-            return NO;
-        }
-        
-        if (playerCard.status == SHOWING || playerCard.status == SHOWED) {
-            return YES;
-        }
-        if (_pickIndex == -1) {
-            _pickIndex = [_cardList indexOfObject:playerCard];
-            for (PlayerCard *card in _cardList) {
-                if (card != playerCard) {
-                    card.status = UNSHOW;
-                }
-            }
-            return YES;
-        }
-        PlayerCard *card = [self getNextWillShowCard];
-        if (card == playerCard) {
-            _pickIndex = [_cardList indexOfObject:playerCard];
-            return YES;
-        }
-    }
-    return NO;
-}
-- (void)didClickedPlayerCard:(PlayerCard *)playerCard
-{
-    if (playerCard.scale != 1) {
-        _showingCard = playerCard;
-    }else{
-        _showingCard = nil;
-        PlayerCard *card = [self getNextWillShowCard];
-        if (card) {
-            card.status = WILLSHOW;
-        }
-    }
-}
 
 @end

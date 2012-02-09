@@ -9,14 +9,17 @@
 
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
-#import "Game.h"
 #import "PlayerCard.h"
+
+@class Game;
+@class PlayerCardManager;
 
 @interface PickRoleController : GRViewController<PlayerCardDelegate> {
     NSMutableArray *_playerList;
-    NSMutableArray *_cardList;
-    NSInteger _pickIndex;
-    PlayerCard *_showingCard;
+//    NSMutableArray *_cardList;
+//    NSInteger _pickIndex;
+//    PlayerCard *_showingCard;
+    PlayerCardManager *_playerCardManager;
 }
 
 @property(nonatomic, retain)Game *game;
