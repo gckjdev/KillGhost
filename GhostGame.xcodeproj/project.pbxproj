@@ -16,6 +16,8 @@
 		A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D114E1091E00BD0DCF /* GrainLace.png */; };
 		A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */; };
 		A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ED053C14DA817300AC8C67 /* QuartzCore.framework */; };
+		A3EF772614E3D7F4000DE72B /* PickerCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EF772414E3D7F4000DE72B /* PickerCategoryController.m */; };
+		A3EF772714E3D7F4000DE72B /* PickerCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EF772514E3D7F4000DE72B /* PickerCategoryController.xib */; };
 		CA0A20B014DA690400577C02 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A114DA690400577C02 /* Game.m */; };
 		CA0A20B114DA690400577C02 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A314DA690400577C02 /* Player.m */; };
 		CA0A20B214DA690400577C02 /* CreateGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A614DA690400577C02 /* CreateGameController.m */; };
@@ -84,6 +86,9 @@
 		A3D9E3D114E1091E00BD0DCF /* GrainLace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrainLace.png; sourceTree = "<group>"; };
 		A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrainLace@2x.png"; sourceTree = "<group>"; };
 		A3ED053C14DA817300AC8C67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3EF772314E3D7F4000DE72B /* PickerCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCategoryController.h; sourceTree = "<group>"; };
+		A3EF772414E3D7F4000DE72B /* PickerCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCategoryController.m; sourceTree = "<group>"; };
+		A3EF772514E3D7F4000DE72B /* PickerCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCategoryController.xib; sourceTree = "<group>"; };
 		CA0A20A014DA690400577C02 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		CA0A20A114DA690400577C02 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		CA0A20A214DA690400577C02 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -203,6 +208,9 @@
 		CA0A20A414DA690400577C02 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A3EF772314E3D7F4000DE72B /* PickerCategoryController.h */,
+				A3EF772414E3D7F4000DE72B /* PickerCategoryController.m */,
+				A3EF772514E3D7F4000DE72B /* PickerCategoryController.xib */,
 				A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */,
 				A3D9E3CC14E108DA00BD0DCF /* HelpController.h */,
 				A3D9E3CD14E108DA00BD0DCF /* HelpController.m */,
@@ -452,6 +460,7 @@
 				A3D9E3CE14E108DA00BD0DCF /* HelpController.xib in Resources */,
 				A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */,
 				A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */,
+				A3EF772714E3D7F4000DE72B /* PickerCategoryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +518,7 @@
 				CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */,
 				CA986C8914E3B4AA000A07F8 /* LineSegment.m in Sources */,
 				CA986C8A14E3B4AA000A07F8 /* LineSegmentView.m in Sources */,
+				A3EF772614E3D7F4000DE72B /* PickerCategoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
