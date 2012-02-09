@@ -12,6 +12,7 @@
 #import "PickerWordsCell.h"
 
 @implementation PickerWordsController
+@synthesize categoryId;
 @synthesize wordsArray;
 @synthesize wordsTable;
 @synthesize selectCellIndex;
@@ -22,6 +23,16 @@
     if (self) {
         // Custom initialization
     }
+    return self;
+}
+
+- (id)initWithCategoryId:(NSNumber *)categoryIdValue
+{
+    self = [super init];
+    if (self) {
+        self.categoryId = categoryIdValue;
+    }
+    
     return self;
 }
 
@@ -38,14 +49,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    WordsManager *wordsManager = [[[WordsManager alloc] init] autorelease];
-    self.wordsArray = [wordsManager getAllWords];
-    //[wordsManager release];
+    
+    self.wordsArray = [[WordsManager defaultManager] getWordsArrayByCategoryId:self.categoryId];
+    
     self.selectCellIndex = -1;
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setCategoryId:nil];
+    [self setWordsArray:nil];
     [self setWordsTable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -59,6 +73,7 @@
 }
 
 - (void)dealloc {
+    [categoryId release];
     [wordsArray release];
     [wordsTable release];
     [super dealloc];

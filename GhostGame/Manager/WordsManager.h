@@ -10,8 +10,13 @@
 
 @interface WordsManager : NSObject
 
-- (NSArray *)getAllWords;
 + (WordsManager *)defaultManager;
+
+- (NSArray *)getAllWords;
+- (NSArray *)getAllCategoryId;
+- (NSString *)getNameByCategoryId:(NSNumber*)categoryIdValue;
+- (NSArray *)getWordsArrayByCategoryId:(NSNumber*)categoryIdValue;
+
 @end
 
 extern WordsManager* GlobalGetWordsManager();
