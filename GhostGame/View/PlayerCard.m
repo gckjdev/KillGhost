@@ -24,6 +24,8 @@
 @synthesize position = _position;
 @synthesize delegate = _delegate;
 @synthesize passWord = _passWord;
+@synthesize voteNumber = _voteNumber;
+@synthesize hasVoted = _hasVoted;
 
 - (CGRect)defaultFrame
 {
@@ -113,6 +115,8 @@
             break;
         case UNSHOW:
         case SHOWED:
+        case VOTE:
+        case DEAD:
             [self stopFlashTimer];    
             [self setScale:1 center:_position];
             break;
@@ -190,7 +194,6 @@
     cardSize = CGSizeMake(CARD_WIDTH, CARD_HEIGHT);
     imageSize = CGSizeMake(IMAGE_WIDHT, IMAGE_HEIGHT);
     _fontSize = FONT_SIZE;
-    self.status = UNSHOW;
     self.frame = [self defaultFrame];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTap:)];
     [self addGestureRecognizer:tap];
@@ -211,6 +214,8 @@
         _flashShowed = YES;
         self.status = WILLSHOW;
         self.passWord = @"123";
+        self.hasVoted = NO;
+        self.voteNumber = 0;
     }
     return self;
 }
@@ -242,18 +247,27 @@
 
 - (void)drawUnShowCover:(CGContextRef)context
 {
-//    self.backgroundColor = [UIColor grayColor];
     CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
     CGContextFillRect(context, self.bounds);
 }
 
 - (void)drawShowedCover:(CGContextRef)context
 {
- //   self.backgroundColor = [UIColor grayColor];
     CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
     CGContextFillRect(context, self.bounds);
 }
 
+- (void)drawVoteCover:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+}
+
+- (void)drawDeadCover:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+}
 - (void)drawShowingRect:(CGContextRef)context
 {
     CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
@@ -295,6 +309,12 @@
             break;
         case SHOWED:
             [self drawShowedCover:context];
+            break;
+        case VOTE:
+            [self drawVoteCover:context];
+            break;
+        case DEAD:
+            [self drawDeadCover:context];
             break;
         default:
             break;

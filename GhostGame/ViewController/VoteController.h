@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VoteController : UIViewController
+@class PlayerCardManager;
+@interface VoteController : UIViewController<UIGestureRecognizerDelegate>
+{
+    PlayerCardManager *_playerManager;
+    BOOL _isVoteLine;
+}
 
+@property(nonatomic, retain)PlayerCardManager *playerManager;
+@property(nonatomic, retain)NSMutableArray *lineViewArray;
+- (id)initWithPlayerManager:(PlayerCardManager *)manager;
 @end

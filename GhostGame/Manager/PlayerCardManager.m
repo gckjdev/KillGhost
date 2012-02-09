@@ -8,13 +8,13 @@
 
 #import "PlayerCardManager.h"
 
-PlayerCardManager *playerCardManager;
+PlayerCardManager *defaultPlayerCardManager;
 PlayerCardManager *GlobalGetPlayerCardManager()
 {
-    if (playerCardManager == nil) {
-        playerCardManager = [[PlayerCardManager alloc] init];
+    if (defaultPlayerCardManager == nil) {
+        defaultPlayerCardManager = [[PlayerCardManager alloc] init];
     }
-    return playerCardManager;
+    return defaultPlayerCardManager;
 }
 
 @implementation PlayerCardManager
@@ -84,6 +84,9 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
+        if (playerCard.status == VOTE) {
+            return NO;
+        }
         
         if (_showingCard && _showingCard != playerCard) {
             return NO;

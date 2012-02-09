@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "StateController.h"
 #import "PlayerCardManager.h"
+#import "VoteController.h"
 
 @implementation PickRoleController
 @synthesize game = _game;
@@ -27,9 +28,12 @@
 }
 
 - (IBAction)clickNextButton:(id)sender {
-    StateController *sc = [[StateController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+//    StateController *sc = [[StateController alloc] init];
+//    [self.navigationController pushViewController:sc animated:YES];
+//    [sc release];
+    VoteController *vc = [[VoteController alloc] initWithPlayerManager:_playerCardManager];
+    [self.navigationController pushViewController:vc animated:YES];
+    [vc release];
 }
 
 - (id)initWithGame:(Game *)aGame
@@ -104,6 +108,7 @@
         ++ i;
     }
     [_playerCardManager setPlayerCardList:cardList];
+    [cardList release];
 }
 
 #pragma mark - View lifecycle
