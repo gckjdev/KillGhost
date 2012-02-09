@@ -12,6 +12,8 @@
 #import "Words.h"
 #import "WordsManager.h"
 #import "UIUtils.h"
+#import "PickerCategoryController.h"
+
 @implementation CreateGameController
 @synthesize playerNumber;
 @synthesize ghostNumber;
@@ -222,10 +224,10 @@
 
 - (void)pickWords:(id)sender
 {
-    PickerWordsController *pwc = [[PickerWordsController alloc] init];
-    [self.navigationController pushViewController:pwc animated:YES];
-    pwc.delegate = self;
-    [pwc release];
+    PickerCategoryController *pcc = [[PickerCategoryController alloc] init];
+    [self.navigationController pushViewController:pcc animated:YES];
+    pcc.delegate = self;
+    [pcc release];
 }
 
 - (UIButton *)getPickWordsButton
