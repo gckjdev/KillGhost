@@ -9,6 +9,7 @@
 #import "StateController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "PickerCategoryController.h"
 #import "PickerWordsController.h"
 #import "HelpController.h"
 
@@ -251,9 +252,13 @@
 
 - (IBAction)chooseWords:(id)sender
 {
-    PickerWordsController *cc = [[PickerWordsController alloc] init];
-    [self.navigationController pushViewController:cc animated:YES];
-    [cc release];
+    PickerCategoryController *pc = [[PickerCategoryController alloc] init];
+    [self.navigationController pushViewController:pc animated:YES];
+    [pc release];
+    
+//    PickerWordsController *cc = [[PickerWordsController alloc] init];
+//    [self.navigationController pushViewController:cc animated:YES];
+//    [cc release];
 }
 
 - (IBAction)help:(id)sender
