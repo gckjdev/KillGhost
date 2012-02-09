@@ -45,19 +45,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言",@"3.法官宣布:鬼闭眼",@"4.法官宣布:所有玩家睁眼",@"5.第一个发言者开始描述,直到全部人描述完毕",@"6.所有人描述完成，进入投票", nil];
-    
-//    UILineBreakModeWordWrap = 0,            // Wrap at word boundaries
-//    UILineBreakModeCharacterWrap,           // Wrap at character boundaries
-//    UILineBreakModeClip,                    // Simply clip when it hits the end of the rect
-//    UILineBreakModeHeadTruncation,          // Truncate at head of line: "...wxyz". Will truncate multiline text on first line
-//    UILineBreakModeTailTruncation,          // Truncate at tail of line: "abcd...". Will truncate multiline text on last line
-//    UILineBreakModeMiddleTruncation,        // Truncate middle of line:  "ab...yz". Will truncate multiline text in the middle
+    self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼。\n\n\n\n(所有玩家闭眼后，则进入下一步)",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n\n(鬼商量之后,则进入下一步)",@"3.法官宣布:鬼闭眼。\n\n\n\n(所有鬼闭眼后，则进入下一步)",@"4.法官宣布:所有玩家睁眼。\n\n\n\n(所有玩家睁开眼后，则进入下一步)",@"5.法官指定第一个发言者，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"6.法官宣布:进入投票阶段。", nil];
     
     self.selectIndex = 0;
     operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 240)];
     self.operationView_1.backgroundColor = [UIColor blueColor];
     UIImageView *imageView_0 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
+    imageView_0.frame = CGRectMake(0, 0, 320, 240);
     [self.operationView_0 addSubview:imageView_0];
     [imageView_0 release];
     operationLabel_0 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
@@ -68,9 +62,10 @@
     [self.operationView_0 addSubview:operationLabel_0];
     [self.view addSubview:operationView_0];
     
-    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(340, 60, 320, 240)];
+    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(320, 60, 320, 240)];
     self.operationView_1.backgroundColor = [UIColor blueColor];
     UIImageView *imageView_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
+    imageView_1.frame = CGRectMake(0, 0, 320, 240);
     [self.operationView_1 addSubview:imageView_1];
     [imageView_1 release];
      operationLabel_1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
@@ -80,6 +75,34 @@
     self.operationLabel_1.lineBreakMode = UILineBreakModeWordWrap;
     [self.operationView_1 addSubview:operationLabel_1];
     [self.view addSubview:operationView_1];
+    
+    
+    //添加左扫、右扫手势
+    UISwipeGestureRecognizer *recognizer; 
+    
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)]; 
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)]; 
+    [[self view] addGestureRecognizer:recognizer]; 
+    [recognizer release]; 
+    
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)]; 
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)]; 
+    [[self view] addGestureRecognizer:recognizer]; 
+    [recognizer release]; 
+}
+
+-(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer { 
+    NSLog(@"Swipe received."); 
+    
+    if (recognizer.direction==UISwipeGestureRecognizerDirectionLeft) { 
+        NSLog(@"swipe left");
+        [self next:nil];
+    }
+    
+    if (recognizer.direction==UISwipeGestureRecognizerDirectionRight) { 
+        NSLog(@"swipe right");
+        [self previous:nil];
+    }
 }
 
 - (void)viewDidUnload
@@ -117,6 +140,7 @@
 {
     if (0 == selectIndex) {
         selectIndex = selectIndex;
+        return ;
     }
     else{
         selectIndex = selectIndex - 1;
@@ -144,6 +168,7 @@
 {
     if (selectIndex == [operationTipsArray count] - 1 ) {
         selectIndex = selectIndex;
+        return ;
     }
     else
     {
