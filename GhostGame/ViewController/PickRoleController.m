@@ -23,6 +23,7 @@
         // Custom initialization
         _playerList = [[NSMutableArray alloc] init];
         _playerCardManager = [PlayerCardManager defaultManager];
+        [_playerCardManager reset];
     }
     return self;
 }

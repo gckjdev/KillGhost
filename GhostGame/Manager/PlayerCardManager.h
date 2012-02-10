@@ -22,5 +22,6 @@
 - (PlayerCard *)playerCardAtIndex:(NSInteger)index;
 - (NSInteger)indexOfPlayerCard:(PlayerCard *)playerCard;
 - (NSInteger)playerCardCount;
+- (void)reset;
 @end
 extern PlayerCardManager *GlobalGetPlayerCardManager();

@@ -18,7 +18,6 @@
 
 @property(nonatomic, retain) UIColor *color;
 @property(nonatomic, assign) CGFloat lineWidth;
-@property(nonatomic, retain) LineSegment *lineSegment;
 
 - (id)initWithWithStartPoint:(CGPoint)start endPoint:(CGPoint)end;
 - (id)initWithWithLineSegment:(LineSegment *)lineSegment;
@@ -26,4 +25,7 @@
 - (LineSegment *)lineSegment;
 - (CGRect)getFrameWithStartPoint:(CGPoint)start endPoint:(CGPoint)end;
 - (void)setStartPoint:(CGPoint)start endPoint:(CGPoint)end;
+
+- (CGPoint)startPoint;
+- (CGPoint)endPoint;
 @end

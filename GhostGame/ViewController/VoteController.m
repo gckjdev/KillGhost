@@ -16,14 +16,8 @@
 @synthesize playerManager = _playerManager;
 @synthesize lineViewArray = _lineViewArray;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
+#pragma mark - line segment
 
 - (void)constructLineSegments
 {
@@ -38,15 +32,45 @@
     }
 }
 
-- (id)init
+- (LineSegmentView *)lineSegmentForPlayerCard:(PlayerCard *)card
 {
-    self = [super init];
-    if(self){
+    NSInteger index = [_playerManager indexOfPlayerCard:card];
+    if (index >= 0) {
+        return [_lineViewArray objectAtIndex:index];
+    }
+    return nil;
+}
+
+- (PlayerCard *)playerCardForLineSegmentView:(LineSegmentView *)lineSegmentView
+{
+    NSInteger index = [_lineViewArray indexOfObject:lineSegmentView];
+    if (index >= 0) {
+        return [_playerManager playerCardAtIndex:index];
+    }
+    return nil;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
         self.playerManager = [PlayerCardManager defaultManager];
         [self constructLineSegments];
     }
     return self;
 }
+
+
+
+- (id)init
+{
+    self = [super init];
+    if(self){
+        self.playerManager = [PlayerCardManager defaultManager];
+    }
+    return self;
+}
+
 
 - (id)initWithPlayerManager:(PlayerCardManager *)manager
 {
@@ -103,16 +127,76 @@
         //card 
         PlayerCard *card = [self playCardBeenTouchAtPoint:location];
         if (card) {
+            _isStartInCard = YES;
+            _currentVoteLine = [self lineSegmentForPlayerCard:card];
+            [_currentVoteLine setColor:[UIColor greenColor]];
+            [_currentVoteLine setStartPoint:card.center endPoint:card.center];
+            [_voteLine release];
             
+        }else{
+            _isStartInCard = NO;
+            _currentVoteLine = nil;
         }
 
     }else if(pan.state == UIGestureRecognizerStateChanged){
+        if (_isStartInCard) {
+            PlayerCard *card = [self playCardBeenTouchAtPoint:location];
+            if (card) {
+                [_currentVoteLine setColor:[UIColor yellowColor]];
+            }else{
+                [_currentVoteLine setColor:[UIColor greenColor]];
+            }
+            [_currentVoteLine setStartPoint:_currentVoteLine.startPoint endPoint:location];
+            
+        }
+        
         
     }else if(pan.state == UIGestureRecognizerStateEnded)
     {
+        PlayerCard *card = [self playCardBeenTouchAtPoint:location];
+        if (card) {
+            _isEndInCard = YES;
+        }else
+        {
+            _isEndInCard = NO;
+        }
+        if (_isStartInCard) {
+            PlayerCard *voteCard = [self playerCardForLineSegmentView:_currentVoteLine];
+            PlayerCard *preVotedCard = voteCard.voteForPlayer;
+            if (preVotedCard) {
+                preVotedCard.voteNumber --;
+            }
+            
+            if (_isEndInCard) {
+                [_currentVoteLine setStartPoint:_currentVoteLine.startPoint endPoint:card.center];
+                [_currentVoteLine setColor:[UIColor redColor]];
+                voteCard.voteForPlayer = card;
+                card.voteNumber ++;
+            }else{
+                voteCard.voteForPlayer = nil;
+                [_currentVoteLine setStartPoint:card.center endPoint:card.center];
+            }
+        }else{
+            
+        }
         
     }else{
         
+    }
+    
+    
+}
+
+
+- (IBAction)finishVote:(id)sender {
+    NSInteger maxVoteNumber = 0;
+    for (PlayerCard *card in _playerManager.playerCardList) {
+        maxVoteNumber = MAX(card.voteNumber, maxVoteNumber);
+    }
+    for (PlayerCard *card in _playerManager.playerCardList) {
+        if (card.voteNumber == maxVoteNumber) {
+            card.status = CANDIDATE;
+        }
     }
 }
 
@@ -122,7 +206,7 @@
 {
     [super viewDidLoad];
     for (PlayerCard *card in self.playerManager.playerCardList) {
-        card.status = DEAD;
+        card.status = VOTE;
         [self.view addSubview:card];
     }
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];  

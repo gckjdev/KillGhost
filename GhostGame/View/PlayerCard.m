@@ -25,7 +25,7 @@
 @synthesize delegate = _delegate;
 @synthesize passWord = _passWord;
 @synthesize voteNumber = _voteNumber;
-@synthesize hasVoted = _hasVoted;
+@synthesize voteForPlayer = _voteForPlayer;
 
 - (CGRect)defaultFrame
 {
@@ -101,12 +101,20 @@
     }
 }
 
+- (void)setVoteNumber:(NSInteger)voteNumber
+{
+    _voteNumber = voteNumber;
+    [self setNeedsDisplay];
+}
+
 - (void)setStatus:(NSInteger)status
 {
     _status = status;
     switch (status) {
         case WILLSHOW:
+        case CANDIDATE:
         {
+            _flashShowed = YES;
             [self setScale:1 center:_position];
             if (![_flashTimer isValid]) {
                 [self startFlashTimer];
@@ -147,7 +155,7 @@
 - (void)changeFrameColor:(NSTimer *)theTimer
 {
     _flashShowed = !_flashShowed;
-    self.status = WILLSHOW;
+    [self setNeedsDisplay];
 }
 
 
@@ -195,6 +203,13 @@
     imageSize = CGSizeMake(IMAGE_WIDHT, IMAGE_HEIGHT);
     _fontSize = FONT_SIZE;
     self.frame = [self defaultFrame];
+    self.backgroundColor = [UIColor clearColor];
+    _flashShowed = YES;
+    self.status = WILLSHOW;
+    self.passWord = @"123";
+    self.voteNumber = 0;
+    self.voteForPlayer = nil;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(performTap:)];
     [self addGestureRecognizer:tap];
     [tap release];
@@ -206,16 +221,11 @@
     if (self) {
         self.player = player;
         self.position = position;
-        [self defaultSetting];
         self.center = position;
         UIImage *img = [PlayerCard imageForPlayerType:player.type];
-		imageRef = CGImageRetain(img.CGImage);
-        self.backgroundColor = [UIColor clearColor];
-        _flashShowed = YES;
-        self.status = WILLSHOW;
-        self.passWord = @"123";
-        self.hasVoted = NO;
-        self.voteNumber = 0;
+        imageRef = CGImageRetain(img.CGImage);
+        [self defaultSetting];
+
     }
     return self;
 }
@@ -228,22 +238,38 @@
 }
 
 
-- (void)drawWillShowCover:(CGContextRef)context
+- (void)drawFlashRect:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
     if (!_flashShowed) {
         CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
     }else{
         CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
     }
     CGFloat lineWidth = 3.0;
-    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth);
-    CGContextFillRect(context, self.bounds);
-    CGContextSaveGState(context);
-    CGContextStrokeRectWithWidth(context, frame, lineWidth);    
+    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth); CGContextStrokeRectWithWidth(context, frame, lineWidth);    
     CGContextSaveGState(context);
 
 }
+
+- (void)drawWillShowCover:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+//    if (!_flashShowed) {
+//        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
+//    }else{
+//        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+//    }
+//    CGFloat lineWidth = 3.0;
+//    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth);
+    CGContextFillRect(context, self.bounds);
+    CGContextSaveGState(context);
+    [self drawFlashRect:context];
+//    CGContextStrokeRectWithWidth(context, frame, lineWidth);    
+//    CGContextSaveGState(context);
+
+}
+
+
 
 - (void)drawUnShowCover:(CGContextRef)context
 {
@@ -261,6 +287,25 @@
 {
     CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
     CGContextFillRect(context, self.bounds);
+    
+    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+    CGContextSaveGState(context);
+    
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+    
+    NSString *tips = [NSString stringWithFormat:@"%d",_voteNumber];    
+    [tips drawAtPoint:CGPointMake(3, 3) withFont:[UIFont systemFontOfSize:25]];
+    CGContextSaveGState(context);
+
+}
+
+- (void)drawCandidateCover:(CGContextRef)context
+{
+    [self drawVoteCover:context];
+    [self drawFlashRect:context];
 }
 
 - (void)drawDeadCover:(CGContextRef)context
@@ -312,6 +357,9 @@
             break;
         case VOTE:
             [self drawVoteCover:context];
+            break;
+        case CANDIDATE:
+            [self drawCandidateCover:context];
             break;
         case DEAD:
             [self drawDeadCover:context];

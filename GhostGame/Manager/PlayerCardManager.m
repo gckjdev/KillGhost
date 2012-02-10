@@ -21,12 +21,22 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 @synthesize playerCardList = _playerCardList;
 @synthesize showingCard = _showingCard;
 
+
+- (void)reset
+{
+    if (_playerCardList) {
+        [_playerCardList removeAllObjects];
+    }else{
+        _playerCardList = [[NSMutableArray alloc] init];
+    }
+    _pickIndex = -1;
+    _showingCard = nil;
+}
 - (id)init
 {
     self = [super init];
     if (self) {
-        _playerCardList = [[NSMutableArray alloc] init];
-        _pickIndex = - 1;
+        [self reset];
     }
     return self;
 }
@@ -84,7 +94,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
-        if (playerCard.status == VOTE) {
+        if (playerCard.status == VOTE || playerCard.status == DEAD) {
             return NO;
         }
         

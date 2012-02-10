@@ -11,7 +11,6 @@
 @implementation LineSegmentView
 @synthesize color = _color;
 @synthesize lineWidth = _lineWidth;
-@synthesize lineSegment = _lineSegment;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -106,20 +105,31 @@
     return CGRectMake(x, y, width, height);
 }
 
+- (BOOL) isNumber:(CGFloat)number1 nearNumber:(CGFloat)number2
+{
+    if (ABS(number1 - number2) <= MAX(_lineWidth, 2.0)) {
+        return YES;
+    }
+    return NO;
+}
+
+
 - (void)setStartPoint:(CGPoint)start endPoint:(CGPoint)end
 {
     _start = start;
     _end = end;
+    BOOL xNear = [self isNumber:start.x nearNumber:end.x];
+    BOOL yNear = [self isNumber:start.y nearNumber:end.y];
     
-    if (start.x == end.x && start.y == end.y) {
+    if (xNear && yNear) {
         self.frame = [self getFrameWithStartPoint:start endPoint:end];
         _fromPoint = CGPointMake(0, 0);
         _toPoint = CGPointMake(0, 0);
-    }else if (start.x == end.x && start.y != end.y) {
+    }else if (xNear && !yNear) {
         self.frame = [self getVerticalFrameWithStartPoint:start endPoint:end];
         _fromPoint = CGPointMake(_lineWidth, _start.y - self.frame.origin.y);
         _toPoint = CGPointMake(_lineWidth, _end.y - self.frame.origin.y);
-    }else if (start.y == end.y && start.x != end.x) {
+    }else if (yNear && !xNear) {
         self.frame = [self getHorizontalFrameWithStartPoint:start endPoint:end];
         _fromPoint = CGPointMake(_start.x - self.frame.origin.x, _lineWidth);
         _toPoint = CGPointMake(_end.x - self.frame.origin.x, _lineWidth);
@@ -128,8 +138,37 @@
         _fromPoint = CGPointMake(_start.x - self.frame.origin.x, _start.y - self.frame.origin.y);
         _toPoint = CGPointMake(_end.x - self.frame.origin.x, _end.y - self.frame.origin.y);
     }
+    
+//    if (start.x == end.x && start.y == end.y) {
+//        self.frame = [self getFrameWithStartPoint:start endPoint:end];
+//        _fromPoint = CGPointMake(0, 0);
+//        _toPoint = CGPointMake(0, 0);
+//    }else if (start.x == end.x && start.y != end.y) {
+//        self.frame = [self getVerticalFrameWithStartPoint:start endPoint:end];
+//        _fromPoint = CGPointMake(_lineWidth, _start.y - self.frame.origin.y);
+//        _toPoint = CGPointMake(_lineWidth, _end.y - self.frame.origin.y);
+//    }else if (start.y == end.y && start.x != end.x) {
+//        self.frame = [self getHorizontalFrameWithStartPoint:start endPoint:end];
+//        _fromPoint = CGPointMake(_start.x - self.frame.origin.x, _lineWidth);
+//        _toPoint = CGPointMake(_end.x - self.frame.origin.x, _lineWidth);
+//    }else{
+//        self.frame = [self getFrameWithStartPoint:_start endPoint:_end];
+//        _fromPoint = CGPointMake(_start.x - self.frame.origin.x, _start.y - self.frame.origin.y);
+//        _toPoint = CGPointMake(_end.x - self.frame.origin.x, _end.y - self.frame.origin.y);
+//    }
     [self setNeedsDisplay];
 }
+
+
+- (CGPoint)startPoint
+{
+    return _start;
+}
+- (CGPoint)endPoint
+{
+    return _end;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -138,7 +177,7 @@
     CGContextMoveToPoint(context, _fromPoint.x, _fromPoint.y);
     CGContextAddLineToPoint(context, _toPoint.x, _toPoint.y);
     CGContextStrokePath(context);    
-    CGContextStrokeRect(context, self.bounds);
+//    CGContextStrokeRect(context, self.bounds);
 }
 
 

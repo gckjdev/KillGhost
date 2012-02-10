@@ -12,7 +12,8 @@ enum CARD_STATUS {
     SHOWED = 2,
     WILLSHOW = 3,
     VOTE = 10,
-    DEAD = 11
+    CANDIDATE = 11,
+    DEAD = 12,
 };
 
 
@@ -50,8 +51,8 @@ enum CARD_STATUS {
 @property(nonatomic, assign)CGFloat fontSize;
 @property(nonatomic ,assign)NSInteger status;
 @property(nonatomic, assign)CGPoint position;
-@property(nonatomic, assign)BOOL hasVoted;
 @property(nonatomic, assign)NSInteger voteNumber;
+@property(nonatomic, retain)PlayerCard *voteForPlayer;
 @property(nonatomic, assign)id <PlayerCardDelegate>delegate;
 
 - (void)show;
