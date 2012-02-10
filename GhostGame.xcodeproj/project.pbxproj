@@ -40,6 +40,8 @@
 		CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8314E375BD000A07F8 /* PlayerCardManager.m */; };
 		CA986C8914E3B4AA000A07F8 /* LineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8614E3B4AA000A07F8 /* LineSegment.m */; };
 		CA986C8A14E3B4AA000A07F8 /* LineSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8814E3B4AA000A07F8 /* LineSegmentView.m */; };
+		CA986C9414E3D1D0000A07F8 /* PickerCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C9214E3D1D0000A07F8 /* PickerCategoryController.m */; };
+		CA986C9514E3D1D0000A07F8 /* PickerCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA986C9314E3D1D0000A07F8 /* PickerCategoryController.xib */; };
 		CAC931B214DF7CA2001258FD /* PickerWordsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931B014DF7CA2001258FD /* PickerWordsController.m */; };
 		CAC931B314DF7CA2001258FD /* PickerWordsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC931B114DF7CA2001258FD /* PickerWordsController.xib */; };
 		CAC931DC14DFE669001258FD /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC931DB14DFE669001258FD /* UIUtils.m */; };
@@ -121,6 +123,9 @@
 		CA986C8614E3B4AA000A07F8 /* LineSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineSegment.m; path = ../View/LineSegment.m; sourceTree = "<group>"; };
 		CA986C8714E3B4AA000A07F8 /* LineSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineSegmentView.h; sourceTree = "<group>"; };
 		CA986C8814E3B4AA000A07F8 /* LineSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineSegmentView.m; sourceTree = "<group>"; };
+		CA986C9114E3D1D0000A07F8 /* PickerCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerCategoryController.h; sourceTree = "<group>"; };
+		CA986C9214E3D1D0000A07F8 /* PickerCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerCategoryController.m; sourceTree = "<group>"; };
+		CA986C9314E3D1D0000A07F8 /* PickerCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerCategoryController.xib; sourceTree = "<group>"; };
 		CAC931AF14DF7CA2001258FD /* PickerWordsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsController.h; sourceTree = "<group>"; };
 		CAC931B014DF7CA2001258FD /* PickerWordsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsController.m; sourceTree = "<group>"; };
 		CAC931B114DF7CA2001258FD /* PickerWordsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsController.xib; sourceTree = "<group>"; };
@@ -203,6 +208,9 @@
 		CA0A20A414DA690400577C02 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CA986C9114E3D1D0000A07F8 /* PickerCategoryController.h */,
+				CA986C9214E3D1D0000A07F8 /* PickerCategoryController.m */,
+				CA986C9314E3D1D0000A07F8 /* PickerCategoryController.xib */,
 				A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */,
 				A3D9E3CC14E108DA00BD0DCF /* HelpController.h */,
 				A3D9E3CD14E108DA00BD0DCF /* HelpController.m */,
@@ -452,6 +460,7 @@
 				A3D9E3CE14E108DA00BD0DCF /* HelpController.xib in Resources */,
 				A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */,
 				A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */,
+				CA986C9514E3D1D0000A07F8 /* PickerCategoryController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +518,7 @@
 				CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */,
 				CA986C8914E3B4AA000A07F8 /* LineSegment.m in Sources */,
 				CA986C8A14E3B4AA000A07F8 /* LineSegmentView.m in Sources */,
+				CA986C9414E3D1D0000A07F8 /* PickerCategoryController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
