@@ -13,6 +13,7 @@
 @implementation PickerCategoryController
 @synthesize categoryIdArray;
 @synthesize categoryTable;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,6 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PickerWordsController *pwc = [[PickerWordsController alloc] initWithCategoryId:[self.categoryIdArray objectAtIndex:indexPath.row]];
+    pwc.delegate = self.delegate;
     [self.navigationController pushViewController:pwc animated:YES];
     [pwc release];
 }
