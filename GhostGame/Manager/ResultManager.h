@@ -18,6 +18,6 @@ enum resultType {
 @interface ResultManager : NSObject
 
 + (NSInteger)resultByOut:(PlayerCardManager *)playerCardManager;
-+ (NSInteger)resultByGuessWord:(BOOL)isRight;
+//+ (NSInteger)resultByGuessWord:(BOOL)isRight;
 
 @end

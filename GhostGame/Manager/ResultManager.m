@@ -48,12 +48,12 @@
     return ResultContinue;
 }
 
-+ (NSInteger)resultByGuessWord:(BOOL)isRight
-{
-    if (isRight) 
-        return ResultGhostWin;
-    else
-        return ResultContinue;
-}
+//+ (NSInteger)resultByGuessWord:(BOOL)isRight
+//{
+//    if (isRight) 
+//        return ResultGhostWin;
+//    else
+//        return ResultContinue;
+//}
 
 @end
