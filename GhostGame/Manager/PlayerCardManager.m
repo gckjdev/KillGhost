@@ -7,6 +7,8 @@
 //
 
 #import "PlayerCardManager.h"
+#import "Game.h"
+#import "Player.h"
 
 PlayerCardManager *defaultPlayerCardManager;
 PlayerCardManager *GlobalGetPlayerCardManager()
@@ -26,8 +28,10 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 {
     if (_playerCardList) {
         [_playerCardList removeAllObjects];
+        [_playerList removeAllObjects];
     }else{
         _playerCardList = [[NSMutableArray alloc] init];
+        _playerList = [[NSMutableArray alloc] init];
     }
     _pickIndex = -1;
     _showingCard = nil;
@@ -74,6 +78,61 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 }
 
 
+- (void)createPlayerListFromGame:(Game *)game;
+{
+    [_playerList removeAllObjects];
+    srand(time(0));
+    if (game) {
+        NSInteger count = game.foolNumber + game.ghostNumber + game.civilianNumber;
+        NSInteger total = count;
+        NSInteger fCount = game.foolNumber;
+        NSInteger gCount = game.ghostNumber;
+        NSInteger cCount = game.civilianNumber;
+        for (int i = 0; i < count; ++ i) {
+            Player *player = nil;
+            int r = rand() % total;
+            if (r < fCount) {
+                //fool
+                player = [[Player alloc] initWithType:FoolType word:game.foolWord alive:YES];
+                fCount -- ;
+            }else if( r < fCount + gCount){
+                //ghost
+                player = [[Player alloc] initWithType:GhostType word:game.ghostWord alive:YES];
+                gCount --;
+            }else{
+                //civilian
+                player = [[Player alloc] 
+                          initWithType:CivilianType word:game.civilianWord alive:YES];
+                cCount --;
+            }
+            total --;
+            [_playerList addObject:player];
+            [player release];
+        }
+    }
+}
+- (void)createCardsFromGame:(Game *)game;
+{
+    [self reset];
+ //   NSMutableArray *cardList = [[NSMutableArray alloc] init];
+    [self createPlayerListFromGame:game];
+    NSInteger i = 0;
+    NSInteger count = [_playerList count];
+    for (Player *player in _playerList) {
+        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 200);
+        PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
+        card.delegate = self;
+        [_playerCardList addObject:card];
+//        [self.view addSubview:card];
+//        [cardList addObject:card];
+        [card release];
+        ++ i;
+    }
+//    [self setPlayerCardList:cardList];
+//    [cardList release];
+}
+
+
 #pragma mark - PlayerCard Delegate
 
 - (PlayerCard *)getNextWillShowCard
@@ -94,7 +153,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
-        if (playerCard.status == VOTE || playerCard.status == DEAD) {
+        if (playerCard.status == VOTE || playerCard.status == DEAD || playerCard.status == VOTED) {
             return NO;
         }
         
@@ -129,6 +188,16 @@ PlayerCardManager *GlobalGetPlayerCardManager()
         _showingCard = playerCard;
     }else{
         _showingCard = nil;
+        
+        if (playerCard.status == DEAD) {
+            for (PlayerCard * card in _playerCardList) {
+                if (card.status != DEAD ) {
+                    card.status = VOTE;
+                }
+            }
+            return;
+        }
+        
         PlayerCard *card = [self getNextWillShowCard];
         if (card) {
             card.status = WILLSHOW;

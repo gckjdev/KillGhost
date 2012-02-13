@@ -126,7 +126,7 @@
     if (pan.state == UIGestureRecognizerStateBegan) {
         //card 
         PlayerCard *card = [self playCardBeenTouchAtPoint:location];
-        if (card) {
+        if (card && card.status == VOTE) {
             _isStartInCard = YES;
             _currentVoteLine = [self lineSegmentForPlayerCard:card];
             [_currentVoteLine setColor:[UIColor greenColor]];
@@ -187,16 +187,57 @@
     
 }
 
+- (void)dismissPKview:(UIButton *)sender
+{
+    [UIButton beginAnimations:@"ZoomoutButton" context:nil];
+    [UIButton setAnimationDuration:1];
+    sender.frame = CGRectMake(0, 200, 10, 10);
+    sender.center = CGPointMake(160, 240);
+    [sender removeFromSuperview];
+    [UIButton commitAnimations];
+}
+- (void)showPKView:(NSInteger)count
+{
+    UIButton *pkView = [UIButton buttonWithType:UIButtonTypeCustom];
+    pkView.frame = CGRectMake(0, 200, 10, 10);
+    pkView.center = CGPointMake(160, 240);
+    pkView.backgroundColor = [UIColor purpleColor];
+    NSString *title = [NSString stringWithFormat:@"现在出现了%d个票数相同的玩家，需要进行陈述进行pk，陈述完毕之后投票选出谁最有可能是鬼。",count];
+    [pkView setTitle:title forState:UIControlStateNormal];
+    pkView.titleLabel.numberOfLines = 0;
+    pkView.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+    [pkView addTarget:self action:@selector(dismissPKview:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:pkView];
+    
+    [UIButton beginAnimations:@"ZoominButton" context:nil];
+    [UIButton setAnimationDuration:1];
+    pkView.frame = CGRectMake(0, 100, 320, 200);
+    pkView.center = CGPointMake(160, 240);
+    [UIButton commitAnimations];
+}
 
 - (IBAction)finishVote:(id)sender {
     NSInteger maxVoteNumber = 0;
     for (PlayerCard *card in _playerManager.playerCardList) {
         maxVoteNumber = MAX(card.voteNumber, maxVoteNumber);
     }
+    NSInteger candidateCount = 0;
     for (PlayerCard *card in _playerManager.playerCardList) {
         if (card.voteNumber == maxVoteNumber) {
             card.status = CANDIDATE;
+            candidateCount ++;
         }
+    }
+    if (candidateCount == 1) {
+        //go end
+        
+    }else if(candidateCount > 1)
+    {
+        //pk
+        [self showPKView:candidateCount];
+        
+    }else{
+        //bug ?
     }
 }
 

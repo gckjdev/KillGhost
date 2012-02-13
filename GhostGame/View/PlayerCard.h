@@ -12,8 +12,9 @@ enum CARD_STATUS {
     SHOWED = 2,
     WILLSHOW = 3,
     VOTE = 10,
-    CANDIDATE = 11,
-    DEAD = 12,
+    VOTED,
+    CANDIDATE,
+    DEAD,
 };
 
 

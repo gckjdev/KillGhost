@@ -178,6 +178,9 @@
         [self cover];        
     }else if(self.status == WILLSHOW){
         [self show];
+    }else if(self.status == CANDIDATE)
+    {
+        self.status = DEAD;
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(didClickedPlayerCard:)]) {

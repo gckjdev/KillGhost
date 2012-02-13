@@ -9,11 +9,13 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayerCard.h"
-
+@class Game;
 @interface PlayerCardManager : NSObject<PlayerCardDelegate>
 {
     NSInteger _pickIndex;
     PlayerCard *_showingCard;
+    NSMutableArray *_playerList;
+
 }
 @property(nonatomic, readonly) PlayerCard *showingCard;
 @property(nonatomic, retain)NSMutableArray *playerCardList;
@@ -23,5 +25,6 @@
 - (NSInteger)indexOfPlayerCard:(PlayerCard *)playerCard;
 - (NSInteger)playerCardCount;
 - (void)reset;
+- (void)createCardsFromGame:(Game *)game;
 @end
 extern PlayerCardManager *GlobalGetPlayerCardManager();
