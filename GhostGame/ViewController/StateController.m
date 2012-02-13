@@ -48,7 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼。\n\n\n\n(所有玩家闭眼后，则进入下一步)",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n\n(鬼商量之后,则进入下一步)",@"3.法官宣布:鬼闭眼。\n\n\n\n(所有鬼闭眼后，则进入下一步)",@"4.法官宣布:所有玩家睁眼。\n\n\n\n(所有玩家睁开眼后，则进入下一步)",@"5.法官指定第一个发言者，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"6.法官宣布:进入投票阶段。", nil];
+    //self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼。\n\n\n\n(所有玩家闭眼后，则进入下一步)",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n\n(鬼商量之后,则进入下一步)",@"3.法官宣布:鬼闭眼。\n\n\n\n(所有鬼闭眼后，则进入下一步)",@"4.法官宣布:所有玩家睁眼。\n\n\n\n(所有玩家睁开眼后，则进入下一步)",@"5.法官指定第一个发言者，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"6.法官宣布:进入投票阶段。", nil];
     
     self.selectIndex = 0;
     operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 240)];
@@ -143,6 +143,7 @@
 {
     if (0 == selectIndex) {
         selectIndex = selectIndex;
+        [self.navigationController popViewControllerAnimated:YES];
         return ;
     }
     else{
@@ -204,14 +205,14 @@
 - (void)updateView
 {
     if (0 == selectIndex) {
-        self.previousButton.enabled = NO;
+        self.previousButton.enabled = YES;
     }
     else{
         self.previousButton.enabled = YES;
     }
     
     if ([self.operationTipsArray count] - 1 == selectIndex) {
-        self.nextButton.enabled = NO;
+        self.nextButton.enabled = YES;
     }
     else{
         self.nextButton.enabled = YES;

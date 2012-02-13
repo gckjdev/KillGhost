@@ -9,6 +9,7 @@
 #import "MainMenuController.h"
 #import "CreateGameController.h"
 #import "StateController.h"
+#import "HelpController.h"
 
 @implementation MainMenuController
 
@@ -51,9 +52,9 @@
 }
 
 - (IBAction)clickHelp:(id)sender {
-    StateController *sc = [[StateController alloc] init];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
+    HelpController *hc = [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
 }
 
 - (IBAction)clickStartGame:(id)sender {
