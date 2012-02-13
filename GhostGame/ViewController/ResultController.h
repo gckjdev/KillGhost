@@ -10,4 +10,12 @@
 
 @interface ResultController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UILabel *resultDescriptionLabel;
+@property (retain, nonatomic) IBOutlet UILabel *promptLabel;
+@property (retain, nonatomic) IBOutlet UIButton *guessRightButton;
+@property (retain, nonatomic) IBOutlet UIButton *guessWrongButton;
+
+- (IBAction)clickGuessRightButton:(id)sender;
+- (IBAction)clickGuessWrongButton:(id)sender;
+
 @end

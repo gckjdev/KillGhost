@@ -12,6 +12,7 @@
 #import "PickerCategoryController.h"
 #import "PickerWordsController.h"
 #import "HelpController.h"
+#import "ResultController.h"
 
 @implementation StateController
 @synthesize previousButton;
@@ -263,9 +264,13 @@
 
 - (IBAction)help:(id)sender
 {
-    HelpController *hc =  [[HelpController alloc] init];
-    [self.navigationController pushViewController:hc animated:YES];
-    [hc release];
+//    HelpController *hc =  [[HelpController alloc] init];
+//    [self.navigationController pushViewController:hc animated:YES];
+//    [hc release];
+    ResultController *rc = [[ResultController alloc] init];
+    [self.navigationController pushViewController:rc animated:YES];
+    [rc release];
+    
 }
 
 

@@ -131,7 +131,11 @@
         Words *word = [self.wordsArray objectAtIndex:indexPath.row];
         [delegate didPickedWords:word];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    NSUInteger currentIndex = [[self.navigationController viewControllers] indexOfObject:self];
+    NSUInteger popToIndex = currentIndex - 2;
+    
+    [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:popToIndex] animated:YES];
 }
 
 
