@@ -13,6 +13,7 @@
 #import "PickerWordsController.h"
 #import "HelpController.h"
 #import "ResultController.h"
+#import "VoteController.h"
 
 @implementation StateController
 @synthesize previousButton;
@@ -170,6 +171,9 @@
 {
     if (selectIndex == [operationTipsArray count] - 1 ) {
         selectIndex = selectIndex;
+        VoteController *vc = [[VoteController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc release];
         return ;
     }
     else

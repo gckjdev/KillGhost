@@ -124,6 +124,7 @@
         case UNSHOW:
         case SHOWED:
         case VOTE:
+        case VOTED:
         case DEAD:
             [self stopFlashTimer];    
             [self setScale:1 center:_position];
@@ -359,6 +360,7 @@
             [self drawShowedCover:context];
             break;
         case VOTE:
+        case VOTED:
             [self drawVoteCover:context];
             break;
         case CANDIDATE:

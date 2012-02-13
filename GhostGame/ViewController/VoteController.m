@@ -11,6 +11,7 @@
 #import "PlayerCard.h"
 #import "LineSegment.h"
 #import "LineSegmentView.h"
+#import "ResultController.h"
 
 @implementation VoteController
 @synthesize playerManager = _playerManager;
@@ -221,16 +222,23 @@
     for (PlayerCard *card in _playerManager.playerCardList) {
         maxVoteNumber = MAX(card.voteNumber, maxVoteNumber);
     }
+
     NSInteger candidateCount = 0;
+    PlayerCard *temp = nil;
     for (PlayerCard *card in _playerManager.playerCardList) {
         if (card.voteNumber == maxVoteNumber) {
             card.status = CANDIDATE;
             candidateCount ++;
+            temp = card;
+        }else{
+            card.status = VOTED;
         }
     }
     if (candidateCount == 1) {
         //go end
-        
+        temp.status = DEAD;
+        ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:temp];
+        [self.navigationController pushViewController:rc animated:YES];
     }else if(candidateCount > 1)
     {
         //pk
