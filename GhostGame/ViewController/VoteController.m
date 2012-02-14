@@ -155,7 +155,7 @@
     }else if(pan.state == UIGestureRecognizerStateEnded)
     {
         PlayerCard *card = [self playCardBeenTouchAtPoint:location];
-        if (card) {
+        if (card && card.status == VOTE) {
             _isEndInCard = YES;
         }else
         {
@@ -226,6 +226,9 @@
     NSInteger candidateCount = 0;
     PlayerCard *temp = nil;
     for (PlayerCard *card in _playerManager.playerCardList) {
+        if (card.status == DEAD) {
+            continue;
+        }
         if (card.voteNumber == maxVoteNumber) {
             card.status = CANDIDATE;
             candidateCount ++;
@@ -255,7 +258,10 @@
 {
     [super viewDidLoad];
     for (PlayerCard *card in self.playerManager.playerCardList) {
-        card.status = VOTE;
+        if (card.status != DEAD) {
+            card.status = VOTE;
+
+        }
         [self.view addSubview:card];
     }
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];  

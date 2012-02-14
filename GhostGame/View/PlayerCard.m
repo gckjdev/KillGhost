@@ -110,6 +110,8 @@
 - (void)setStatus:(NSInteger)status
 {
     _status = status;
+    self.voteForPlayer = nil;
+    self.voteNumber = 0;
     switch (status) {
         case WILLSHOW:
         case CANDIDATE:

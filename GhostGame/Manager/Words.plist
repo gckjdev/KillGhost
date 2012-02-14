@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>食物</key>
+	<dict>
+		<key>香蕉</key>
+		<string>黄瓜</string>
+		<key>西瓜</key>
+		<string>草莓</string>
+		<key>饺子</key>
+		<string>面条</string>
+	</dict>
+	<key>植物</key>
+	<dict>
+		<key>玫瑰</key>
+		<string>菊花</string>
+		<key>木棉</key>
+		<string>榕树</string>
+	</dict>
+	<key>电子产品</key>
+	<dict>
+		<key>键盘</key>
+		<string>鼠标</string>
+		<key>显示器</key>
+		<string>打印机</string>
+		<key>手机</key>
+		<string>耳机</string>
+	</dict>
+	<key>人物</key>
+	<dict>
+		<key>芙蓉姐姐</key>
+		<string>凤姐</string>
+		<key>牛顿</key>
+		<string>爱迪生</string>
+		<key>New item - 3</key>
+		<string></string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<key>运动</key>
+	<dict>
+		<key>New item - 5</key>
+		<string></string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item - 4</key>
+		<string></string>
+		<key>New item - 3</key>
+		<string></string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+	<key>其他</key>
+	<dict>
+		<key>New item - 3</key>
+		<string></string>
+		<key>New item - 2</key>
+		<string></string>
+		<key>New item</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

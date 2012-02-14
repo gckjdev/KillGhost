@@ -11,6 +11,7 @@
 		A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8160414DF88E30022D8AE /* WordsManager.m */; };
 		A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */; };
 		A3C8161E14DFD6000022D8AE /* PickerWordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */; };
+		A3D5618B14EA596F00D097F2 /* Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3D5618A14EA596F00D097F2 /* Words.plist */; };
 		A3D9E3CE14E108DA00BD0DCF /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */; };
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
 		A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D114E1091E00BD0DCF /* GrainLace.png */; };
@@ -81,6 +82,7 @@
 		A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsCell.h; sourceTree = "<group>"; };
 		A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsCell.m; sourceTree = "<group>"; };
 		A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsCell.xib; sourceTree = "<group>"; };
+		A3D5618A14EA596F00D097F2 /* Words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Words.plist; path = ../Manager/Words.plist; sourceTree = "<group>"; };
 		A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpController.xib; sourceTree = "<group>"; };
 		A3D9E3CC14E108DA00BD0DCF /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
 		A3D9E3CD14E108DA00BD0DCF /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				CA0A20D114DA776800577C02 /* civilian.png */,
 				CA0A20D214DA776800577C02 /* fool.png */,
 				CA0A20D314DA776800577C02 /* ghost.png */,
+				A3D5618A14EA596F00D097F2 /* Words.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */,
 				A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */,
 				CA986C9514E3D1D0000A07F8 /* PickerCategoryController.xib in Resources */,
+				A3D5618B14EA596F00D097F2 /* Words.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
