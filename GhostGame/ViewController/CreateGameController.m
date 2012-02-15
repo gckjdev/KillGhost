@@ -155,9 +155,10 @@
     NSString *cWord = self.civilianWord.text;
     NSString *fWord = self.foolWord.text;
     Game *game = [[Game alloc] initWithGhostNumber:gNumber ghostWord:gWord civilianNumber:cNumber civilianWord:cWord foolNumber:fNumber foolWord:fWord]; 
-    PickRoleController *playGame = [[PickRoleController alloc] initWithGame:game];
+    PickRoleController *pickRoleController = [[PickRoleController alloc] initWithGame:game];
     [game release];
-    [self.navigationController pushViewController:playGame animated:YES];
+    [self.navigationController pushViewController:pickRoleController animated:YES];
+    [pickRoleController release];
  //   PlayGameController
 //    if ((gNumber > 0) & (cNumber > 0) & (fNumber > 0) & ([gWord length] > 0) & ([cWord length] > 0) & ([fWord length] > 0)) {
 //        
@@ -166,6 +167,10 @@
 //        [alert show];
 //        [alert release];
 //    }
+}
+
+- (IBAction)clickBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

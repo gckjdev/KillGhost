@@ -114,7 +114,6 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (void)createCardsFromGame:(Game *)game;
 {
     [self reset];
- //   NSMutableArray *cardList = [[NSMutableArray alloc] init];
     [self createPlayerListFromGame:game];
     NSInteger i = 0;
     NSInteger count = [_playerList count];
@@ -122,14 +121,10 @@ PlayerCardManager *GlobalGetPlayerCardManager()
         CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 240);
         PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
         card.delegate = self;
+        card.index = ++i;
         [_playerCardList addObject:card];
-//        [self.view addSubview:card];
-//        [cardList addObject:card];
         [card release];
-        ++ i;
     }
-//    [self setPlayerCardList:cardList];
-//    [cardList release];
 }
 
 
