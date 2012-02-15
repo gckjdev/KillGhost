@@ -8,25 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
-enum category
-{
-    WORDS_CATEGORY_FOOD,    //食物
-    WORDS_CATEGORY_ANIMAL,  //动物
-    WORDS_CATEGORY_PLANT,   //植物
-    WORDS_CATEGORY_ELECTRONICS,  //电子产品
-    WORDS_CATEGORY_PERSON,       //人物
-    WORDS_CATEGORY_SPROT,        //运动
-    WORDS_CATEGORY_OTHER = 50    //其他
-};
+//enum category
+//{
+//    WORDS_CATEGORY_FOOD,    //食物
+//    WORDS_CATEGORY_ANIMAL,  //动物
+//    WORDS_CATEGORY_PLANT,   //植物
+//    WORDS_CATEGORY_ELECTRONICS,  //电子产品
+//    WORDS_CATEGORY_PERSON,       //人物
+//    WORDS_CATEGORY_SPROT,        //运动
+//    WORDS_CATEGORY_OTHER = 50    //其他
+//};
 
 @interface Words : NSObject
 
-@property(nonatomic, retain)NSNumber *categoryId;
+@property(nonatomic, retain)NSString *category;
 @property(nonatomic, retain)NSString *civilianWord;
 @property(nonatomic, retain)NSString *foolWord;
 
 - (id)initWithCivilianWord:(NSString *)civilianWordValue 
                   foolWord:(NSString *)foolWordValue 
-                categoryId:(NSNumber *)categoryIdValue;
+                category:(NSString *)categoryValue;
 
 @end

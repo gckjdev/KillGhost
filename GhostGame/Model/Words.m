@@ -10,19 +10,19 @@
 
 @implementation Words
 
-@synthesize categoryId;
+@synthesize category;
 @synthesize civilianWord;
 @synthesize foolWord;
 
 - (id)initWithCivilianWord:(NSString *)civilianWordValue 
                   foolWord:(NSString *)foolWordValue 
-                categoryId:(NSNumber *)categoryIdValue
+                category:(NSString *)categoryValue
 {
     self = [super init];
     if (self) {
         self.civilianWord = civilianWordValue;
         self.foolWord = foolWordValue;
-        self.categoryId = categoryIdValue;
+        self.category = categoryValue;
     }
     return self;
 }
@@ -31,7 +31,7 @@
 {
     [civilianWord release];
     [foolWord release];
-    [categoryId release];
+    [category release];
     [super dealloc];
 }
 

@@ -13,9 +13,9 @@
 + (WordsManager *)defaultManager;
 
 - (NSArray *)getAllWords;
-- (NSArray *)getAllCategoryId;
-- (NSString *)getNameByCategoryId:(NSNumber*)categoryIdValue;
-- (NSArray *)getWordsArrayByCategoryId:(NSNumber*)categoryIdValue;
+- (NSArray *)getAllCategory;
+//- (NSString *)getNameByCategoryId:(NSNumber*)categoryIdValue;
+- (NSArray *)getWordsArrayByCategory:(NSString*)categoryValue;
 
 @end
 

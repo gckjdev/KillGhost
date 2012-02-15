@@ -31,34 +31,26 @@
 	<dict>
 		<key>芙蓉姐姐</key>
 		<string>凤姐</string>
-		<key>牛顿</key>
-		<string>爱迪生</string>
-		<key>New item - 3</key>
-		<string></string>
-		<key>New item</key>
-		<string></string>
+		<key>姚明</key>
+		<string>林丹</string>
 	</dict>
 	<key>运动</key>
 	<dict>
-		<key>New item - 5</key>
-		<string></string>
-		<key>New item - 2</key>
-		<string></string>
-		<key>New item - 4</key>
-		<string></string>
-		<key>New item - 3</key>
-		<string></string>
+		<key>羽毛球</key>
+		<string>兵乓球</string>
+		<key>跳水</key>
+		<string>游泳</string>
+		<key>爬山</key>
+		<string>举重</string>
 		<key>New item</key>
 		<string></string>
 	</dict>
 	<key>其他</key>
 	<dict>
-		<key>New item - 3</key>
-		<string></string>
-		<key>New item - 2</key>
-		<string></string>
-		<key>New item</key>
-		<string></string>
+		<key>圆形</key>
+		<string>三角形</string>
+		<key>公共厕所</key>
+		<string>饭堂</string>
 	</dict>
 </dict>
 </plist>

@@ -11,7 +11,7 @@
 #import "PickerWordsController.h"
 
 @implementation PickerCategoryController
-@synthesize categoryIdArray;
+@synthesize categoryArray;
 @synthesize categoryTable;
 @synthesize delegate;
 
@@ -37,13 +37,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.categoryIdArray = [[WordsManager defaultManager] getAllCategoryId];
+    self.categoryArray = [[WordsManager defaultManager] getAllCategory];
     
 }
 
 - (void)viewDidUnload
 {
-    [self setCategoryIdArray:nil];
+    [self setCategoryArray:nil];
     [self setCategoryTable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -57,7 +57,7 @@
 }
 
 - (void)dealloc {
-    [categoryIdArray release];
+    [categoryArray release];
     [categoryTable release];
     [super dealloc];
 }
@@ -65,7 +65,7 @@
 #pragma mark - tableView data source delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.categoryIdArray count];
+    return [self.categoryArray count];
 }
 
 
@@ -85,9 +85,8 @@
 //    UITableViewCellAccessoryCheckmark               // checkmark. doesn't track
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     
-    cell.textLabel.text = [[WordsManager defaultManager] getNameByCategoryId:[self.categoryIdArray objectAtIndex:indexPath.row]];
+    cell.textLabel.text = [self.categoryArray objectAtIndex:indexPath.row];
     
     
     
@@ -106,7 +105,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PickerWordsController *pwc = [[PickerWordsController alloc] initWithCategoryId:[self.categoryIdArray objectAtIndex:indexPath.row]];
+    PickerWordsController *pwc = [[PickerWordsController alloc] initWithCategory:[self.categoryArray objectAtIndex:indexPath.row]];
     pwc.delegate = self.delegate;
     [self.navigationController pushViewController:pwc animated:YES];
     [pwc release];

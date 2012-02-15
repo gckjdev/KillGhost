@@ -224,8 +224,8 @@
 - (void)pickWords:(id)sender
 {
     PickerCategoryController *pcc = [[PickerCategoryController alloc] init];
-    [self.navigationController pushViewController:pcc animated:YES];
     pcc.delegate = self;
+    [self.navigationController pushViewController:pcc animated:YES];
     [pcc release];
 }
 

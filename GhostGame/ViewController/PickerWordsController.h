@@ -19,12 +19,12 @@
 {
     
 }
-@property (retain, nonatomic) NSNumber *categoryId;
+@property (retain, nonatomic) NSString *category;
 @property (retain, nonatomic) NSArray *wordsArray;
 @property (retain, nonatomic) IBOutlet UITableView *wordsTable;
 @property (assign,nonatomic) int selectCellIndex;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
 
-- (id)initWithCategoryId:(NSNumber *)categoryIdValue;
+- (id)initWithCategory:(NSString *)categoryValue;
 
 @end
