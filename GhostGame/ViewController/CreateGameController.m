@@ -73,47 +73,50 @@
 }
 
 
+- (void)finishEdited:(UITextField *)textField
+{
+    if (textField == self.civilianWord) {
+        self.wordLength.text = [NSString stringWithFormat:@"%d",textField.text.length];
+    }else if (textField == self.playerNumber) {
+        NSInteger count = [textField.text integerValue];
+        if (count < 7) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对哦" message:@"人数不足哦，至少7个人!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            return;
+        }else if(count > 13)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对" message:@"人数太对，玩不了哦!建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            return;
+        }
+        
+        NSInteger ghost, civilian, fool;
+        if (count >= 12) {
+            fool = 2;
+        }else{
+            fool = 1;
+        }
+        
+        if (count >= 10) {
+            ghost = 3;
+        }else{
+            ghost = 2;
+        }
+        
+        civilian = count - ghost - fool - 1;
+        self.ghostNumber.text = [NSString stringWithFormat:@"%d",ghost];
+        self.foolNumber.text = [NSString stringWithFormat:@"%d",fool];
+        self.civilianNumber.text = [NSString stringWithFormat:@"%d",civilian];
+    }
+}
+
 - (void)performTapGesture:(UITapGestureRecognizer *)tap
 {
     if (_currentTextField) {
         [_currentTextField resignFirstResponder];
-        
-        if (_currentTextField == self.civilianWord) {
-            self.wordLength.text = [NSString stringWithFormat:@"%d",_currentTextField.text.length];
-        }else if (_currentTextField == self.playerNumber) {
-            NSInteger count = [_currentTextField.text integerValue];
-            if (count < 7) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对哦" message:@"人数不足哦，至少7个人!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                [alert show];
-                [alert release];
-                return;
-            }else if(count > 13)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对" message:@"人数太对，玩不了哦!建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                [alert show];
-                [alert release];
-                return;
-            }
-            
-            NSInteger ghost, civilian, fool;
-            if (count >= 12) {
-                fool = 2;
-            }else{
-                fool = 1;
-            }
-            
-            if (count >= 10) {
-                ghost = 3;
-            }else{
-                ghost = 2;
-            }
-            
-            civilian = count - ghost - fool - 1;
-            self.ghostNumber.text = [NSString stringWithFormat:@"%d",ghost];
-            self.foolNumber.text = [NSString stringWithFormat:@"%d",fool];
-            self.civilianNumber.text = [NSString stringWithFormat:@"%d",civilian];
-        }
-
+        [self finishEdited:_currentTextField];
     }
 }
 #pragma mark - View lifecycle
@@ -165,6 +168,12 @@
 //    }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self finishEdited:textField];
+    return YES;
+}
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _currentTextField = textField;

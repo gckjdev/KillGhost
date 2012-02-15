@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayerCardManager.h"
 
 @class PlayerCardManager;
 @class LineSegment;
 @class LineSegmentView;
 
-@interface VoteController : UIViewController<UIGestureRecognizerDelegate>
+@interface VoteController : UIViewController<UIGestureRecognizerDelegate, VoteDelegate>
 {
     PlayerCardManager *_playerManager;
  //   BOOL _isVoteLine;

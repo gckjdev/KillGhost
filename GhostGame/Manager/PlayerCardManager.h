@@ -10,6 +10,13 @@
 #import <Foundation/Foundation.h>
 #import "PlayerCard.h"
 @class Game;
+
+@protocol VoteDelegate <NSObject>
+
+- (void)didPickedCandidate:(PlayerCard *)playerCard;
+
+@end
+
 @interface PlayerCardManager : NSObject<PlayerCardDelegate>
 {
     NSInteger _pickIndex;
@@ -18,7 +25,8 @@
 
 }
 @property(nonatomic, readonly) PlayerCard *showingCard;
-@property(nonatomic, retain)NSMutableArray *playerCardList;
+@property(nonatomic, retain) NSMutableArray *playerCardList;
+@property(nonatomic, assign) id<VoteDelegate>voteDelegate;
 
 + (PlayerCardManager *)defaultManager;
 - (PlayerCard *)playerCardAtIndex:(NSInteger)index;
