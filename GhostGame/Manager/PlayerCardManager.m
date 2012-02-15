@@ -22,7 +22,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 @implementation PlayerCardManager
 @synthesize playerCardList = _playerCardList;
 @synthesize showingCard = _showingCard;
-
+@synthesize voteDelegate = _voteDelegate;
 
 - (void)reset
 {
@@ -119,7 +119,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
-        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 200);
+        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 240);
         PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
         card.delegate = self;
         [_playerCardList addObject:card];
@@ -155,6 +155,10 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     if (playerCard) {
         if (playerCard.status == VOTE || playerCard.status == DEAD || playerCard.status == VOTED) {
             return NO;
+        }
+        
+        if (playerCard.status == CANDIDATE) {
+            return YES;
         }
         
         if (_showingCard && _showingCard != playerCard) {
@@ -194,6 +198,9 @@ PlayerCardManager *GlobalGetPlayerCardManager()
                 if (card.status != DEAD ) {
                     card.status = VOTE;
                 }
+            }
+            if (self.voteDelegate && [self.voteDelegate respondsToSelector:@selector(didPickedCandidate:)]) {
+                [self.voteDelegate didPickedCandidate:playerCard];
             }
             return;
         }

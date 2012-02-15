@@ -7,7 +7,7 @@
 //
 
 #import "VoteController.h"
-#import "PlayerCardManager.h"
+//#import "PlayerCardManager.h"
 #import "PlayerCard.h"
 #import "LineSegment.h"
 #import "LineSegmentView.h"
@@ -142,7 +142,7 @@
     }else if(pan.state == UIGestureRecognizerStateChanged){
         if (_isStartInCard) {
             PlayerCard *card = [self playCardBeenTouchAtPoint:location];
-            if (card) {
+            if (card && card.status == VOTE) {
                 [_currentVoteLine setColor:[UIColor yellowColor]];
             }else{
                 [_currentVoteLine setColor:[UIColor greenColor]];
@@ -242,6 +242,7 @@
         temp.status = DEAD;
         ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:temp];
         [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
     }else if(candidateCount > 1)
     {
         //pk
@@ -267,6 +268,7 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];  
     [self.view addGestureRecognizer:pan];
     [pan release];
+    [self.playerManager setVoteDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -292,4 +294,14 @@
     }
     return NO;
 }
+
+#pragma mark - vote delegate
+
+- (void)didPickedCandidate:(PlayerCard *)playerCard
+{
+    ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:playerCard];
+    [self.navigationController pushViewController:rc animated:YES];
+    [rc release];
+}
+
 @end
