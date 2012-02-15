@@ -26,6 +26,7 @@
 @synthesize passWord = _passWord;
 @synthesize voteNumber = _voteNumber;
 @synthesize voteForPlayer = _voteForPlayer;
+@synthesize index = _index;
 
 - (CGRect)defaultFrame
 {
@@ -260,19 +261,10 @@
 - (void)drawWillShowCover:(CGContextRef)context
 {
     CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-//    if (!_flashShowed) {
-//        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
-//    }else{
-//        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-//    }
-//    CGFloat lineWidth = 3.0;
-//    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth);
+
     CGContextFillRect(context, self.bounds);
     CGContextSaveGState(context);
     [self drawFlashRect:context];
-//    CGContextStrokeRectWithWidth(context, frame, lineWidth);    
-//    CGContextSaveGState(context);
-
 }
 
 
@@ -342,6 +334,21 @@
 	CGContextDrawImage(context, imageRect, imageRef);
 }
 
+- (void)drawIndexNumber:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+    
+    NSString *tips = [NSString stringWithFormat:@"%d",self.index];    
+    if (self.index < 10) {
+        [tips drawAtPoint:CGPointMake(13, 18) withFont:[UIFont systemFontOfSize:25]];        
+    }else{
+        [tips drawAtPoint:CGPointMake(5, 18) withFont:[UIFont systemFontOfSize:25]];
+    }
+
+    CGContextSaveGState(context);
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -373,6 +380,9 @@
             break;
         default:
             break;
+    }
+    if (self.status != SHOWING) {
+        [self drawIndexNumber:context];
     }
 }
 

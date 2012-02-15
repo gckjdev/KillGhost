@@ -34,6 +34,7 @@
 
 
 - (IBAction)clickNewGame:(id)sender;
+- (IBAction)clickBackButton:(id)sender;
 
 //Ghost civilians fool
 @end

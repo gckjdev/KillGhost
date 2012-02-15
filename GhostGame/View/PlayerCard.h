@@ -50,11 +50,12 @@ enum CARD_STATUS {
 @property(nonatomic, retain)NSString *passWord;
 @property(nonatomic, assign)CGFloat scale;
 @property(nonatomic, assign)CGFloat fontSize;
-@property(nonatomic ,assign)NSInteger status;
+@property(nonatomic, assign)NSInteger status;
 @property(nonatomic, assign)CGPoint position;
 @property(nonatomic, assign)NSInteger voteNumber;
 @property(nonatomic, retain)PlayerCard *voteForPlayer;
 @property(nonatomic, assign)id <PlayerCardDelegate>delegate;
+@property(nonatomic, assign)NSInteger index;
 
 - (void)show;
 - (void)cover;

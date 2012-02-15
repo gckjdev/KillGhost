@@ -24,5 +24,6 @@
 
 @property(nonatomic, retain)Game *game;
 - (IBAction)clickNextButton:(id)sender;
+- (IBAction)clickBackButton:(id)sender;
 - (id)initWithGame:(Game *)aGame;
 @end
