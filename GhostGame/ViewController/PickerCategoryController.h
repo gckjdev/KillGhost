@@ -11,7 +11,7 @@
 
 @interface PickerCategoryController : UIViewController
 
-@property (retain, nonatomic) NSArray *categoryIdArray;
+@property (retain, nonatomic) NSArray *categoryArray;
 @property (retain, nonatomic) IBOutlet UITableView *categoryTable;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
 

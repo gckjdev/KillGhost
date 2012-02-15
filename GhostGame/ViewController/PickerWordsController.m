@@ -12,7 +12,7 @@
 #import "PickerWordsCell.h"
 
 @implementation PickerWordsController
-@synthesize categoryId;
+@synthesize category;
 @synthesize wordsArray;
 @synthesize wordsTable;
 @synthesize selectCellIndex;
@@ -26,11 +26,11 @@
     return self;
 }
 
-- (id)initWithCategoryId:(NSNumber *)categoryIdValue
+- (id)initWithCategory:(NSString *)categoryValue
 {
     self = [super init];
     if (self) {
-        self.categoryId = categoryIdValue;
+        self.category = categoryValue;
     }
     
     return self;
@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    self.wordsArray = [[WordsManager defaultManager] getWordsArrayByCategoryId:self.categoryId];
+    self.wordsArray = [[WordsManager defaultManager] getWordsArrayByCategory:self.category];
     
     self.selectCellIndex = -1;
     
@@ -58,7 +58,7 @@
 
 - (void)viewDidUnload
 {
-    [self setCategoryId:nil];
+    [self setCategory:nil];
     [self setWordsArray:nil];
     [self setWordsTable:nil];
     [super viewDidUnload];
@@ -73,7 +73,7 @@
 }
 
 - (void)dealloc {
-    [categoryId release];
+    [category release];
     [wordsArray release];
     [wordsTable release];
     [super dealloc];

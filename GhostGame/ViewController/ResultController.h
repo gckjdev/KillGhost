@@ -20,7 +20,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *finishButton;
 @property (retain, nonatomic) PlayerCard *currentPlayerCard;
 @property (assign, nonatomic) NSInteger result;
-@property (assign, nonatomic) BOOL isGuessRight;
 
 - (IBAction)clickGuessRightButton:(id)sender;
 - (IBAction)clickGuessWrongButton:(id)sender;
