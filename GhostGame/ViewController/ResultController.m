@@ -22,7 +22,7 @@
 @synthesize finishButton;
 @synthesize currentPlayerCard;
 @synthesize result;
-@synthesize isGuessRight;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,7 +55,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.isGuessRight = NO;
     self.guessRightButton.hidden = YES;
     self.guessWrongButton.hidden = YES;
     self.continueGameButton.hidden = YES;
@@ -85,6 +84,15 @@
     
     if (result == ResultContinue) {
         self.resultDescriptionLabel.text = @"游戏继续";
+        
+        if (self.currentPlayerCard.player.type == GhostType) {
+            self.promptLabel.text = @"理由:鬼没有猜对词语";
+        }
+        else
+        {
+            self.promptLabel.text = @"理由:此玩家不是鬼";
+        }
+        
         self.continueGameButton.hidden = NO;
     }
     else if (result == ResultGhostWin) 
@@ -93,7 +101,7 @@
         self.resultDescriptionLabel.text = @"游戏结束,鬼胜出！";
         
         //鬼胜出有两个理由
-        if (isGuessRight) {
+        if (self.currentPlayerCard.player.type == GhostType) {
             self.promptLabel.text = @"理由:鬼猜对了词语";
         }
         else{
@@ -143,7 +151,6 @@
 - (IBAction)clickGuessRightButton:(id)sender
 {
     self.result = ResultGhostWin;
-    self.isGuessRight = YES;
     [self showResult];
 }
 
