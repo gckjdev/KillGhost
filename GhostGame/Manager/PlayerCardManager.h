@@ -13,6 +13,7 @@
 
 @protocol VoteDelegate <NSObject>
 
+- (void)willPickCandidate:(PlayerCard *)playerCard;
 - (void)didPickedCandidate:(PlayerCard *)playerCard;
 
 @end

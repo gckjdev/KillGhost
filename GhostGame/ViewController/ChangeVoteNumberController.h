@@ -17,5 +17,6 @@
 
 - (IBAction)plusOne:(id)sender;
 - (IBAction)minusOne:(id)sender;
+- (void)updateVoteNumberLabel;
 
 @end

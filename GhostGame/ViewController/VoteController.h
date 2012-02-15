@@ -12,6 +12,7 @@
 @class PlayerCardManager;
 @class LineSegment;
 @class LineSegmentView;
+@class ChangeVoteNumberController;
 
 @interface VoteController : UIViewController<UIGestureRecognizerDelegate, VoteDelegate>
 {
@@ -24,6 +25,9 @@
 
 @property(nonatomic, retain)PlayerCardManager *playerManager;
 @property(nonatomic, retain)NSMutableArray *lineViewArray;
+@property(nonatomic, retain)ChangeVoteNumberController *changeVoteNumberController;
+
 - (IBAction)finishVote:(id)sender;
 - (id)initWithPlayerManager:(PlayerCardManager *)manager;
+
 @end

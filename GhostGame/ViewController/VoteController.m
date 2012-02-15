@@ -12,11 +12,12 @@
 #import "LineSegment.h"
 #import "LineSegmentView.h"
 #import "ResultController.h"
+#import "ChangeVoteNumberController.h"
 
 @implementation VoteController
 @synthesize playerManager = _playerManager;
 @synthesize lineViewArray = _lineViewArray;
-
+@synthesize changeVoteNumberController;
 
 #pragma mark - line segment
 
@@ -85,6 +86,7 @@
 - (void)dealloc
 {
     [_playerManager release];
+    [changeVoteNumberController release];
     [super dealloc];
 }
 
@@ -302,6 +304,15 @@
     ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:playerCard];
     [self.navigationController pushViewController:rc animated:YES];
     [rc release];
+}
+
+- (void)willPickCandidate:(PlayerCard *)playerCard
+{
+    NSLog(@"--------willPickCandidate");
+    ChangeVoteNumberController *cvnc = [[ChangeVoteNumberController alloc] initWithPlayerCard:playerCard] ;
+    self.changeVoteNumberController = cvnc;
+    [cvnc release];
+    [self.view addSubview:self.changeVoteNumberController.view];
 }
 
 @end

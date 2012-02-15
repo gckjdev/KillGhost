@@ -148,11 +148,11 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
-        if (playerCard.status == VOTE || playerCard.status == DEAD || playerCard.status == VOTED) {
+        if (playerCard.status == DEAD || playerCard.status == VOTED) {
             return NO;
         }
         
-        if (playerCard.status == CANDIDATE) {
+        if (playerCard.status == VOTE || playerCard.status == CANDIDATE) {
             return YES;
         }
         
@@ -180,7 +180,14 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     }
     return NO;
 }
-
+- (void)willClickPlayerCard:(PlayerCard *)playerCard
+{
+    if (playerCard.status == VOTE) {
+        if (self.voteDelegate && [self.voteDelegate respondsToSelector:@selector(willPickCandidate:)]) {
+            [self.voteDelegate willPickCandidate:playerCard];
+        }
+    }
+}
 - (void)didClickedPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard.scale != 1) {

@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.voteNumberLabel.text = [NSString stringWithFormat:@"%d", self.playerCard.voteNumber];
+    [self updateVoteNumberLabel];
 }
 
 - (void)viewDidUnload
@@ -72,11 +72,19 @@
 - (IBAction)plusOne:(id)sender
 {
     self.playerCard.voteNumber++;
+    [self updateVoteNumberLabel];
 }
 
 - (IBAction)minusOne:(id)sender
 {
     self.playerCard.voteNumber--;
+    [self updateVoteNumberLabel];
 }
+
+- (void)updateVoteNumberLabel
+{
+    self.voteNumberLabel.text = [NSString stringWithFormat:@"%d", self.playerCard.voteNumber];
+}
+
 
 @end

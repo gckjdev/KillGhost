@@ -16,6 +16,8 @@
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
 		A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D114E1091E00BD0DCF /* GrainLace.png */; };
 		A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */; };
+		A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */; };
+		A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */; };
 		A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EC828014E8AA0E00AD4B66 /* ResultManager.m */; };
 		A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ED053C14DA817300AC8C67 /* QuartzCore.framework */; };
 		CA0A20B014DA690400577C02 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A114DA690400577C02 /* Game.m */; };
@@ -88,6 +90,9 @@
 		A3D9E3CD14E108DA00BD0DCF /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		A3D9E3D114E1091E00BD0DCF /* GrainLace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrainLace.png; sourceTree = "<group>"; };
 		A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrainLace@2x.png"; sourceTree = "<group>"; };
+		A3E9EECD14EBAC2D004B4130 /* ChangeVoteNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVoteNumberController.h; sourceTree = "<group>"; };
+		A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVoteNumberController.m; sourceTree = "<group>"; };
+		A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeVoteNumberController.xib; sourceTree = "<group>"; };
 		A3EC827F14E8AA0E00AD4B66 /* ResultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultManager.h; sourceTree = "<group>"; };
 		A3EC828014E8AA0E00AD4B66 /* ResultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultManager.m; sourceTree = "<group>"; };
 		A3ED053C14DA817300AC8C67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -215,6 +220,9 @@
 		CA0A20A414DA690400577C02 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A3E9EECD14EBAC2D004B4130 /* ChangeVoteNumberController.h */,
+				A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */,
+				A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */,
 				CA986C9114E3D1D0000A07F8 /* PickerCategoryController.h */,
 				CA986C9214E3D1D0000A07F8 /* PickerCategoryController.m */,
 				CA986C9314E3D1D0000A07F8 /* PickerCategoryController.xib */,
@@ -470,6 +478,7 @@
 				A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */,
 				CA986C9514E3D1D0000A07F8 /* PickerCategoryController.xib in Resources */,
 				A3D5618B14EA596F00D097F2 /* Words.plist in Resources */,
+				A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +538,7 @@
 				CA986C8A14E3B4AA000A07F8 /* LineSegmentView.m in Sources */,
 				CA986C9414E3D1D0000A07F8 /* PickerCategoryController.m in Sources */,
 				A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */,
+				A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

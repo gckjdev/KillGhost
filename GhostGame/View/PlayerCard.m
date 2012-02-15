@@ -185,6 +185,9 @@
     }else if(self.status == CANDIDATE)
     {
         self.status = DEAD;
+    }else if(self.status == VOTE)
+    {
+        
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(didClickedPlayerCard:)]) {
