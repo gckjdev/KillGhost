@@ -112,7 +112,9 @@
 {
     _status = status;
     self.voteForPlayer = nil;
-    self.voteNumber = 0;
+    if (status != CANDIDATE) {
+        self.voteNumber = 0;        
+    }
     switch (status) {
         case WILLSHOW:
         case CANDIDATE:
@@ -286,19 +288,19 @@
 
 - (void)drawVoteCover:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+//    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
     
     CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
     CGContextFillRect(context, self.bounds);
     CGContextSaveGState(context);
     
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
     NSString *tips = [NSString stringWithFormat:@"%d",_voteNumber];    
-    [tips drawAtPoint:CGPointMake(3, 3) withFont:[UIFont systemFontOfSize:25]];
+    [tips drawAtPoint:CGPointMake(25, 0) withFont:[UIFont systemFontOfSize:16]];
     CGContextSaveGState(context);
 
 }

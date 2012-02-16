@@ -195,6 +195,9 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     }else{
         _showingCard = nil;
         
+        if (playerCard.status == VOTE) {
+            return;
+        }
         if (playerCard.status == DEAD) {
             for (PlayerCard * card in _playerCardList) {
                 if (card.status != DEAD ) {
