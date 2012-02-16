@@ -28,6 +28,7 @@
 @property(nonatomic, retain)ChangeVoteNumberController *changeVoteNumberController;
 
 - (IBAction)finishVote:(id)sender;
+- (IBAction)clickShowButton:(id)sender;
 - (id)initWithPlayerManager:(PlayerCardManager *)manager;
 
 @end

@@ -41,6 +41,8 @@
 		CA0A20D614DA776800577C02 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D314DA776800577C02 /* ghost.png */; };
 		CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20D914DA77B700577C02 /* PlayerCard.m */; };
 		CA25628714DBE3C50004C427 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25628614DBE3C50004C427 /* mask.png */; };
+		CA37F70014ECAD8B00867820 /* ShowPlayerCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA37F6FE14ECAD8B00867820 /* ShowPlayerCardsController.m */; };
+		CA37F70114ECAD8B00867820 /* ShowPlayerCardsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA37F6FF14ECAD8B00867820 /* ShowPlayerCardsController.xib */; };
 		CA986C8414E375BD000A07F8 /* PlayerCardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8314E375BD000A07F8 /* PlayerCardManager.m */; };
 		CA986C8914E3B4AA000A07F8 /* LineSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8614E3B4AA000A07F8 /* LineSegment.m */; };
 		CA986C8A14E3B4AA000A07F8 /* LineSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA986C8814E3B4AA000A07F8 /* LineSegmentView.m */; };
@@ -127,6 +129,9 @@
 		CA0A20D814DA77B700577C02 /* PlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCard.h; sourceTree = "<group>"; };
 		CA0A20D914DA77B700577C02 /* PlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCard.m; sourceTree = "<group>"; };
 		CA25628614DBE3C50004C427 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
+		CA37F6FD14ECAD8B00867820 /* ShowPlayerCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPlayerCardsController.h; sourceTree = "<group>"; };
+		CA37F6FE14ECAD8B00867820 /* ShowPlayerCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPlayerCardsController.m; sourceTree = "<group>"; };
+		CA37F6FF14ECAD8B00867820 /* ShowPlayerCardsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowPlayerCardsController.xib; sourceTree = "<group>"; };
 		CA986C8214E375BD000A07F8 /* PlayerCardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCardManager.h; sourceTree = "<group>"; };
 		CA986C8314E375BD000A07F8 /* PlayerCardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCardManager.m; sourceTree = "<group>"; };
 		CA986C8514E3B4AA000A07F8 /* LineSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineSegment.h; path = ../View/LineSegment.h; sourceTree = "<group>"; };
@@ -220,6 +225,9 @@
 		CA0A20A414DA690400577C02 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				CA37F6FD14ECAD8B00867820 /* ShowPlayerCardsController.h */,
+				CA37F6FE14ECAD8B00867820 /* ShowPlayerCardsController.m */,
+				CA37F6FF14ECAD8B00867820 /* ShowPlayerCardsController.xib */,
 				A3E9EECD14EBAC2D004B4130 /* ChangeVoteNumberController.h */,
 				A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */,
 				A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */,
@@ -479,6 +487,7 @@
 				CA986C9514E3D1D0000A07F8 /* PickerCategoryController.xib in Resources */,
 				A3D5618B14EA596F00D097F2 /* Words.plist in Resources */,
 				A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */,
+				CA37F70114ECAD8B00867820 /* ShowPlayerCardsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +548,7 @@
 				CA986C9414E3D1D0000A07F8 /* PickerCategoryController.m in Sources */,
 				A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */,
 				A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */,
+				CA37F70014ECAD8B00867820 /* ShowPlayerCardsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

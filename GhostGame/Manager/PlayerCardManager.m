@@ -19,11 +19,20 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     return defaultPlayerCardManager;
 }
 
+PlayerCardManager *showPlayerCardManager;
+PlayerCardManager *GlobalGetShowPlayerCardManager()
+{
+    if (showPlayerCardManager == nil) {
+        showPlayerCardManager = [[PlayerCardManager alloc] init];
+    }
+    return showPlayerCardManager;
+}
+
 @implementation PlayerCardManager
 @synthesize playerCardList = _playerCardList;
 @synthesize showingCard = _showingCard;
 @synthesize voteDelegate = _voteDelegate;
-
+@synthesize playerList = _playerList;
 - (void)reset
 {
     if (_playerCardList) {
@@ -54,6 +63,11 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 + (PlayerCardManager *)defaultManager
 {
     return GlobalGetPlayerCardManager();
+}
+
++ (PlayerCardManager *)showCardManager
+{
+    return GlobalGetShowPlayerCardManager();
 }
 
 - (PlayerCard *)playerCardAtIndex:(NSInteger)index
@@ -93,16 +107,16 @@ PlayerCardManager *GlobalGetPlayerCardManager()
             int r = rand() % total;
             if (r < fCount) {
                 //fool
-                player = [[Player alloc] initWithType:FoolType word:game.foolWord alive:YES];
+                player = [[Player alloc] initWithType:FoolType word:game.foolWord];// alive:YES];
                 fCount -- ;
             }else if( r < fCount + gCount){
                 //ghost
-                player = [[Player alloc] initWithType:GhostType word:game.ghostWord alive:YES];
+                player = [[Player alloc] initWithType:GhostType word:game.ghostWord];// alive:YES];
                 gCount --;
             }else{
                 //civilian
                 player = [[Player alloc] 
-                          initWithType:CivilianType word:game.civilianWord alive:YES];
+                          initWithType:CivilianType word:game.civilianWord]; //alive:YES];
                 cCount --;
             }
             total --;
@@ -111,10 +125,12 @@ PlayerCardManager *GlobalGetPlayerCardManager()
         }
     }
 }
-- (void)createCardsFromGame:(Game *)game;
+
+- (void)createCardsFromPlayerList:(NSArray *)playerList
 {
-    [self reset];
-    [self createPlayerListFromGame:game];
+    if (_playerList != playerList) {
+        self.playerList = [NSMutableArray arrayWithArray:playerList];        
+    }
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
@@ -125,6 +141,12 @@ PlayerCardManager *GlobalGetPlayerCardManager()
         [_playerCardList addObject:card];
         [card release];
     }
+}
+- (void)createCardsFromGame:(Game *)game;
+{
+    [self reset];
+    [self createPlayerListFromGame:game];
+    [self createCardsFromPlayerList:self.playerList];
 }
 
 
@@ -148,7 +170,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
 - (BOOL)respondsToClickPlayerCard:(PlayerCard *)playerCard
 {
     if (playerCard) {
-        if (playerCard.status == DEAD || playerCard.status == VOTED) {
+        if (playerCard.status == DEAD || playerCard.status == VOTED || playerCard.status == EXAMINE) {
             return NO;
         }
         

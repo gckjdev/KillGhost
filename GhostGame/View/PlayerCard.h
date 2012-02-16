@@ -15,6 +15,7 @@ enum CARD_STATUS {
     VOTED,
     CANDIDATE,
     DEAD,
+    EXAMINE = 20
 };
 
 

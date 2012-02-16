@@ -11,16 +11,16 @@
 
 @implementation Player
 @synthesize type = _type;
-@synthesize alive = _alive;
+//@synthesize alive = _alive;
 @synthesize word = _word;
 
 
-- (id)initWithType:(NSInteger)type word:(NSString *)word alive:(BOOL)alive
+- (id)initWithType:(NSInteger)type word:(NSString *)word// alive:(BOOL)alive
 {
     self = [super init];
     if (self) {
         self.type = type;
-        self.alive = alive;
+//        self.alive = alive;
         self.word = word;
     }
     return self;
