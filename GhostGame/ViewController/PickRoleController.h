@@ -15,10 +15,6 @@
 @class PlayerCardManager;
 
 @interface PickRoleController : GRViewController<PlayerCardDelegate> {
-//    NSMutableArray *_playerList;
-//    NSMutableArray *_cardList;
-//    NSInteger _pickIndex;
-//    PlayerCard *_showingCard;
     PlayerCardManager *_playerCardManager;
 }
 

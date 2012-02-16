@@ -11,16 +11,14 @@
 
 @implementation Player
 @synthesize type = _type;
-//@synthesize alive = _alive;
 @synthesize word = _word;
 
 
-- (id)initWithType:(NSInteger)type word:(NSString *)word// alive:(BOOL)alive
+- (id)initWithType:(NSInteger)type word:(NSString *)word
 {
     self = [super init];
     if (self) {
         self.type = type;
-//        self.alive = alive;
         self.word = word;
     }
     return self;
@@ -35,8 +33,10 @@
             return @"平民";
         case FoolType:
             return @"傻子";
+        case JudgeType:
+            return @"法官";
         default:
-            return nil;
+            return @"未知";
     }
 }
 - (void)dealloc
