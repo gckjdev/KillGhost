@@ -11,7 +11,6 @@
 #import "Player.h"
 #import "StateController.h"
 #import "PlayerCardManager.h"
-#import "VoteController.h"
 
 @implementation PickRoleController
 @synthesize game = _game;
@@ -37,6 +36,8 @@
         self.game = aGame;
         _playerCardManager = [PlayerCardManager defaultManager];
         [_playerCardManager createCardsFromGame:aGame];
+        [[PlayerCardManager showCardManager] createCardsFromPlayerList:
+         _playerCardManager.playerList];
     }
     return self;
 }

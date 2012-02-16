@@ -13,6 +13,7 @@
 #import "LineSegmentView.h"
 #import "ResultController.h"
 #import "ChangeVoteNumberController.h"
+#import "ShowPlayerCardsController.h"
 
 @implementation VoteController
 @synthesize playerManager = _playerManager;
@@ -253,6 +254,12 @@
     }else{
         //bug ?
     }
+}
+
+- (IBAction)clickShowButton:(id)sender {
+    ShowPlayerCardsController *spc = [[ShowPlayerCardsController alloc] init];
+    [self.navigationController pushViewController:spc animated:YES];
+    [spc release];
 }
 
 #pragma mark - View lifecycle

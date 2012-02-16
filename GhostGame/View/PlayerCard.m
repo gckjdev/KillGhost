@@ -131,6 +131,7 @@
         case VOTE:
         case VOTED:
         case DEAD:
+        case EXAMINE:
             [self stopFlashTimer];    
             [self setScale:1 center:_position];
             break;
@@ -345,13 +346,28 @@
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
-    NSString *tips = [NSString stringWithFormat:@"%d",self.index];    
+    NSString *indexString = [NSString stringWithFormat:@"%d",self.index];    
     if (self.index < 10) {
-        [tips drawAtPoint:CGPointMake(13, 18) withFont:[UIFont systemFontOfSize:25]];        
+        [indexString drawAtPoint:CGPointMake(13, 18) withFont:[UIFont systemFontOfSize:25]];        
     }else{
-        [tips drawAtPoint:CGPointMake(5, 18) withFont:[UIFont systemFontOfSize:25]];
+        [indexString drawAtPoint:CGPointMake(5, 18) withFont:[UIFont systemFontOfSize:25]];
     }
 
+    CGContextSaveGState(context);
+}
+
+- (void)drawExamine:(CGContextRef)context
+{
+    CGContextSetFillColorWithColor(context, [UIColor orangeColor].CGColor);
+    CGContextFillRect(context, self.bounds);
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+    
+    NSString *indexString = [NSString stringWithFormat:@"%d",self.index];    
+    [indexString drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:16]];  
+    [_player.name drawAtPoint:CGPointMake(3, 23) withFont:[UIFont systemFontOfSize:20]];
+//    [_player.word drawAtPoint:CGPointMake(6, 35) withFont:[UIFont systemFontOfSize:18]];
     CGContextSaveGState(context);
 }
 
@@ -383,10 +399,13 @@
         case DEAD:
             [self drawDeadCover:context];
             break;
+        case EXAMINE:
+            [self drawExamine:context];
+            break;
         default:
             break;
     }
-    if (self.status != SHOWING) {
+    if (self.status != SHOWING && self.status != EXAMINE) {
         [self drawIndexNumber:context];
     }
 }
