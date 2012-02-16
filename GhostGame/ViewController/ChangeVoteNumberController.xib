@@ -39,7 +39,7 @@
 					<object class="IBUILabel" id="392005886">
 						<reference key="NSNextResponder" ref="885402999"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{49, 13}, {43, 37}}</string>
+						<string key="NSFrame">{{49, 17}, {43, 37}}</string>
 						<reference key="NSSuperview" ref="885402999"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="770326149"/>
@@ -71,7 +71,7 @@
 					<object class="IBUIButton" id="805640502">
 						<reference key="NSNextResponder" ref="885402999"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{4, 13}, {37, 37}}</string>
+						<string key="NSFrame">{{5, 16}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="885402999"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="392005886"/>
@@ -107,10 +107,9 @@
 					<object class="IBUIButton" id="770326149">
 						<reference key="NSNextResponder" ref="885402999"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{100, 13}, {37, 37}}</string>
+						<string key="NSFrame">{{98, 17}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="885402999"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -128,7 +127,7 @@
 						<reference key="IBUIFont" ref="435575640"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{140, 63}</string>
+				<string key="NSFrameSize">{140, 70}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="805640502"/>
@@ -157,6 +156,22 @@
 						<reference key="destination" ref="885402999"/>
 					</object>
 					<int key="connectionID">10</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">minusOneButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="805640502"/>
+					</object>
+					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">plusOneButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="770326149"/>
+					</object>
+					<int key="connectionID">14</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -237,7 +252,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">12</int>
+			<int key="maxID">14</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -258,17 +273,25 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">voteNumberLabel</string>
-						<string key="NS.object.0">UILabel</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">voteNumberLabel</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="minusOneButton">UIButton</string>
+						<string key="plusOneButton">UIButton</string>
+						<string key="voteNumberLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="minusOneButton">
+							<string key="name">minusOneButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="plusOneButton">
+							<string key="name">plusOneButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="voteNumberLabel">
 							<string key="name">voteNumberLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/ChangeVoteNumberController.h</string>

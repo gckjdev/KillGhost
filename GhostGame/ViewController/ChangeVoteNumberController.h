@@ -12,11 +12,14 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *voteNumberLabel;
 @property (retain, nonatomic) PlayerCard *playerCard;
+@property (retain, nonatomic) IBOutlet UIButton *minusOneButton;
+@property (retain, nonatomic) IBOutlet UIButton *plusOneButton;
 
 - (id)initWithPlayerCard:(PlayerCard *)playerCardValue;
 
 - (IBAction)plusOne:(id)sender;
 - (IBAction)minusOne:(id)sender;
 - (void)updateVoteNumberLabel;
+- (void)updateButtonStatus;
 
 @end

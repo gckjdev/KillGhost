@@ -310,6 +310,7 @@
 {
     NSLog(@"--------willPickCandidate");
     ChangeVoteNumberController *cvnc = [[ChangeVoteNumberController alloc] initWithPlayerCard:playerCard] ;
+    cvnc.view.frame = CGRectMake(90, 205, 140, 70);
     self.changeVoteNumberController = cvnc;
     [cvnc release];
     [self.view addSubview:self.changeVoteNumberController.view];

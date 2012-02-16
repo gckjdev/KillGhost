@@ -8,10 +8,13 @@
 
 #import "ChangeVoteNumberController.h"
 #import "PlayerCard.h"
+#import "PlayerCardManager.h"
 
 @implementation ChangeVoteNumberController
 @synthesize voteNumberLabel;
 @synthesize playerCard;
+@synthesize minusOneButton;
+@synthesize plusOneButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +55,8 @@
 {
     [self setVoteNumberLabel:nil];
     [self setPlayerCard:nil];
+    [self setMinusOneButton:nil];
+    [self setPlusOneButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -66,6 +71,8 @@
 - (void)dealloc {
     [voteNumberLabel release];
     [playerCard release];
+    [minusOneButton release];
+    [plusOneButton release];
     [super dealloc];
 }
 
@@ -73,12 +80,43 @@
 {
     self.playerCard.voteNumber++;
     [self updateVoteNumberLabel];
+    [self updateButtonStatus];
 }
 
 - (IBAction)minusOne:(id)sender
 {
+    if (self.playerCard.voteNumber == 0) {
+        return;
+    }
     self.playerCard.voteNumber--;
     [self updateVoteNumberLabel];
+    [self updateButtonStatus];
+}
+
+- (void)updateButtonStatus
+{
+    if (self.playerCard.voteNumber == 0) 
+        self.minusOneButton.enabled = NO;
+    else
+        self.minusOneButton.enabled = YES;
+    
+    int allVoteCount = 0, hasVoteCount = 0;
+    for (PlayerCard *card in [[PlayerCardManager defaultManager] playerCardList ]) {
+        if (card.status != DEAD)
+        {
+            allVoteCount ++;
+            hasVoteCount += card.voteNumber;
+        }
+    }
+    
+    if (self.playerCard.voteNumber == allVoteCount - 1 || self.playerCard.voteNumber == allVoteCount - hasVoteCount) {
+        self.plusOneButton.enabled = NO;
+    }
+    else
+    {
+        self.plusOneButton.enabled = YES;
+    }
+    
 }
 
 - (void)updateVoteNumberLabel
