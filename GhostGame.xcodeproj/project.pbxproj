@@ -40,6 +40,9 @@
 		CA0A20D514DA776800577C02 /* fool.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D214DA776800577C02 /* fool.png */; };
 		CA0A20D614DA776800577C02 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = CA0A20D314DA776800577C02 /* ghost.png */; };
 		CA0A20DA14DA77B700577C02 /* PlayerCard.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20D914DA77B700577C02 /* PlayerCard.m */; };
+		CA1C3CF714F5E1080022A8CD /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3CF514F5E1080022A8CD /* SettingsController.m */; };
+		CA1C3CF814F5E1080022A8CD /* SettingsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1C3CF614F5E1080022A8CD /* SettingsController.xib */; };
+		CA1C3CFB14F5E2030022A8CD /* ConfigureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3CFA14F5E2030022A8CD /* ConfigureManager.m */; };
 		CA25628714DBE3C50004C427 /* mask.png in Resources */ = {isa = PBXBuildFile; fileRef = CA25628614DBE3C50004C427 /* mask.png */; };
 		CA37F70014ECAD8B00867820 /* ShowPlayerCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA37F6FE14ECAD8B00867820 /* ShowPlayerCardsController.m */; };
 		CA37F70114ECAD8B00867820 /* ShowPlayerCardsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA37F6FF14ECAD8B00867820 /* ShowPlayerCardsController.xib */; };
@@ -128,6 +131,11 @@
 		CA0A20D314DA776800577C02 /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
 		CA0A20D814DA77B700577C02 /* PlayerCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCard.h; sourceTree = "<group>"; };
 		CA0A20D914DA77B700577C02 /* PlayerCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCard.m; sourceTree = "<group>"; };
+		CA1C3CF414F5E1080022A8CD /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		CA1C3CF514F5E1080022A8CD /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		CA1C3CF614F5E1080022A8CD /* SettingsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsController.xib; sourceTree = "<group>"; };
+		CA1C3CF914F5E2030022A8CD /* ConfigureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigureManager.h; sourceTree = "<group>"; };
+		CA1C3CFA14F5E2030022A8CD /* ConfigureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigureManager.m; sourceTree = "<group>"; };
 		CA25628614DBE3C50004C427 /* mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mask.png; sourceTree = "<group>"; };
 		CA37F6FD14ECAD8B00867820 /* ShowPlayerCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPlayerCardsController.h; sourceTree = "<group>"; };
 		CA37F6FE14ECAD8B00867820 /* ShowPlayerCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPlayerCardsController.m; sourceTree = "<group>"; };
@@ -203,6 +211,8 @@
 				CA986C8314E375BD000A07F8 /* PlayerCardManager.m */,
 				A3EC827F14E8AA0E00AD4B66 /* ResultManager.h */,
 				A3EC828014E8AA0E00AD4B66 /* ResultManager.m */,
+				CA1C3CF914F5E2030022A8CD /* ConfigureManager.h */,
+				CA1C3CFA14F5E2030022A8CD /* ConfigureManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -234,6 +244,12 @@
 				CA986C9114E3D1D0000A07F8 /* PickerCategoryController.h */,
 				CA986C9214E3D1D0000A07F8 /* PickerCategoryController.m */,
 				CA986C9314E3D1D0000A07F8 /* PickerCategoryController.xib */,
+				CAC931AF14DF7CA2001258FD /* PickerWordsController.h */,
+				CAC931B014DF7CA2001258FD /* PickerWordsController.m */,
+				CAC931B114DF7CA2001258FD /* PickerWordsController.xib */,
+				A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */,
+				A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */,
+				A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */,
 				A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */,
 				A3D9E3CC14E108DA00BD0DCF /* HelpController.h */,
 				A3D9E3CD14E108DA00BD0DCF /* HelpController.m */,
@@ -258,12 +274,9 @@
 				CA0A20CB14DA6C2700577C02 /* ResultController.h */,
 				CA0A20CC14DA6C2700577C02 /* ResultController.m */,
 				CA0A20CD14DA6C2700577C02 /* ResultController.xib */,
-				CAC931AF14DF7CA2001258FD /* PickerWordsController.h */,
-				CAC931B014DF7CA2001258FD /* PickerWordsController.m */,
-				CAC931B114DF7CA2001258FD /* PickerWordsController.xib */,
-				A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */,
-				A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */,
-				A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */,
+				CA1C3CF414F5E1080022A8CD /* SettingsController.h */,
+				CA1C3CF514F5E1080022A8CD /* SettingsController.m */,
+				CA1C3CF614F5E1080022A8CD /* SettingsController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -488,6 +501,7 @@
 				A3D5618B14EA596F00D097F2 /* Words.plist in Resources */,
 				A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */,
 				CA37F70114ECAD8B00867820 /* ShowPlayerCardsController.xib in Resources */,
+				CA1C3CF814F5E1080022A8CD /* SettingsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +563,8 @@
 				A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */,
 				A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */,
 				CA37F70014ECAD8B00867820 /* ShowPlayerCardsController.m in Sources */,
+				CA1C3CF714F5E1080022A8CD /* SettingsController.m in Sources */,
+				CA1C3CFB14F5E2030022A8CD /* ConfigureManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

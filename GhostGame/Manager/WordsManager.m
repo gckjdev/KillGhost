@@ -33,27 +33,67 @@ WordsManager *GlobalGetWordsManager()
     return GlobalGetWordsManager();
 }
 
+
+#pragma mark - last used words list
+
+#define WORDS_LIST @"WORDS_LIST"
+
+- (void)setUsedWordsList:(NSArray *)wordsList
+{
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:wordsList];
+    [userDefault setObject:data forKey:WORDS_LIST];
+    [userDefault synchronize];
+}
+
+- (NSArray *)getWordsListWithCount:(NSInteger)count
+{
+    NSUserDefaults* userDefault = [NSUserDefaults standardUserDefaults];
+    NSData* data = [userDefault objectForKey:WORDS_LIST];
+    NSArray *temp = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (count <= 0) {
+        return temp;
+    }else{
+        NSMutableArray *retArray = [[NSMutableArray alloc] init];
+        int j = 0;
+        for (int i = [temp count] - 1; i >= 0 && j <= count; --i, ++j) {
+            [retArray addObject:[temp objectAtIndex:i]];
+        }
+        return [retArray autorelease];
+    }
+}
+
+- (NSInteger)indexInArray:(NSArray *)array ForWords:(Words *)words
+{
+    if (array && words) {
+        int i = 0;
+        for (Words *obj in array) {
+            if ([obj isEqualToWords:words]) {
+                return i;
+            }
+            ++ i;
+        }
+    }
+    return  - 1;
+}
+
+- (void)addUsedWords:(Words *)words
+{
+    NSArray *temp = [self getWordsListWithCount:-1];
+    NSMutableArray *storeArray = [NSMutableArray arrayWithArray:temp];
+    
+    NSInteger index = [self indexInArray:storeArray ForWords:words];
+    
+    if (index != -1) {
+        [storeArray removeObjectAtIndex:index];
+    }
+    [storeArray insertObject:words atIndex:0];
+    [self setUsedWordsList:storeArray];
+}
+
+
 - (NSArray *)getAllWords
 {
-//    NSArray *category = [NSArray arrayWithObjects:[NSNumber numberWithInt:WORDS_CATEGORY_FOOD],[NSNumber numberWithInt:WORDS_CATEGORY_OTHER],[NSNumber numberWithInt:WORDS_CATEGORY_OTHER],[NSNumber numberWithInt:WORDS_CATEGORY_ELECTRONICS], nil];
-//    
-//    NSArray *civilian = [NSArray arrayWithObjects:@"火龙果", @"桌子", @"门",@"手机",nil];
-//    
-//    NSArray *fool = [NSArray arrayWithObjects:@"苹果",     @"椅子",   @"窗",@"耳机", nil];
-//    
-//    NSMutableArray * wordsArray = [[[NSMutableArray alloc] init] autorelease];
-//    
-//    int index = 0;
-//    for (NSString *str in civilian) {
-//        
-//        Words *words = [[Words alloc] initWithCivilianWord:str foolWord:[fool objectAtIndex:index] categoryId:[category objectAtIndex:index]];
-//        
-//        [wordsArray addObject:words];
-//        
-//        [words release];
-//        
-//        index++;
-//    }
     
     NSMutableArray * wordsArray = [[[NSMutableArray alloc] init] autorelease];
     
@@ -83,7 +123,7 @@ WordsManager *GlobalGetWordsManager()
 - (NSArray *)getAllCategory
 {
     NSMutableArray *categoryArray = [[[NSMutableArray alloc] init] autorelease];
-    
+    [categoryArray addObject:LAST_USED_CATEGORY];
     NSArray *allWords = [self getAllWords];
     
     for (Words *words in allWords) {
@@ -95,39 +135,26 @@ WordsManager *GlobalGetWordsManager()
     return categoryArray;
 }
 
-//- (NSString *)getNameByCategoryId:(NSNumber*)categoryIdValue
-//{
-//    switch ([categoryIdValue intValue]) {
-//        case WORDS_CATEGORY_FOOD:
-//            return @"食物";
-//        case WORDS_CATEGORY_ANIMAL:
-//            return @"动物";
-//        case WORDS_CATEGORY_PLANT:
-//            return @"植物";
-//        case WORDS_CATEGORY_ELECTRONICS:
-//            return @"电子产品";
-//        case WORDS_CATEGORY_PERSON:
-//            return @"人物";
-//        case WORDS_CATEGORY_SPROT:
-//            return @"运动";
-//        default:
-//            return @"其他";
-//    }
-//}
-
 - (NSArray *)getWordsArrayByCategory:(NSString*)categoryValue
 {
-    NSMutableArray *wordsArray = [[[NSMutableArray alloc] init] autorelease];
+    if ([categoryValue isEqualToString:LAST_USED_CATEGORY]) {
+       return [self getWordsListWithCount:-1];
+    }else{
     
-    NSArray *allWords = [self getAllWords];
-    
-    for (Words *words in allWords) {
-        if ([words.category isEqual:categoryValue]) {
-            [wordsArray addObject:words];
+        NSMutableArray *wordsArray = [[[NSMutableArray alloc] init] autorelease];
+        
+        NSArray *allWords = [self getAllWords];
+        
+        for (Words *words in allWords) {
+            if ([words.category isEqual:categoryValue]) {
+                [wordsArray addObject:words];
+            }
         }
+        return wordsArray;
     }
-    
-    return wordsArray;
 }
+
+
+
 
 @end

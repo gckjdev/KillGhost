@@ -19,8 +19,12 @@
 //    WORDS_CATEGORY_OTHER = 50    //其他
 //};
 
-@interface Words : NSObject
-
+@interface Words : NSObject<NSCoding>
+{
+    NSString *_category;
+    NSString *_civilianWord;
+    NSString *_foolWord;
+}
 @property(nonatomic, retain)NSString *category;
 @property(nonatomic, retain)NSString *civilianWord;
 @property(nonatomic, retain)NSString *foolWord;
@@ -29,4 +33,5 @@
                   foolWord:(NSString *)foolWordValue 
                 category:(NSString *)categoryValue;
 
+- (BOOL)isEqualToWords:(Words *)words;
 @end

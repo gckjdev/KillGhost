@@ -13,6 +13,7 @@
     
 }
 - (IBAction)clickHelp:(id)sender;
+- (IBAction)clickSettings:(id)sender;
 
 - (IBAction)clickStartGame:(id)sender;
 @end

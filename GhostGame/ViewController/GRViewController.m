@@ -51,13 +51,13 @@
 - (void)setPanGestureRecognizerEnable:(BOOL)enable
 {
     _panGestureRecognizerEnable = enable;
-    _panGesture.enabled = enable;
+//    _panGesture.enabled = enable;
 }
 
 - (void)setTapGestureRecognizerEnable:(BOOL)enable
 {
     _tapGestureRecognizerEnable = enable;
-    _tapGesture.enabled = enable;
+//    _tapGesture.enabled = enable;
 
 }
 #pragma mark - View lifecycle
@@ -98,6 +98,20 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (_tapGestureRecognizerEnable) {
+        _tapGesture.enabled = YES;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (_tapGestureRecognizerEnable) {
+        _tapGesture.enabled = NO;
+    }
 }
 
 @end

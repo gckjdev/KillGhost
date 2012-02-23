@@ -11,6 +11,8 @@
 #import "GRViewController.h"
 #import "PickerWordsController.h"
 
+
+@class Words;
 @interface CreateGameController : GRViewController<UITableViewDataSource, UITableViewDelegate, PickWordsDelegate> {
     
     UITextField *ghostNumber;
@@ -20,6 +22,7 @@
     UITextField *civilianWord;
     UITextField *foolWord;
     UITextField *_currentTextField;
+//    Words *_words;
 }
 
 @property (nonatomic, retain)  UITextField *ghostNumber;

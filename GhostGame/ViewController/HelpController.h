@@ -10,4 +10,5 @@
 
 @interface HelpController : UIViewController
 
+- (IBAction)clickBack:(id)sender;
 @end

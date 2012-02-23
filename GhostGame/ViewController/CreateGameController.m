@@ -13,6 +13,8 @@
 #import "WordsManager.h"
 #import "UIUtils.h"
 #import "PickerCategoryController.h"
+#import "ConfigureManager.h"
+
 @implementation CreateGameController
 @synthesize playerNumber;
 @synthesize ghostNumber;
@@ -124,6 +126,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTapGestureRecognizerEnable:YES];
 }
 
 - (void)viewDidUnload
@@ -159,6 +162,14 @@
     [game release];
     [self.navigationController pushViewController:pickRoleController animated:YES];
     [pickRoleController release];
+    
+    Words *words = [[Words alloc] initWithCivilianWord:civilianWord.text foolWord:foolWord.text category:LAST_USED_CATEGORY];
+
+    WordsManager *manager = [WordsManager defaultManager];
+    [manager addUsedWords:words];
+//    [ConfigureManager addWords:words];
+    [words release];
+    
  //   PlayGameController
 //    if ((gNumber > 0) & (cNumber > 0) & (fNumber > 0) & ([gWord length] > 0) & ([cWord length] > 0) & ([fWord length] > 0)) {
 //        
@@ -181,8 +192,9 @@
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [super textFieldDidBeginEditing:textField];
     _currentTextField = textField;
-    [self setTapGestureRecognizerEnable:YES];
+//    [self setTapGestureRecognizerEnable:YES];
     CGFloat width = stepTable.frame.size.width;
     CGFloat height = stepTable.frame.size.height;
     if (textField == self.wordLength || 
@@ -205,7 +217,8 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self setTapGestureRecognizerEnable:NO];
+//    [self setTapGestureRecognizerEnable:NO];
+    [super textFieldDidEndEditing:textField];
     CGFloat width = stepTable.frame.size.width;
     CGFloat height = stepTable.frame.size.height;
     stepTable.frame = CGRectMake(0, 0, width, height);
@@ -213,6 +226,7 @@
 
 - (void)setFieldsWithWords:(Words *)words
 {
+
     self.civilianWord.text = words.civilianWord;
     self.foolWord.text = words.foolWord;
     self.wordLength.text = [NSString stringWithFormat:@"%d",[words.civilianWord length]];
@@ -292,7 +306,7 @@ enum
     if (cell==nil) {
         cell=[[[UITableViewCell alloc ]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
-//    return cell;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     switch (section) {
         case INDEX_TOTAL_NUMBER:
             [cell.contentView addSubview:self.playerNumber];   

@@ -14,5 +14,6 @@
 @property (retain, nonatomic) NSArray *categoryArray;
 @property (retain, nonatomic) IBOutlet UITableView *categoryTable;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
+- (IBAction)clickBack:(id)sender;
 
 @end

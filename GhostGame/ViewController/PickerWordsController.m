@@ -10,6 +10,7 @@
 #import "Words.h"
 #import "WordsManager.h"
 #import "PickerWordsCell.h"
+#import "ConfigureManager.h"
 
 @implementation PickerWordsController
 @synthesize category;
@@ -24,6 +25,10 @@
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)clickBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (id)initWithCategory:(NSString *)categoryValue
@@ -51,7 +56,6 @@
     [super viewDidLoad];
     
     self.wordsArray = [[WordsManager defaultManager] getWordsArrayByCategory:self.category];
-    
     self.selectCellIndex = -1;
     
 }
@@ -128,7 +132,13 @@
     self.selectCellIndex = indexPath.row;
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     if (delegate && [delegate respondsToSelector:@selector(didPickedWords:)]) {
-        Words *word = [self.wordsArray objectAtIndex:indexPath.row];
+        
+        Words *word = nil;
+        if ([self.category isEqualToString:LAST_USED_CATEGORY]) {
+            word = [self.wordsArray objectAtIndex:indexPath.row];
+        }else{
+            word = [self.wordsArray objectAtIndex:indexPath.row];
+        }
         [delegate didPickedWords:word];
     }
     //[self.navigationController popViewControllerAnimated:YES];

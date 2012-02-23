@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#define LAST_USED_CATEGORY @"LAST_USED_CATEGORY"
 
+@class Words;
 @interface WordsManager : NSObject
 
 + (WordsManager *)defaultManager;
 
 - (NSArray *)getAllWords;
 - (NSArray *)getAllCategory;
-//- (NSString *)getNameByCategoryId:(NSNumber*)categoryIdValue;
 - (NSArray *)getWordsArrayByCategory:(NSString*)categoryValue;
-
+- (void)addUsedWords:(Words *)words;
 @end
 
 extern WordsManager* GlobalGetWordsManager();

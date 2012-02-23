@@ -1,18 +1,17 @@
 //
-//  MainMenuController.m
+//  SettingsController.m
 //  GhostGame
 //
-//  Created by  on 12-2-2.
+//  Created by  on 12-2-23.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainMenuController.h"
-#import "CreateGameController.h"
-#import "StateController.h"
-#import "HelpController.h"
 #import "SettingsController.h"
+#import "ConfigureManager.h"
 
-@implementation MainMenuController
+
+@implementation SettingsController
+@synthesize passwordField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,16 +30,32 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)performTapGesture:(UITapGestureRecognizer *)tap
+{
+    [self.passwordField resignFirstResponder];
+}
+//- (void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    [super textFieldDidBeginEditing:textField];
+//    textField.text = [ConfigureManager getPassword];
+//}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [super textFieldDidEndEditing:textField];    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setTapGestureRecognizerEnable:YES];
+    passwordField.text = [ConfigureManager getPassword];
 }
 
 - (void)viewDidUnload
 {
+    [self setPasswordField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -52,21 +67,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)clickHelp:(id)sender {
-    HelpController *hc = [[HelpController alloc] init];
-    [self.navigationController pushViewController:hc animated:YES];
-    [hc release];
+- (void)dealloc {
+    [passwordField release];
+    [super dealloc];
+}
+- (IBAction)clickBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)clickSettings:(id)sender {
-    SettingsController *settings = [[SettingsController alloc] init];
-    [self.navigationController pushViewController:settings animated:YES];
-    [settings release];
-}
-
-- (IBAction)clickStartGame:(id)sender {
-    CreateGameController *cc = [[CreateGameController alloc] init];
-    [self.navigationController pushViewController:cc animated:YES];
-    [cc release];
+- (IBAction)clickSave:(id)sender {
+    [ConfigureManager setPassword:passwordField.text];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

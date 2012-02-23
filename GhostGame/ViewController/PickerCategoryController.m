@@ -85,9 +85,10 @@
 //    UITableViewCellAccessoryCheckmark               // checkmark. doesn't track
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
     cell.textLabel.text = [self.categoryArray objectAtIndex:indexPath.row];
-    
+    if ([cell.textLabel.text isEqualToString:LAST_USED_CATEGORY]) {
+        cell.textLabel.text = @"最近使用";
+    }
     
     
     return cell;
@@ -105,7 +106,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PickerWordsController *pwc = [[PickerWordsController alloc] initWithCategory:[self.categoryArray objectAtIndex:indexPath.row]];
+    NSString *str = nil;
+    str = [self.categoryArray objectAtIndex:indexPath.row ];
+    PickerWordsController *pwc = [[PickerWordsController alloc] initWithCategory:str];
     pwc.delegate = self.delegate;
     [self.navigationController pushViewController:pwc animated:YES];
     [pwc release];
@@ -124,4 +127,7 @@
 //}
 
 
+- (IBAction)clickBack:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

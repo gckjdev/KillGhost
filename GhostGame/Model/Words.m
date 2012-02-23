@@ -10,9 +10,9 @@
 
 @implementation Words
 
-@synthesize category;
-@synthesize civilianWord;
-@synthesize foolWord;
+@synthesize category = _category;
+@synthesize civilianWord = _civilianWord;
+@synthesize foolWord = _foolWord;
 
 - (id)initWithCivilianWord:(NSString *)civilianWordValue 
                   foolWord:(NSString *)foolWordValue 
@@ -27,11 +27,37 @@
     return self;
 }
 
+#define CATEGORY @"CATEGORY"
+#define CIVILIAN_WORD @"CIVILIAN_WORD"
+#define FOOL_WORD @"FOOL_WORD"
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.category forKey:CATEGORY];
+    [aCoder encodeObject:self.civilianWord forKey:CIVILIAN_WORD];
+    [aCoder encodeObject:self.foolWord forKey:FOOL_WORD];
+}
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.category = [aDecoder decodeObjectForKey:CATEGORY];
+        self.civilianWord = [aDecoder decodeObjectForKey:CIVILIAN_WORD];
+        self.foolWord = [aDecoder decodeObjectForKey:FOOL_WORD];
+    }
+    return self;
+}
+
+- (BOOL)isEqualToWords:(Words *)words
+{
+    return words && [self.civilianWord isEqualToString:words.civilianWord] && 
+    [self.foolWord isEqualToString:words.foolWord];
+}
 - (void)dealloc
 {
-    [civilianWord release];
-    [foolWord release];
-    [category release];
+    [_civilianWord release];
+    [_foolWord release];
+    [_category release];
     [super dealloc];
 }
 

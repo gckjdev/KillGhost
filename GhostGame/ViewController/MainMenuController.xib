@@ -150,6 +150,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickSettings:</string>
+						<reference key="source" ref="878014424"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">12</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickHelp:</string>
 						<reference key="source" ref="119167533"/>
 						<reference key="destination" ref="372490531"/>
@@ -218,7 +227,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">11</int>
+			<int key="maxID">12</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -235,11 +244,16 @@
 					<string key="superclassName">GRViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="clickHelp:">id</string>
+						<string key="clickSettings:">id</string>
 						<string key="clickStartGame:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="clickHelp:">
 							<string key="name">clickHelp:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickSettings:">
+							<string key="name">clickSettings:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="clickStartGame:">

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @class Words;
 @protocol PickWordsDelegate <NSObject>
 @optional
@@ -24,6 +25,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *wordsTable;
 @property (assign,nonatomic) int selectCellIndex;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
+- (IBAction)clickBack:(id)sender;
 
 - (id)initWithCategory:(NSString *)categoryValue;
 

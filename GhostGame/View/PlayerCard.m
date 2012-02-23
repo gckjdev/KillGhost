@@ -9,6 +9,7 @@
 #import "PlayerCard.h"
 #import "Player.h"
 #import "UIUtils.h"
+#import "ConfigureManager.h"
 
 #define CARD_HEIGHT 60
 #define CARD_WIDTH  40 //(CARD_HEIGHT * 0.68)
@@ -203,7 +204,7 @@
     if (buttonIndex == 1) {
         //ok button
         NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
-        if (pw && [pw isEqualToString:self.passWord]) {
+        if ((pw == nil && self.passWord == nil) || (pw && [pw isEqualToString:self.passWord])) {
             [self show];
         }else{
             //wrong password
@@ -219,7 +220,7 @@
     self.backgroundColor = [UIColor clearColor];
     _flashShowed = YES;
     self.status = WILLSHOW;
-    self.passWord = @"123";
+    self.passWord = [ConfigureManager getPassword];
     self.voteNumber = 0;
     self.voteForPlayer = nil;
     
