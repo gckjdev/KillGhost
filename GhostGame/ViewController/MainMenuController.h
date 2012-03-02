@@ -12,6 +12,14 @@
 {
     
 }
+@property (retain, nonatomic) IBOutlet UIButton *startGameButton;
+@property (retain, nonatomic) IBOutlet UIButton *settingButton;
+@property (retain, nonatomic) IBOutlet UIButton *helpButton;
+@property (retain, nonatomic) IBOutlet UIImageView *startGameLine;
+@property (retain, nonatomic) IBOutlet UIImageView *settingLine;
+@property (retain, nonatomic) IBOutlet UIImageView *helpLine;
+
+
 - (IBAction)clickHelp:(id)sender;
 - (IBAction)clickSettings:(id)sender;
 

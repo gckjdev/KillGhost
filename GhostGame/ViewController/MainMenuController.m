@@ -11,8 +11,17 @@
 #import "StateController.h"
 #import "HelpController.h"
 #import "SettingsController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "LocaleUtils.h"
+#import "CreateNewGameController.h"
 
 @implementation MainMenuController
+@synthesize startGameButton;
+@synthesize settingButton;
+@synthesize helpButton;
+@synthesize startGameLine;
+@synthesize settingLine;
+@synthesize helpLine;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,14 +42,77 @@
 
 #pragma mark - View lifecycle
 
+- (void)addAnimationToButton:(UIButton *)button
+{
+    CABasicAnimation *fallButtonAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [fallButtonAnimation setDuration:2];
+    [fallButtonAnimation setFromValue:[NSValue valueWithCGPoint:CGPointMake(160, 
+                                                                            -20-button.center.y)]];
+    [fallButtonAnimation setToValue:[NSValue valueWithCGPoint:button.center]];
+    [fallButtonAnimation setFillMode:kCAFillModeForwards];
+    [fallButtonAnimation setRemovedOnCompletion:NO];    
+    fallButtonAnimation.delegate = self;
+    
+    CABasicAnimation *stayButtonAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    [stayButtonAnimation setDuration:2];
+    [stayButtonAnimation setFromValue:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.4, 0, 0, 1)]];
+    [stayButtonAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.4, 0, 0, 1)]];
+    
+    CABasicAnimation *rotateButton = [CABasicAnimation animationWithKeyPath:@"transform"];
+    [rotateButton setDuration:0.2];
+    [rotateButton setFromValue:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(-0.1, 0, 0, 1)]];
+    [rotateButton setToValue:[NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.1, 0, 0, 1)]];
+    [rotateButton setAutoreverses:YES];
+    [rotateButton setRepeatCount:1];
+    [rotateButton setRemovedOnCompletion:YES]; 
+    [rotateButton setBeginTime:CACurrentMediaTime() + 2];
+    
+    
+    [button.layer removeAllAnimations];
+    [button.layer addAnimation:rotateButton forKey:@"rotateButton"];
+    [button.layer addAnimation:fallButtonAnimation forKey:@"fallButton"];
+    [button.layer addAnimation:stayButtonAnimation forKey:@"stayButton"];
+}
+
+- (void)addAnimationToLine:(UIImageView *)button
+{
+    CABasicAnimation *fallButtonAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [fallButtonAnimation setDuration:2];
+    [fallButtonAnimation setFromValue:[NSValue valueWithCGPoint:CGPointMake(160, 
+                                                                            -120-button.center.y)]];
+    [fallButtonAnimation setToValue:[NSValue valueWithCGPoint:button.center]];
+    [fallButtonAnimation setFillMode:kCAFillModeForwards];
+    [fallButtonAnimation setRemovedOnCompletion:NO];    
+    fallButtonAnimation.delegate = self;
+    
+    [button.layer removeAllAnimations];
+    [button.layer addAnimation:fallButtonAnimation forKey:@"fallButton"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self addAnimationToButton:startGameButton];
+    [self addAnimationToButton:settingButton];
+    [self addAnimationToButton:helpButton];
+    
+    [self addAnimationToLine:startGameLine];
+    [self addAnimationToLine:settingLine];
+    [self addAnimationToLine:helpLine];
+    
+    [self.startGameButton setTitle:NSLS(@"Start") forState:UIControlStateNormal];
+    [self.settingButton setTitle:NSLS(@"Settings") forState:UIControlStateNormal];
+    [self.helpButton setTitle:NSLS(@"Help") forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload
 {
+    [self setStartGameButton:nil];
+    [self setSettingButton:nil];
+    [self setHelpButton:nil];
+    [self setStartGameLine:nil];
+    [self setSettingLine:nil];
+    [self setHelpLine:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -65,8 +137,24 @@
 }
 
 - (IBAction)clickStartGame:(id)sender {
-    CreateGameController *cc = [[CreateGameController alloc] init];
+//    CreateGameController *cc = [[CreateGameController alloc] init];
+//    [self.navigationController pushViewController:cc animated:YES];
+//    [cc release];
+    
+    CreateNewGameController *cc = [[CreateNewGameController alloc] init];
     [self.navigationController pushViewController:cc animated:YES];
     [cc release];
 }
+- (void)dealloc {
+    [startGameButton release];
+    [settingButton release];
+    [helpButton release];
+    [startGameLine release];
+    [settingLine release];
+    [helpLine release];
+    [super dealloc];
+}
+
+
+
 @end
