@@ -7,7 +7,40 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GRViewController.h"
+#import "PickerWordsController.h"
 
-@interface CreateNewGameController : UIViewController
+@interface CreateNewGameController : GRViewController<PickWordsDelegate>
+{
+    UILabel *judgeNumberLabel;
+    UILabel *ghostNumberLabel;
+    UILabel *foolNumberLabel;
+    UILabel *civilianNumberLabel;
+    
+    UITextField *wordLengthTextField;
+    UITextField *foolWordTextField;
+    UITextField *civilianWordTextField;
+    
+    UITextField *_currentTextField;
+}
+
+@property (retain, nonatomic) IBOutlet UITextField *playerNumberTextField;
+
+@property (retain, nonatomic) IBOutlet UILabel *judgeNumberLabel;
+@property (retain, nonatomic) IBOutlet UILabel *ghostNumberLabel;
+@property (retain, nonatomic) IBOutlet UILabel *foolNumberLabel;
+@property (retain, nonatomic) IBOutlet UILabel *civilianNumberLabel;
+
+@property (retain, nonatomic) IBOutlet UIImageView *judgeNumberImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *ghostNumberImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *foolNumberImageView;
+@property (retain, nonatomic) IBOutlet UIImageView *civilianNumberImageView;
+
+
+
+@property (retain, nonatomic) IBOutlet UITextField *wordLengthTextField;
+@property (retain, nonatomic) IBOutlet UITextField *foolWordTextField;
+@property (retain, nonatomic) IBOutlet UITextField *civilianWordTextField;
+
 
 @end
