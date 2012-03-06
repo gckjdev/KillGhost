@@ -11,9 +11,13 @@
 #import "Player.h"
 #import "StateController.h"
 #import "PlayerCardManager.h"
+#import "SettingsController.h"
+#import "HelpController.h"
 
 @implementation PickRoleController
 @synthesize game = _game;
+@synthesize mainMenuBarView = _mainMenuBarView;
+@synthesize mainMenuButton = _mainMenuButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +46,8 @@
 
 - (void)dealloc
 {
+    [_mainMenuBarView release];
+    [_mainMenuButton release];
     [super dealloc];
 }
 
@@ -82,10 +88,13 @@
 {
     [super viewDidLoad];
     [self addPlayerCardViews];
+    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
 }
 
 - (void)viewDidUnload
 {
+    [self setMainMenuBarView:nil];
+    [self setMainMenuButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -97,5 +106,45 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+- (IBAction)clickMainMenu:(id)sender
+{
+    [self.view bringSubviewToFront:self.mainMenuBarView];
+    [self.view bringSubviewToFront:self.mainMenuButton];
+    if (self.mainMenuBarView.frame.origin.y < 345) {
+        [UIView beginAnimations:@"downMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+    else{
+        [UIView beginAnimations:@"upMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+}
+
+- (IBAction)clickContinue:(id)sender
+{
+    
+}
+
+- (IBAction)clickSetting:(id)sender
+{
+    SettingsController *settings = [[SettingsController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
+- (IBAction)clickHelp:(id)sender
+{
+    HelpController *hc = [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
+}
+
+- (IBAction)clickQuit:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

@@ -15,6 +15,7 @@
 @synthesize playerCard;
 @synthesize minusOneButton;
 @synthesize plusOneButton;
+@synthesize cardIndexImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,11 +45,62 @@
 
 #pragma mark - View lifecycle
 
+- (void)setCardImage{
+    UIImage *image = nil;
+    switch (playerCard.index) {
+        case 1:
+            image = [UIImage imageNamed:@"vote_number_1@2x.png"];
+            break;
+        case 2:
+            image = [UIImage imageNamed:@"vote_number_2@2x.png"];
+            break;
+        case 3:
+            image = [UIImage imageNamed:@"vote_number_3@2x.png"];
+            break;
+        case 4:
+            image = [UIImage imageNamed:@"vote_number_4@2x.png"];
+            break;
+        case 5:
+            image = [UIImage imageNamed:@"vote_number_5@2x.png"];
+            break;
+        case 6:
+            image = [UIImage imageNamed:@"vote_number_6@2x.png"];
+            break;
+        case 7:
+            image = [UIImage imageNamed:@"vote_number_7@2x.png"];
+            break;
+        case 8:
+            image = [UIImage imageNamed:@"vote_number_8@2x.png"];
+            break;
+        case 9:
+            image = [UIImage imageNamed:@"vote_number_9@2x.png"];
+            break;
+        case 10:
+            image = [UIImage imageNamed:@"vote_number_10@2x.png"];
+            break;
+        case 11:
+            image = [UIImage imageNamed:@"vote_number_11@2x.png"];
+            break;
+        case 12:
+            image = [UIImage imageNamed:@"vote_number_12@2x.png"];
+            break;
+        case 13:
+            image = [UIImage imageNamed:@"vote_number_13@2x.png"];
+            break;
+        default:
+            break;
+    }
+    self.cardIndexImageView.image = image;
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self updateVoteNumberLabel];
+    [self setCardImage];
 }
 
 - (void)viewDidUnload
@@ -57,6 +109,7 @@
     [self setPlayerCard:nil];
     [self setMinusOneButton:nil];
     [self setPlusOneButton:nil];
+    [self setCardIndexImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -73,6 +126,7 @@
     [playerCard release];
     [minusOneButton release];
     [plusOneButton release];
+    [cardIndexImageView release];
     [super dealloc];
 }
 

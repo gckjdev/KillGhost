@@ -42,5 +42,17 @@
 @property (retain, nonatomic) IBOutlet UITextField *foolWordTextField;
 @property (retain, nonatomic) IBOutlet UITextField *civilianWordTextField;
 
+@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
+
+
+- (IBAction)randomWords:(id)sender;
+- (IBAction)pickWords:(id)sender;
+
+- (IBAction)clickMainMenu:(id)sender;
+- (IBAction)clickContinue:(id)sender;
+- (IBAction)clickSetting:(id)sender;
+- (IBAction)clickHelp:(id)sender;
+- (IBAction)clickQuit:(id)sender;
+
 
 @end

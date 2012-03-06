@@ -14,12 +14,15 @@
 #import "HelpController.h"
 #import "ResultController.h"
 #import "VoteController.h"
+#import "SettingsController.h"
 
 @implementation StateController
 @synthesize previousButton;
 @synthesize nextButton;
 @synthesize operationView_0;
 @synthesize operationView_1;
+@synthesize mainMenuBarView;
+@synthesize mainMenuButton;
 @synthesize operationTipsArray;
 @synthesize operationLabel_0;
 @synthesize operationLabel_1;
@@ -52,9 +55,8 @@
     
     self.selectIndex = 0;
     operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 240)];
-    self.operationView_1.backgroundColor = [UIColor blueColor];
-    UIImageView *imageView_0 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
-    imageView_0.frame = CGRectMake(0, 0, 320, 240);
+    UIImageView *imageView_0 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box@2x.png"]];
+    imageView_0.frame = CGRectMake(11, 0, 297, 288);
     [self.operationView_0 addSubview:imageView_0];
     [imageView_0 release];
     operationLabel_0 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
@@ -66,9 +68,8 @@
     [self.view addSubview:operationView_0];
     
     operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(320, 60, 320, 240)];
-    self.operationView_1.backgroundColor = [UIColor blueColor];
-    UIImageView *imageView_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"GrainLace"]];
-    imageView_1.frame = CGRectMake(0, 0, 320, 240);
+    UIImageView *imageView_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box@2x.png"]];
+    imageView_1.frame = CGRectMake(11, 0, 297, 288);
     [self.operationView_1 addSubview:imageView_1];
     [imageView_1 release];
      operationLabel_1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
@@ -92,6 +93,9 @@
     [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)]; 
     [[self view] addGestureRecognizer:recognizer]; 
     [recognizer release]; 
+    
+    
+    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
 }
 
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer { 
@@ -117,6 +121,8 @@
     [self setNextButton:nil];
     [self setOperationView_0:nil];
     [self setOperationView_1:nil];
+    [self setMainMenuBarView:nil];
+    [self setMainMenuButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -136,6 +142,8 @@
     [nextButton release];
     [operationView_0 release];
     [operationView_1 release];
+    [mainMenuBarView release];
+    [mainMenuButton release];
     [super dealloc];
 }
 
@@ -256,27 +264,45 @@
     [self translationOnX:view from:self.view.frame.size.width/2 to:320+self.view.frame.size.width/2];
 }
 
-- (IBAction)chooseWords:(id)sender
+
+- (IBAction)clickMainMenu:(id)sender
 {
-    PickerCategoryController *pc = [[PickerCategoryController alloc] init];
-    [self.navigationController pushViewController:pc animated:YES];
-    [pc release];
-    
-//    PickerWordsController *cc = [[PickerWordsController alloc] init];
-//    [self.navigationController pushViewController:cc animated:YES];
-//    [cc release];
+    [self.view bringSubviewToFront:self.mainMenuBarView];
+    [self.view bringSubviewToFront:self.mainMenuButton];
+    if (self.mainMenuBarView.frame.origin.y < 345) {
+        [UIView beginAnimations:@"downMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+    else{
+        [UIView beginAnimations:@"upMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
 }
 
-- (IBAction)help:(id)sender
+- (IBAction)clickContinue:(id)sender
 {
-//    HelpController *hc =  [[HelpController alloc] init];
-//    [self.navigationController pushViewController:hc animated:YES];
-//    [hc release];
-    ResultController *rc = [[ResultController alloc] init];
-    [self.navigationController pushViewController:rc animated:YES];
-    [rc release];
     
 }
 
+- (IBAction)clickSetting:(id)sender
+{
+    SettingsController *settings = [[SettingsController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
+- (IBAction)clickHelp:(id)sender
+{
+    HelpController *hc = [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
+}
+
+- (IBAction)clickQuit:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 @end

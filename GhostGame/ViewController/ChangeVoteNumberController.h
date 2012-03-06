@@ -14,6 +14,7 @@
 @property (retain, nonatomic) PlayerCard *playerCard;
 @property (retain, nonatomic) IBOutlet UIButton *minusOneButton;
 @property (retain, nonatomic) IBOutlet UIButton *plusOneButton;
+@property (retain, nonatomic) IBOutlet UIImageView *cardIndexImageView;
 
 - (id)initWithPlayerCard:(PlayerCard *)playerCardValue;
 

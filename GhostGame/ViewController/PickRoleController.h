@@ -19,6 +19,10 @@
 }
 
 @property(nonatomic, retain)Game *game;
+@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
+@property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
+
+
 - (IBAction)clickNextButton:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
 - (id)initWithGame:(Game *)aGame;

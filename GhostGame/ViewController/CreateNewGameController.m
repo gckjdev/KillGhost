@@ -14,6 +14,8 @@
 #import "UIUtils.h"
 #import "PickerCategoryController.h"
 #import "ConfigureManager.h"
+#import "SettingsController.h"
+#import "HelpController.h"
 
 @implementation CreateNewGameController
 @synthesize playerNumberTextField;
@@ -28,6 +30,7 @@
 @synthesize wordLengthTextField;
 @synthesize foolWordTextField;
 @synthesize civilianWordTextField;
+@synthesize mainMenuBarView;
 
 //- (UITextField *)createTextFieldWithKeyBoradType:(UIKeyboardType)type
 //{
@@ -67,6 +70,7 @@
     [ghostNumberImageView release];
     [foolNumberImageView release];
     [civilianNumberImageView release];
+    [mainMenuBarView release];
     [super dealloc];
 }
 
@@ -162,8 +166,8 @@
 {
     [super viewDidLoad];
     [self setTapGestureRecognizerEnable:YES];
-    
     [self hideNumber];
+    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
 }
 
 
@@ -182,6 +186,7 @@
     [self setGhostNumberImageView:nil];
     [self setFoolNumberImageView:nil];
     [self setCivilianNumberImageView:nil];
+    [self setMainMenuBarView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -244,11 +249,19 @@
     if (textField == self.wordLengthTextField || 
         textField == self.foolWordTextField || 
         textField == self.civilianWordTextField) {
-        if (textField == self.civilianWordTextField) {
-         //   stepTable.frame = CGRectMake(0, -200, width, height);
-        }else{
-           // stepTable.frame = CGRectMake(0, -160, width, height);
+        
+        if (self.view.frame.origin.y ==0 ) {
+            [UIView beginAnimations:@"up" context:nil];
+            self.view.frame = CGRectOffset(self.view.frame,0, -160);
+            [UIView commitAnimations];
         }
+
+        
+//        if (textField == self.civilianWordTextField) {
+         //   stepTable.frame = CGRectMake(0, -200, width, height);
+//        }else{
+           // stepTable.frame = CGRectMake(0, -160, width, height);
+//        }
       //  NSIndexPath *path = [NSIndexPath indexPathForRow:3 inSection:2];
      //   [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
@@ -266,6 +279,8 @@
 //    CGFloat width = stepTable.frame.size.width;
 //    CGFloat height = stepTable.frame.size.height;
 //    stepTable.frame = CGRectMake(0, 0, width, height);
+
+        self.view.frame = (CGRect){CGPointMake(0, 0), self.view.frame.size};
 }
 
 - (void)setFieldsWithWords:(Words *)words
@@ -276,7 +291,7 @@
     self.wordLengthTextField.text = [NSString stringWithFormat:@"%d",[words.civilianWord length]];
 }
 
-- (void)randomWords:(id)sender
+- (IBAction)randomWords:(id)sender
 {
     WordsManager *manager = [WordsManager defaultManager];
     NSArray *wordsArray = [manager getAllWords];
@@ -294,7 +309,7 @@
     return randomWord;
 }
 
-- (void)pickWords:(id)sender
+- (IBAction)pickWords:(id)sender
 {
     PickerCategoryController *pcc = [[PickerCategoryController alloc] init];
     pcc.delegate = self;
@@ -428,6 +443,44 @@
 //    return INDEX_COUNT;
 //}
 //
+
+- (IBAction)clickMainMenu:(id)sender
+{
+    if (self.mainMenuBarView.frame.origin.y < 345) {
+        [UIView beginAnimations:@"downMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+    else{
+        [UIView beginAnimations:@"upMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+}
+
+- (IBAction)clickContinue:(id)sender
+{
+    
+}
+
+- (IBAction)clickSetting:(id)sender
+{
+    SettingsController *settings = [[SettingsController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
+- (IBAction)clickHelp:(id)sender
+{
+    HelpController *hc = [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
+}
+
+- (IBAction)clickQuit:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 #pragma mark - pick words delegate
 - (void)didPickedWords:(Words *)words

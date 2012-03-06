@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PickerWordsController.h"
 
-@interface PickerCategoryController : UIViewController
+@interface PickerCategoryController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (retain, nonatomic) NSArray *categoryArray;
-@property (retain, nonatomic) IBOutlet UITableView *categoryTable;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
 - (IBAction)clickBack:(id)sender;
 

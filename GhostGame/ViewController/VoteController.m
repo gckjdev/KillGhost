@@ -14,8 +14,12 @@
 #import "ResultController.h"
 #import "ChangeVoteNumberController.h"
 #import "ShowPlayerCardsController.h"
+#import "SettingsController.h"
+#import "HelpController.h"
 
 @implementation VoteController
+@synthesize mainMenuBarView = _mainMenuBarView;
+@synthesize mainMenuButton = _mainMenuButton;
 @synthesize playerManager = _playerManager;
 @synthesize lineViewArray = _lineViewArray;
 @synthesize changeVoteNumberController;
@@ -88,6 +92,8 @@
 {
     [_playerManager release];
     [changeVoteNumberController release];
+    [_mainMenuBarView release];
+    [_mainMenuButton release];
     [super dealloc];
 }
 
@@ -278,10 +284,13 @@
     [self.view addGestureRecognizer:pan];
     [pan release];
     [self.playerManager setVoteDelegate:self];
+    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
 }
 
 - (void)viewDidUnload
 {
+    [self setMainMenuBarView:nil];
+    [self setMainMenuButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -316,11 +325,60 @@
 - (void)willPickCandidate:(PlayerCard *)playerCard
 {
     NSLog(@"--------willPickCandidate");
+    
+    if (self.changeVoteNumberController.view) {
+        [self.changeVoteNumberController.view removeFromSuperview];
+    }
+    
     ChangeVoteNumberController *cvnc = [[ChangeVoteNumberController alloc] initWithPlayerCard:playerCard] ;
-    cvnc.view.frame = CGRectMake(90, 205, 140, 70);
+    
+    cvnc.view.frame = (CGRect){CGPointMake((320 - cvnc.view.frame.size.width)/2, 146), cvnc.view.frame.size};
+    
+    //cvnc.view.frame = CGRectMake(90, 205, 140, 70);
     self.changeVoteNumberController = cvnc;
     [cvnc release];
     [self.view addSubview:self.changeVoteNumberController.view];
 }
+
+- (IBAction)clickMainMenu:(id)sender
+{
+    [self.view bringSubviewToFront:self.mainMenuBarView];
+    [self.view bringSubviewToFront:self.mainMenuButton];
+    if (self.mainMenuBarView.frame.origin.y < 345) {
+        [UIView beginAnimations:@"downMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+    else{
+        [UIView beginAnimations:@"upMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+}
+
+- (IBAction)clickContinue:(id)sender
+{
+    
+}
+
+- (IBAction)clickSetting:(id)sender
+{
+    SettingsController *settings = [[SettingsController alloc] init];
+    [self.navigationController pushViewController:settings animated:YES];
+    [settings release];
+}
+
+- (IBAction)clickHelp:(id)sender
+{
+    HelpController *hc = [[HelpController alloc] init];
+    [self.navigationController pushViewController:hc animated:YES];
+    [hc release];
+}
+
+- (IBAction)clickQuit:(id)sender
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 
 @end

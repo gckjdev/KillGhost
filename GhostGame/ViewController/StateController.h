@@ -23,6 +23,10 @@
 @property (retain, nonatomic) UIView *operationView_0;
 @property (retain, nonatomic) UIView *operationView_1;
 
+@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
+@property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
+
+
 - (IBAction)previous:(id)sender;
 - (IBAction)next:(id)sender;
 - (void)updateView;
@@ -34,8 +38,5 @@
 - (void)RightIntoAnimation:(UIView*)view;
 - (void)RightOutAnimation:(UIView*)view;
 
-
-- (IBAction)chooseWords:(id)sender;
-- (IBAction)help:(id)sender;
 
 @end

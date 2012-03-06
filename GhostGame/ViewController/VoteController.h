@@ -26,6 +26,8 @@
 @property(nonatomic, retain)PlayerCardManager *playerManager;
 @property(nonatomic, retain)NSMutableArray *lineViewArray;
 @property(nonatomic, retain)ChangeVoteNumberController *changeVoteNumberController;
+@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
+@property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
 
 - (IBAction)finishVote:(id)sender;
 - (IBAction)clickShowButton:(id)sender;

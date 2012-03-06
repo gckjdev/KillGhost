@@ -73,13 +73,13 @@
     
     switch (type) {
         case GhostType:
-            imagePath = [[NSBundle mainBundle] pathForResource:@"ghost.png" ofType:nil];
+            imagePath = [[NSBundle mainBundle] pathForResource:@"ghost_card@2x.png" ofType:nil];
             break;
         case FoolType:
-            imagePath = [[NSBundle mainBundle] pathForResource:@"fool.png" ofType:nil];
+            imagePath = [[NSBundle mainBundle] pathForResource:@"fool_card@2x.png" ofType:nil];
             break;
         case CivilianType:
-            imagePath = [[NSBundle mainBundle] pathForResource:@"civilian.png" ofType:nil];
+            imagePath = [[NSBundle mainBundle] pathForResource:@"civilian_card@2x.png" ofType:nil];
             break;
         default:
             return nil;

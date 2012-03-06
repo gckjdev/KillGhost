@@ -12,7 +12,7 @@
 
 @implementation PickerCategoryController
 @synthesize categoryArray;
-@synthesize categoryTable;
+//@synthesize categoryTable;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,7 +44,6 @@
 - (void)viewDidUnload
 {
     [self setCategoryArray:nil];
-    [self setCategoryTable:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -58,7 +57,6 @@
 
 - (void)dealloc {
     [categoryArray release];
-    [categoryTable release];
     [super dealloc];
 }
 
