@@ -110,19 +110,22 @@
 
 - (void)finishEdited:(UITextField *)textField
 {
-    NSLog(@"%@",self.playerNumberTextField.text);
     if (textField == self.civilianWordTextField) {
         self.wordLengthTextField.text = [NSString stringWithFormat:@"%d",textField.text.length];
     }else if (textField == self.playerNumberTextField) {
         NSInteger count = [textField.text integerValue];
         if (count < 7) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对哦" message:@"人数不足哦，至少7个人!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [self hideNumber];
+            self.playerNumberTextField.text = @"";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"人数不足哦，至少7个人！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
             [alert release];
             return;
         }else if(count > 13)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对" message:@"人数太对，玩不了哦!建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [self hideNumber];
+            self.playerNumberTextField.text = @"";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"人数太多，玩不了哦！建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
             [alert release];
             return;
@@ -199,12 +202,29 @@
 }
 
 - (IBAction)clickNewGame:(id)sender {
+    
     NSInteger gNumber = [self.ghostNumberLabel.text integerValue];
     NSInteger cNumber = [self.civilianNumberLabel.text integerValue];
     NSInteger fNumber = [self.foolNumberLabel.text integerValue];
     NSString *gWord = [self.wordLengthTextField text];
     NSString *cWord = self.civilianWordTextField.text;
     NSString *fWord = self.foolWordTextField.text;
+    
+    if (self.playerNumberTextField.text.integerValue < 7 || self.playerNumberTextField.text.integerValue > 13) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"没设定人数哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return ;
+    }
+    
+    if (civilianWordTextField.text.length == 0 || self.foolWordTextField.text.length == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"没设定键字哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return ;
+    }
+    
+    
     Game *game = [[Game alloc] initWithGhostNumber:gNumber ghostWord:gWord civilianNumber:cNumber civilianWord:cWord foolNumber:fNumber foolWord:fWord]; 
     PickRoleController *pickRoleController = [[PickRoleController alloc] initWithGame:game];
     [game release];
@@ -251,8 +271,8 @@
         textField == self.civilianWordTextField) {
         
         if (self.view.frame.origin.y ==0 ) {
-            [UIView beginAnimations:@"up" context:nil];
-            self.view.frame = CGRectOffset(self.view.frame,0, -160);
+            [UIView beginAnimations:@"upView" context:nil];
+            self.view.frame = CGRectOffset(self.view.frame,0, -180);
             [UIView commitAnimations];
         }
 
@@ -279,8 +299,9 @@
 //    CGFloat width = stepTable.frame.size.width;
 //    CGFloat height = stepTable.frame.size.height;
 //    stepTable.frame = CGRectMake(0, 0, width, height);
-
-        self.view.frame = (CGRect){CGPointMake(0, 0), self.view.frame.size};
+    [UIView beginAnimations:@"downView" context:nil];
+    self.view.frame = (CGRect){CGPointMake(0, 0), self.view.frame.size};
+    [UIView commitAnimations];
 }
 
 - (void)setFieldsWithWords:(Words *)words

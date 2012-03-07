@@ -88,7 +88,7 @@
             return;
         }else if(count > 13)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对" message:@"人数太对，玩不了哦!建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"人数不对" message:@"人数太多，玩不了哦!建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
             [alert release];
             return;

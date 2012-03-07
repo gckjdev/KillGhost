@@ -22,6 +22,11 @@
 @synthesize finishButton;
 @synthesize currentPlayerCard;
 @synthesize result;
+@synthesize winnerImageView;
+@synthesize lightImageView;
+@synthesize lightIndex;
+@synthesize continueImageView;
+@synthesize continueLabel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,15 +55,49 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)lightAnimation
+{
+    lightIndex = 0;
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeLight) userInfo:nil repeats:YES];
+}
+
+- (void)changeLight
+{
+    lightIndex++;
+    lightIndex = lightIndex % 3;
+    
+    if (lightIndex == 0) {
+        self.lightImageView.image = [UIImage imageNamed:@"light_1@2x.png"];
+    }
+    else if (lightIndex == 1){
+        self.lightImageView.image = [UIImage imageNamed:@"light_2@2x.png"];
+    }
+    else{
+        self.lightImageView.image = [UIImage imageNamed:@"light_3@2x.png"];
+    }
+}
+
+- (void)hideButton
+{
+    self.guessRightButton.hidden = YES;
+    self.guessWrongButton.hidden = YES;
+    self.continueGameButton.hidden = YES;
+    self.finishButton.hidden = YES;
+    self.continueLabel.hidden = YES;
+    self.continueImageView.hidden = YES;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.guessRightButton.hidden = YES;
-    self.guessWrongButton.hidden = YES;
-    self.continueGameButton.hidden = YES;
-    self.finishButton.hidden = YES;
+    [self hideButton];
+    
+    self.resultDescriptionLabel.frame = CGRectMake(20, 240, 220, 40);
+    self.promptLabel.frame = CGRectMake(20, 280, 220, 60);
+    self.promptLabel.lineBreakMode = UILineBreakModeWordWrap;
+    self.promptLabel.numberOfLines = 0;
         
     if (self.currentPlayerCard.player.type == GhostType ) {
         self.resultDescriptionLabel.text = @"此玩家是鬼,请猜词";
@@ -77,14 +116,13 @@
 {
     self.resultDescriptionLabel.text = nil;
     self.promptLabel.text = nil;
-    self.guessRightButton.hidden = YES;
-    self.guessWrongButton.hidden = YES;
-    self.continueGameButton.hidden = YES;
-    self.finishButton.hidden = YES;
+    [self hideButton];
     
-    if (result == ResultContinue) {
+    //游戏继续
+    if (result == ResultContinue) { 
         self.resultDescriptionLabel.text = @"游戏继续";
         
+        //游戏继续有两个理由
         if (self.currentPlayerCard.player.type == GhostType) {
             self.promptLabel.text = @"理由:鬼没有猜对词语";
         }
@@ -94,27 +132,45 @@
         }
         
         self.continueGameButton.hidden = NO;
+        self.continueLabel.hidden = NO;
+        self.continueImageView.hidden = NO;
     }
-    else if (result == ResultGhostWin) 
+    //游戏结束
+    else  
     {
-        self.finishButton.hidden = NO;
-        self.resultDescriptionLabel.text = @"游戏结束,鬼胜出！";
+        UIImageView *wiv = [[UIImageView alloc] initWithFrame:CGRectMake((320-255)/2, 80, 255, 353)];
+        self.winnerImageView = wiv;
+        [wiv release];
+        [self.winnerImageView addSubview:self.resultDescriptionLabel];
+        [self.winnerImageView addSubview:self.promptLabel];
+        [self.view addSubview:self.winnerImageView];
         
-        //鬼胜出有两个理由
-        if (self.currentPlayerCard.player.type == GhostType) {
-            self.promptLabel.text = @"理由:鬼猜对了词语";
+        if (result == ResultGhostWin) 
+        {
+            self.winnerImageView.image = [UIImage imageNamed:@"ghost_win@2x.png"];
+            self.resultDescriptionLabel.text = @"游戏结束,鬼胜出！";
+            //鬼胜出有两个理由
+            if (self.currentPlayerCard.player.type == GhostType) 
+                self.promptLabel.text = @"理由:鬼猜对了词语";
+            else
+                self.promptLabel.text = @"理由:被错杀的数量等于鬼的总数量";
         }
-        else{
-            self.promptLabel.text = @"理由:被杀死平民的数量等于鬼的总数量";
+        else if (result == ResultCivilianWin)
+        {
+            self.winnerImageView.image = [UIImage imageNamed:@"civilian_win@2x.png"];
+            self.resultDescriptionLabel.text = @"游戏结束,平民胜出！";
+            self.promptLabel.text = @"理由:所有的鬼已被杀死";
         }
         
-    }
-    else if (result == ResultCivilianWin)
-    {
         self.finishButton.hidden = NO;
-        self.resultDescriptionLabel.text = @"游戏结束,平民胜出！";
-        self.promptLabel.text = @"理由:所有的鬼已被杀死";
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
+        self.lightImageView = imageView;
+        [imageView release];
+        [self.view addSubview:self.lightImageView];
+        [self lightAnimation];
     }
+
 }
 
 - (void)viewDidUnload
@@ -126,9 +182,10 @@
     [self setCurrentPlayerCard:nil];
     [self setContinueGameButton:nil];
     [self setFinishButton:nil];
+    [self setLightImageView:nil];
+    [self setContinueImageView:nil];
+    [self setContinueLabel:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -145,6 +202,9 @@
     [currentPlayerCard release];
     [continueGameButton release];
     [finishButton release];
+    [lightImageView release];
+    [continueImageView release];
+    [continueLabel release];
     [super dealloc];
 }
 
@@ -163,7 +223,7 @@
 - (IBAction)continueGame:(id)sender
 {
     StateController *sc = [[StateController alloc] init];
-    sc.operationTipsArray = [NSArray arrayWithObjects:@"1.由出局者的下一位玩家，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"2.法官宣布:进入投票阶段。", nil];
+    sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:由出局者的下一位玩家，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
@@ -172,6 +232,7 @@
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 
 @end

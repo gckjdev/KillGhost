@@ -64,6 +64,7 @@
     self.operationLabel_0.backgroundColor = [UIColor clearColor];
     self.operationLabel_0.numberOfLines = 0;
     self.operationLabel_0.lineBreakMode = UILineBreakModeWordWrap;
+    self.operationLabel_0.font = [UIFont boldSystemFontOfSize:19];
     [self.operationView_0 addSubview:operationLabel_0];
     [self.view addSubview:operationView_0];
     
@@ -73,10 +74,11 @@
     [self.operationView_1 addSubview:imageView_1];
     [imageView_1 release];
      operationLabel_1 = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 240, 200)];
-    //self.nextOrPreviousOperationLabel.text = [operationTipsArray objectAtIndex:self.selectIndex];
+    //self.nextOrPreviousOperationLabel.text = 
     self.operationLabel_1.backgroundColor = [UIColor clearColor];
     self.operationLabel_1.numberOfLines = 0;
     self.operationLabel_1.lineBreakMode = UILineBreakModeWordWrap;
+    self.operationLabel_1.font = [UIFont boldSystemFontOfSize:19];
     [self.operationView_1 addSubview:operationLabel_1];
     [self.view addSubview:operationView_1];
     

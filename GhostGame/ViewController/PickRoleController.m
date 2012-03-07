@@ -63,7 +63,7 @@
 
 - (IBAction)clickNextButton:(id)sender {
     StateController *sc = [[StateController alloc] init];
-    sc.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼。\n\n\n\n(所有玩家闭眼后，则进入下一步)",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n\n(鬼商量之后,则进入下一步)",@"3.法官宣布:鬼闭眼。\n\n\n\n(所有鬼闭眼后，则进入下一步)",@"4.法官宣布:所有玩家睁眼。\n\n\n\n(所有玩家睁开眼后，则进入下一步)",@"5.法官指定第一个发言者，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"6.法官宣布:进入投票阶段。", nil];
+    sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

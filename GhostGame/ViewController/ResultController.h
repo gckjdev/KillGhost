@@ -20,6 +20,11 @@
 @property (retain, nonatomic) IBOutlet UIButton *finishButton;
 @property (retain, nonatomic) PlayerCard *currentPlayerCard;
 @property (assign, nonatomic) NSInteger result;
+@property (retain, nonatomic) UIImageView *winnerImageView;
+@property (retain, nonatomic) UIImageView *lightImageView;
+@property (assign, nonatomic) NSInteger lightIndex;
+@property (retain, nonatomic) IBOutlet UIImageView *continueImageView;
+@property (retain, nonatomic) IBOutlet UILabel *continueLabel;
 
 - (IBAction)clickGuessRightButton:(id)sender;
 - (IBAction)clickGuessWrongButton:(id)sender;
