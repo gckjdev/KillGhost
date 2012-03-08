@@ -134,7 +134,8 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
     NSInteger i = 0;
     NSInteger count = [_playerList count];
     for (Player *player in _playerList) {
-        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 240);
+        //CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 128 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 160 + 240);
+        CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 138 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 138 + 260);
         PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
         card.delegate = self;
         card.index = ++i;

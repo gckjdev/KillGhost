@@ -11,10 +11,10 @@
 #import "UIUtils.h"
 #import "ConfigureManager.h"
 
-#define CARD_HEIGHT 60
-#define CARD_WIDTH  40 //(CARD_HEIGHT * 0.68)
+#define CARD_HEIGHT 57
+#define CARD_WIDTH  45 //(CARD_HEIGHT * 0.68)
 #define IMAGE_WIDHT CARD_WIDTH
-#define IMAGE_HEIGHT CARD_WIDTH
+#define IMAGE_HEIGHT CARD_HEIGHT
 #define FONT_SIZE 12
 
 @implementation PlayerCard
@@ -138,7 +138,7 @@
             break;
         default:
             [self stopFlashTimer];
-            [self setScale:7 center:CGPointMake(160, 210)];
+            [self setScale:5.8 center:CGPointMake(160, 260)];
             break;
     }
     [self setNeedsDisplay];
@@ -251,26 +251,45 @@
     [super dealloc];
 }
 
+- (void)drawImage:(CGContextRef)context fileName:(NSString *)fileName
+{
+    CGContextTranslateCTM(context, 00, self.bounds.size.height);
+    CGContextScaleCTM(context, 1, -1);
+    CGRect imageRect;
+    imageRect.origin = CGPointMake(0, 0);
+    imageRect.size = CGSizeMake(CARD_WIDTH, CARD_HEIGHT);
+    UIImage *backImage = [UIImage imageNamed:fileName];
+    CGImageRef backImageRef = CGImageRetain(backImage.CGImage);
+    CGContextDrawImage(context, imageRect, backImageRef);
+}
+
 
 - (void)drawFlashRect:(CGContextRef)context
 {
+//    if (!_flashShowed) {
+//        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
+//    }else{
+//        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+//    }
+//    CGFloat lineWidth = 3.0;
+//    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth); CGContextStrokeRectWithWidth(context, frame, lineWidth);    
+//    CGContextSaveGState(context);
+    
     if (!_flashShowed) {
-        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
-    }else{
-        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+        [self drawImage:context fileName: @"frame_light.png"];
     }
-    CGFloat lineWidth = 3.0;
-    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth); CGContextStrokeRectWithWidth(context, frame, lineWidth);    
-    CGContextSaveGState(context);
-
 }
+
 
 - (void)drawWillShowCover:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-
-    CGContextFillRect(context, self.bounds);
-    CGContextSaveGState(context);
+//    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+//
+//    CGContextFillRect(context, self.bounds);
+//    CGContextSaveGState(context);
+    
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
+    
     [self drawFlashRect:context];
 }
 
@@ -278,14 +297,18 @@
 
 - (void)drawUnShowCover:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+//    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
+    
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
 }
 
 - (void)drawShowedCover:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+//    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
+    [self drawImage:context fileName:@"card_shadow.png"];
 }
 
 - (void)drawVoteCover:(CGContextRef)context
@@ -293,16 +316,22 @@
 //    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
 //    CGContextFillRect(context, self.bounds);
     
-    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextFillRect(context, self.bounds);
-    CGContextSaveGState(context);
+//    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
+//    CGContextSaveGState(context);
+    
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
+    
+    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+	CGContextScaleCTM(context, 1.0, -1.0);
+    
     
     CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
     NSString *tips = [NSString stringWithFormat:@"%d",_voteNumber];    
-    [tips drawAtPoint:CGPointMake(25, 0) withFont:[UIFont systemFontOfSize:16]];
+    [tips drawAtPoint:CGPointMake(30, 0) withFont:[UIFont systemFontOfSize:16]];
     CGContextSaveGState(context);
 
 }
@@ -320,25 +349,34 @@
 }
 - (void)drawShowingRect:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-    CGContextFillRect(context, self.bounds);
-    CGContextSaveGState(context);
+//    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+//    CGContextFillRect(context, self.bounds);
+//    CGContextSaveGState(context);
     
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
-	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-    [_player.name drawAtPoint:CGPointMake(10 * _scale, imageSize.width + 3) withFont:[UIFont systemFontOfSize:_fontSize]];
-    [_player.word drawAtPoint:CGPointMake(10 * _scale, imageSize.width + 8 * _scale ) withFont:[UIFont systemFontOfSize:_fontSize]];
-    
-    NSString *tips = @"(请记住你的身份和词语)";
-    [tips drawAtPoint:CGPointMake(5 * _scale, imageSize.width + 16 * _scale ) withFont:[UIFont systemFontOfSize:_fontSize/1.5]];
-    //image
+    //翻转context
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
-	CGContextScaleCTM(context, 1.0, -1.0);
+	CGContextScaleCTM(context, 1.0, -1.0); 
+    
+    //image
     CGRect imageRect;
 	imageRect.origin = CGPointMake(0, cardSize.height - imageSize.height);
 	imageRect.size = CGSizeMake(imageSize.width, imageSize.height);
 	CGContextDrawImage(context, imageRect, imageRef);
+    
+    //画完图，翻转回来
+    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+	CGContextScaleCTM(context, 1.0, -1.0);
+    
+    
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
+	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
+    [_player.name drawAtPoint:CGPointMake(imageSize.width * 0.3, imageSize.height * 0.7) withFont:[UIFont systemFontOfSize:_fontSize]];
+    [_player.word drawAtPoint:CGPointMake(imageSize.width * 0.3, imageSize.height * 0.8 ) withFont:[UIFont systemFontOfSize:_fontSize]];
+    
+    NSString *tips = @"(请记住你的身份和词语)";
+    [tips drawAtPoint:CGPointMake(7 * _scale, imageSize.height * 0.9) withFont:[UIFont systemFontOfSize:_fontSize/1.5]];
+
 }
 
 - (void)drawIndexNumber:(CGContextRef)context
@@ -406,9 +444,13 @@
         default:
             break;
     }
-    if (self.status != SHOWING && self.status != EXAMINE) {
+    if ( self.status == CANDIDATE || self.status == DEAD ) {
         [self drawIndexNumber:context];
     }
+    
+//    if (self.status != WILLSHOW && self.status != UNSHOW && self.status != SHOWING && self.status != EXAMINE) {
+//        [self drawIndexNumber:context];
+//    }
 }
 
 
