@@ -332,12 +332,19 @@
     
     ChangeVoteNumberController *cvnc = [[ChangeVoteNumberController alloc] initWithPlayerCard:playerCard] ;
     
-    cvnc.view.frame = (CGRect){CGPointMake((320 - cvnc.view.frame.size.width)/2, 146), cvnc.view.frame.size};
+    cvnc.view.frame = (CGRect){CGPointMake((320 - cvnc.view.frame.size.width)/2, 259-cvnc.view.frame.size.height/2), cvnc.view.frame.size};
     
     //cvnc.view.frame = CGRectMake(90, 205, 140, 70);
     self.changeVoteNumberController = cvnc;
     [cvnc release];
     [self.view addSubview:self.changeVoteNumberController.view];
+}
+
+- (IBAction)clickBackgroundButton:(id)sender
+{
+    if (self.changeVoteNumberController.view) {
+        [self.changeVoteNumberController.view removeFromSuperview];
+    }
 }
 
 - (IBAction)clickMainMenu:(id)sender

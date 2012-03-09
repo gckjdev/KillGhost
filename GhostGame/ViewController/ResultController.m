@@ -27,7 +27,7 @@
 @synthesize lightIndex;
 @synthesize continueImageView;
 @synthesize continueLabel;
-
+@synthesize dialogBoxImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,13 +67,13 @@
     lightIndex = lightIndex % 3;
     
     if (lightIndex == 0) {
-        self.lightImageView.image = [UIImage imageNamed:@"light_1@2x.png"];
+        self.lightImageView.image = [UIImage imageNamed:@"light_1.png"];
     }
     else if (lightIndex == 1){
-        self.lightImageView.image = [UIImage imageNamed:@"light_2@2x.png"];
+        self.lightImageView.image = [UIImage imageNamed:@"light_2.png"];
     }
     else{
-        self.lightImageView.image = [UIImage imageNamed:@"light_3@2x.png"];
+        self.lightImageView.image = [UIImage imageNamed:@"light_3.png"];
     }
 }
 
@@ -94,10 +94,18 @@
     [super viewDidLoad];
     [self hideButton];
     
-    self.resultDescriptionLabel.frame = CGRectMake(20, 240, 220, 40);
-    self.promptLabel.frame = CGRectMake(20, 280, 220, 60);
+    self.resultDescriptionLabel.frame = CGRectMake(40-11, 40, 240, 40);
+    self.promptLabel.frame = CGRectMake(40-11, 100, 220, 60);
     self.promptLabel.lineBreakMode = UILineBreakModeWordWrap;
     self.promptLabel.numberOfLines = 0;
+    
+    UIImageView *dbv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box.png"]];
+    dbv.frame = CGRectMake(11, 60, 297, 288);
+    self.dialogBoxImageView = dbv;
+    [dbv release];
+    [self.dialogBoxImageView addSubview:self.resultDescriptionLabel];
+    [self.dialogBoxImageView addSubview:self.promptLabel];
+    [self.view addSubview:self.dialogBoxImageView];
         
     if (self.currentPlayerCard.player.type == GhostType ) {
         self.resultDescriptionLabel.text = @"此玩家是鬼,请猜词";
@@ -138,6 +146,13 @@
     //游戏结束
     else  
     {
+        [self.dialogBoxImageView removeFromSuperview];
+        
+        self.resultDescriptionLabel.frame = CGRectMake(20, 240, 220, 40);
+        self.promptLabel.frame = CGRectMake(20, 280, 220, 60);
+        self.promptLabel.lineBreakMode = UILineBreakModeWordWrap;
+        self.promptLabel.numberOfLines = 0;
+        
         UIImageView *wiv = [[UIImageView alloc] initWithFrame:CGRectMake((320-255)/2, 80, 255, 353)];
         self.winnerImageView = wiv;
         [wiv release];
@@ -185,6 +200,7 @@
     [self setLightImageView:nil];
     [self setContinueImageView:nil];
     [self setContinueLabel:nil];
+    [self setDialogBoxImageView:nil];
     [super viewDidUnload];
 }
 
@@ -205,6 +221,7 @@
     [lightImageView release];
     [continueImageView release];
     [continueLabel release];
+    [dialogBoxImageView release];
     [super dealloc];
 }
 

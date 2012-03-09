@@ -38,8 +38,8 @@
         self.game = aGame;
         _playerCardManager = [PlayerCardManager defaultManager];
         [_playerCardManager createCardsFromGame:aGame];
-        [[PlayerCardManager showCardManager] createCardsFromPlayerList:
-         _playerCardManager.playerList];
+        
+        [[PlayerCardManager showCardManager] createCardsFromGame:aGame];
     }
     return self;
 }

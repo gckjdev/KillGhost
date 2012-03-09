@@ -154,6 +154,14 @@
     else
         self.minusOneButton.enabled = YES;
     
+    
+    if (self.playerCard.voteNumber == [[[PlayerCardManager defaultManager] playerCardList ] count]) {
+        self.plusOneButton.enabled = NO;
+    }
+    else{
+        self.plusOneButton.enabled = YES;
+    }
+    
 //    int allVoteCount = 0, hasVoteCount = 0;
 //    for (PlayerCard *card in [[PlayerCardManager defaultManager] playerCardList ]) {
 //        if (card.status != DEAD)

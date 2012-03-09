@@ -322,16 +322,24 @@
     
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
     
-    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
-	CGContextScaleCTM(context, 1.0, -1.0);
     
+    CGContextTranslateCTM(context, 00, self.bounds.size.height);
+    CGContextScaleCTM(context, 1, -1);
+    CGRect imageRect;
+    imageRect.origin = CGPointMake(27, 0);
+    imageRect.size = CGSizeMake(18, 18);
+    UIImage *backImage = [UIImage imageNamed:@"number_bg1.png"];
+    CGImageRef backImageRef = CGImageRetain(backImage.CGImage);
+    CGContextDrawImage(context, imageRect, backImageRef);
     
-    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
     NSString *tips = [NSString stringWithFormat:@"%d",_voteNumber];    
-    [tips drawAtPoint:CGPointMake(30, 0) withFont:[UIFont systemFontOfSize:16]];
+    //[tips drawAtPoint:CGPointMake(28, 0) withFont:[UIFont systemFontOfSize:15]];
+    [tips drawInRect:CGRectMake(27, 0, 18, 18) withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+    
     CGContextSaveGState(context);
 
 }
@@ -371,12 +379,15 @@
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-    [_player.name drawAtPoint:CGPointMake(imageSize.width * 0.3, imageSize.height * 0.7) withFont:[UIFont systemFontOfSize:_fontSize]];
-    [_player.word drawAtPoint:CGPointMake(imageSize.width * 0.3, imageSize.height * 0.8 ) withFont:[UIFont systemFontOfSize:_fontSize]];
     
+    [_player.name drawInRect:CGRectMake(0, imageSize.height * 0.7, imageSize.width, 35) withFont:[UIFont systemFontOfSize:_fontSize] lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
+    
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:244/255.0 green:52/255.0 blue:111/255.0 alpha:1.0].CGColor);
+    [_player.word drawInRect:CGRectMake(0, imageSize.height * 0.8, imageSize.width, 35) withFont:[UIFont systemFontOfSize:_fontSize] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
+    
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     NSString *tips = @"(请记住你的身份和词语)";
-    [tips drawAtPoint:CGPointMake(7 * _scale, imageSize.height * 0.9) withFont:[UIFont systemFontOfSize:_fontSize/1.5]];
-
+    [tips drawInRect:CGRectMake(0, imageSize.height * 0.9, imageSize.width, 20) withFont:[UIFont systemFontOfSize:_fontSize/1.5] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
 }
 
 - (void)drawIndexNumber:(CGContextRef)context
@@ -444,7 +455,7 @@
         default:
             break;
     }
-    if ( self.status == CANDIDATE || self.status == DEAD ) {
+    if ( self.status == DEAD ) {
         [self drawIndexNumber:context];
     }
     

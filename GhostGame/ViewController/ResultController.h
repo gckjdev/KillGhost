@@ -23,8 +23,10 @@
 @property (retain, nonatomic) UIImageView *winnerImageView;
 @property (retain, nonatomic) UIImageView *lightImageView;
 @property (assign, nonatomic) NSInteger lightIndex;
+@property (retain, nonatomic) UIImageView *dialogBoxImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *continueImageView;
 @property (retain, nonatomic) IBOutlet UILabel *continueLabel;
+
 
 - (IBAction)clickGuessRightButton:(id)sender;
 - (IBAction)clickGuessWrongButton:(id)sender;
