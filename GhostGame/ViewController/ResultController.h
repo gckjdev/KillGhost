@@ -14,10 +14,11 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *resultDescriptionLabel;
 @property (retain, nonatomic) IBOutlet UILabel *promptLabel;
-@property (retain, nonatomic) IBOutlet UIButton *guessRightButton;
-@property (retain, nonatomic) IBOutlet UIButton *guessWrongButton;
 @property (retain, nonatomic) IBOutlet UIButton *continueGameButton;
-@property (retain, nonatomic) IBOutlet UIButton *finishButton;
+@property (retain, nonatomic) UIButton *guessRightButton;
+@property (retain, nonatomic) UIButton *guessWrongButton;
+@property (retain, nonatomic) UIButton *quitButton;
+@property (retain, nonatomic) UIButton *againButton;
 @property (retain, nonatomic) PlayerCard *currentPlayerCard;
 @property (assign, nonatomic) NSInteger result;
 @property (retain, nonatomic) UIImageView *winnerImageView;
@@ -27,9 +28,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *continueImageView;
 @property (retain, nonatomic) IBOutlet UILabel *continueLabel;
 
-
-- (IBAction)clickGuessRightButton:(id)sender;
-- (IBAction)clickGuessWrongButton:(id)sender;
 - (IBAction)continueGame:(id)sender;
 
 - (id)initWithCurrentPlayerCard:(PlayerCard *)currentPlayerCardValue;

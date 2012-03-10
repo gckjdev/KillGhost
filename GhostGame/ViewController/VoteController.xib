@@ -171,7 +171,7 @@
 					<object class="IBUIButton" id="403778072">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{248, 12}, {64, 31}}</string>
+						<string key="NSFrame">{{264, 25}, {52, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="537700406"/>
@@ -179,14 +179,16 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">查看身份</string>
 						<reference key="IBUIHighlightedTitleColor" ref="222346929"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="906167774"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">magnifier@2x.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="110194281"/>
 						<reference key="IBUIFont" ref="191941162"/>
 					</object>
@@ -738,6 +740,7 @@
 			<string key="gear@2x.png">{68, 67}</string>
 			<string key="hand_up@2x.png">{139, 139}</string>
 			<string key="home@2x.png">{161, 82}</string>
+			<string key="magnifier@2x.png">{103, 95}</string>
 			<string key="main_menu_bar_bg@2x.png">{136, 452}</string>
 			<string key="next@2x.png">{78, 71}</string>
 		</dictionary>

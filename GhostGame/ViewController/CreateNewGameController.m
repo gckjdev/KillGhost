@@ -321,14 +321,14 @@
     [self setFieldsWithWords:words];
 }
 
-- (UIButton *)getRandomWordsButton
-{
-    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    randomWord.frame = CGRectMake(20, 2, 80, 40);
-    [randomWord setTitle:@"随即选词" forState:UIControlStateNormal];
-    [randomWord addTarget:self action:@selector(randomWords:) forControlEvents:UIControlEventTouchUpInside];
-    return randomWord;
-}
+//- (UIButton *)getRandomWordsButton
+//{
+//    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    randomWord.frame = CGRectMake(20, 2, 80, 40);
+//    [randomWord setTitle:@"随即选词" forState:UIControlStateNormal];
+//    [randomWord addTarget:self action:@selector(randomWords:) forControlEvents:UIControlEventTouchUpInside];
+//    return randomWord;
+//}
 
 - (IBAction)pickWords:(id)sender
 {
@@ -338,132 +338,15 @@
     [pcc release];
 }
 
-- (UIButton *)getPickWordsButton
-{
-    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    randomWord.frame = CGRectMake(180, 2, 80, 40);
-    [randomWord setTitle:@"选词" forState:UIControlStateNormal];
-    [randomWord addTarget:self action:@selector(pickWords:) forControlEvents:UIControlEventTouchUpInside];
-    return randomWord;
-}
+//- (UIButton *)getPickWordsButton
+//{
+//    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    randomWord.frame = CGRectMake(180, 2, 80, 40);
+//    [randomWord setTitle:@"选词" forState:UIControlStateNormal];
+//    [randomWord addTarget:self action:@selector(pickWords:) forControlEvents:UIControlEventTouchUpInside];
+//    return randomWord;
+//}
 
-//#pragma mark - table view delegate
-//
-//enum
-//{
-//    INDEX_TOTAL_NUMBER = 0,
-//    INDEX_ROLE_NUMBER,
-//    INDEX_ROLE_WORD,
-//    INDEX_COUNT
-//};
-//
-//- (UILabel *)createLabelWithText:(NSString *)text
-//{
-//    UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 2, 100, 40)] autorelease];
-//    label.backgroundColor = [UIColor clearColor];
-//    [label setText:text];
-//    return label;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    switch (section) {
-//        case INDEX_TOTAL_NUMBER:
-//            return 1;
-//        case INDEX_ROLE_NUMBER:
-//            return 3;
-//        case INDEX_ROLE_WORD:
-//            return 4;
-//        default:
-//            return 1;
-//    }
-//}
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSInteger section = indexPath.section;
-//    NSInteger row = indexPath.row;
-//    static NSString *CellIdentifier = @"StepCell";
-//    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell==nil) {
-//        cell=[[[UITableViewCell alloc ]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-//    }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    switch (section) {
-//        case INDEX_TOTAL_NUMBER:
-//            [cell.contentView addSubview:self.playerNumber];   
-//            return cell;
-//        case INDEX_ROLE_NUMBER:
-//            if(row == 0)
-//            {
-//                //ghost number
-//                UILabel *label = [self createLabelWithText:@"鬼人数"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:ghostNumber];
-//            }else if(row == 1)
-//            {
-//                //fool number
-//                UILabel *label = [self createLabelWithText:@"傻子人数"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:foolNumber];
-//            }else if(row == 2)
-//            {
-//                //civilian number
-//                UILabel *label = [self createLabelWithText:@"平民人数"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:civilianNumber];
-//            }
-//            
-//            return cell;
-//        case INDEX_ROLE_WORD:
-//            if (row == 0) {
-//                //random or pick word
-//                [cell.contentView addSubview:[self getRandomWordsButton]];     
-//                [cell.contentView addSubview:[self getPickWordsButton]];
-//                
-//            }else if(row == 1)
-//            {//ghost tips
-//                UILabel *label = [self createLabelWithText:@"鬼提示"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:wordLength];
-//            }else if(row == 2){
-//                //fool word
-//                UILabel *label = [self createLabelWithText:@"傻子词语"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:foolWord];
-//                
-//            }else if(row == 3){
-//                //civilian word
-//                UILabel *label = [self createLabelWithText:@"平民词语"];
-//                [cell.contentView addSubview:label];
-//                [cell.contentView addSubview:civilianWord];
-//            }
-//            return cell;
-//        default:
-//            return cell;
-//    }
-//    return cell;
-//    
-//}
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    switch (section) {
-//        case INDEX_TOTAL_NUMBER:
-//            return @"第一步: 设置总人数.";
-//        case INDEX_ROLE_NUMBER:
-//            return @"第二步: 设置每种角色人数.";
-//        case INDEX_ROLE_WORD:
-//            return @"第三步: 设置每种角色关键词.";
-//        default:
-//            return nil;
-//    }
-//}
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return INDEX_COUNT;
-//}
-//
 
 - (IBAction)clickMainMenu:(id)sender
 {
@@ -501,6 +384,43 @@
 - (IBAction)clickQuit:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTips:(id)sender
+{
+    UIImageView *tipsImageView = (UIImageView *)[self.view viewWithTag:100];
+    
+    if (tipsImageView) {
+        [tipsImageView removeFromSuperview];
+        UIView *grayBackgroundView = [self.view viewWithTag:99];
+        [grayBackgroundView removeFromSuperview];
+        
+    }
+    else{
+        
+        //[grayBackgroundButton addTarget:self action:(clickTips:) forControlEvents:UIControlEventTouchUpInside];
+        
+//        UIButton *grayBackgroundButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+//        grayBackgroundButton.backgroundColor = [UIColor blackColor];
+//        grayBackgroundButton.alpha = 0.5;
+//        grayBackgroundButton.tag = 99;
+//        [self.view addSubview:grayBackgroundButton];
+//        [grayBackgroundButton release];
+        
+        UIView *grayBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
+        grayBackgroundView.backgroundColor = [UIColor blackColor];
+        grayBackgroundView.alpha = 0.5;
+        grayBackgroundView.tag = 99;
+        [self.view addSubview:grayBackgroundView];
+        [grayBackgroundView release];
+        
+        tipsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"output_box.png"]];
+        tipsImageView.frame = CGRectMake((320-270)/2, (480-202)/2, 270, 202);
+        tipsImageView.tag = 100;
+        [self.view addSubview:tipsImageView];
+        [tipsImageView release];
+    }
+    
 }
 
 #pragma mark - pick words delegate

@@ -54,7 +54,7 @@
     //self.operationTipsArray = [NSArray arrayWithObjects:@"1.法官宣布:所有玩家闭眼。\n\n\n\n(所有玩家闭眼后，则进入下一步)",@"2.法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n\n(鬼商量之后,则进入下一步)",@"3.法官宣布:鬼闭眼。\n\n\n\n(所有鬼闭眼后，则进入下一步)",@"4.法官宣布:所有玩家睁眼。\n\n\n\n(所有玩家睁开眼后，则进入下一步)",@"5.法官指定第一个发言者，按顺序开始描述。\n\n\n\n(直到全部玩家描述完毕，则进入下一步)",@"6.法官宣布:进入投票阶段。", nil];
     
     self.selectIndex = 0;
-    operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 320, 240)];
+    operationView_0 = [[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 240)];
     UIImageView *imageView_0 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box@2x.png"]];
     imageView_0.frame = CGRectMake(11, 0, 297, 288);
     [self.operationView_0 addSubview:imageView_0];
@@ -68,7 +68,7 @@
     [self.operationView_0 addSubview:operationLabel_0];
     [self.view addSubview:operationView_0];
     
-    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(320, 60, 320, 240)];
+    operationView_1 = [[UIView alloc] initWithFrame:CGRectMake(320, 100, 320, 240)];
     UIImageView *imageView_1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box@2x.png"]];
     imageView_1.frame = CGRectMake(11, 0, 297, 288);
     [self.operationView_1 addSubview:imageView_1];

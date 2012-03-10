@@ -36,8 +36,6 @@
 @property (retain, nonatomic) IBOutlet UIImageView *foolNumberImageView;
 @property (retain, nonatomic) IBOutlet UIImageView *civilianNumberImageView;
 
-
-
 @property (retain, nonatomic) IBOutlet UITextField *wordLengthTextField;
 @property (retain, nonatomic) IBOutlet UITextField *foolWordTextField;
 @property (retain, nonatomic) IBOutlet UITextField *civilianWordTextField;
@@ -53,6 +51,6 @@
 - (IBAction)clickSetting:(id)sender;
 - (IBAction)clickHelp:(id)sender;
 - (IBAction)clickQuit:(id)sender;
-
+- (IBAction)clickTips:(id)sender;
 
 @end

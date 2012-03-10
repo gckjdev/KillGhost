@@ -12,6 +12,7 @@
 #import "PlayerCard.h"
 #import "Player.h"
 #import "StateController.h"
+#import "CreateNewGameController.h"
 
 @implementation ResultController
 @synthesize resultDescriptionLabel;
@@ -19,7 +20,8 @@
 @synthesize guessRightButton;
 @synthesize guessWrongButton;
 @synthesize continueGameButton;
-@synthesize finishButton;
+@synthesize quitButton;
+@synthesize againButton;
 @synthesize currentPlayerCard;
 @synthesize result;
 @synthesize winnerImageView;
@@ -77,21 +79,65 @@
     }
 }
 
+#pragma mark - View lifecycle
+
+- (UIButton *)createButton:(NSString *)imageName text:(NSString *)text position:(CGFloat)x
+{
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(x, 442, 100, 38)] autorelease];
+    
+    UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+    iv.frame= CGRectMake(0, (38-25)/2, 22, 25);
+    [button addSubview:iv];
+    [iv release];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, 0, 60, 38)];
+    label.font = [UIFont boldSystemFontOfSize:15];
+    label.textColor = [UIColor colorWithRed:0xF3/255.0 green:0xB1/255.0 blue:0x5B/255.0 alpha:1.0 ];
+    label.backgroundColor = [UIColor clearColor];
+    label.text =text;
+    
+    [button addSubview:label];
+    [label release];
+    return button;
+}
+
 - (void)hideButton
 {
     self.guessRightButton.hidden = YES;
     self.guessWrongButton.hidden = YES;
+    self.quitButton.hidden = YES;
+    self.againButton.hidden = YES;
     self.continueGameButton.hidden = YES;
-    self.finishButton.hidden = YES;
     self.continueLabel.hidden = YES;
     self.continueImageView.hidden = YES;
 }
 
-#pragma mark - View lifecycle
+- (void)addButton
+{
+    
+    self.guessWrongButton = [self createButton:@"wrong.png" text:@"猜错了" position:40 ];
+    [self.guessWrongButton  addTarget:self action:@selector(clickGuessWrongButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.guessWrongButton];
+    
+    self.guessRightButton = [self createButton:@"right.png" text:@"猜对了" position:200 ];
+    [self.guessRightButton addTarget:self action:@selector(clickGuessRightButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.guessRightButton];
+    
+    self.quitButton =  [self createButton:@"not_again.png" text:@"退出游戏" position:40];
+    [self.quitButton addTarget:self action:@selector(clickQuitButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.quitButton];
+    
+    self.againButton =  [self createButton:@"again.png" text:@"再来一盘" position:200 ];
+    [self.againButton addTarget:self action:@selector(clickAgainButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.againButton];
+    
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self addButton];
     [self hideButton];
     
     self.resultDescriptionLabel.frame = CGRectMake(40-11, 40, 240, 40);
@@ -100,7 +146,7 @@
     self.promptLabel.numberOfLines = 0;
     
     UIImageView *dbv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box.png"]];
-    dbv.frame = CGRectMake(11, 60, 297, 288);
+    dbv.frame = CGRectMake(11, 100, 297, 288);
     self.dialogBoxImageView = dbv;
     [dbv release];
     [self.dialogBoxImageView addSubview:self.resultDescriptionLabel];
@@ -119,6 +165,7 @@
         [self showResult];
     }
 }
+
 
 - (void)showResult
 {
@@ -177,7 +224,8 @@
             self.promptLabel.text = @"理由:所有的鬼已被杀死";
         }
         
-        self.finishButton.hidden = NO;
+        self.againButton.hidden = NO;
+        self.quitButton.hidden = NO;
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
         self.lightImageView = imageView;
@@ -196,7 +244,8 @@
     [self setGuessWrongButton:nil];
     [self setCurrentPlayerCard:nil];
     [self setContinueGameButton:nil];
-    [self setFinishButton:nil];
+    [self setQuitButton:nil];
+    [self setAgainButton:nil];
     [self setLightImageView:nil];
     [self setContinueImageView:nil];
     [self setContinueLabel:nil];
@@ -217,7 +266,8 @@
     [guessWrongButton release];
     [currentPlayerCard release];
     [continueGameButton release];
-    [finishButton release];
+    [quitButton release];
+    [againButton release];
     [lightImageView release];
     [continueImageView release];
     [continueLabel release];
@@ -225,13 +275,13 @@
     [super dealloc];
 }
 
-- (IBAction)clickGuessRightButton:(id)sender
+- (void)clickGuessRightButton
 {
     self.result = ResultGhostWin;
     [self showResult];
 }
 
-- (IBAction)clickGuessWrongButton:(id)sender
+- (void)clickGuessWrongButton
 {
     self.result = [ResultManager resultByOut:[PlayerCardManager defaultManager]];
     [self showResult];
@@ -245,9 +295,18 @@
     [sc release];
 }
 
-- (IBAction)clickFinishButton:(id)sender
+- (void)clickQuitButton
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)clickAgainButton
+{
+    CreateNewGameController *cngc = (CreateNewGameController *)[[self.navigationController viewControllers] objectAtIndex:1];
+    cngc.wordLengthTextField.text =@"";
+    cngc.foolWordTextField.text= @"";
+    cngc.civilianWordTextField.text= @"";
+    [self.navigationController popToViewController:cngc animated:YES];
 }
 
 

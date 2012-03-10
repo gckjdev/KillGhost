@@ -58,7 +58,6 @@
 						<string key="NSFrame">{{155, 79}, {50, 50}}</string>
 						<reference key="NSSuperview" ref="885402999"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -127,7 +126,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">number_bg5@2x.png</string>
+							<string key="NSResourceName">number_bg6@2x.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="392005886">
@@ -310,7 +309,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">21</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -368,7 +367,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="minus@2x.png">{123, 118}</string>
-			<string key="number_bg5@2x.png">{155, 144}</string>
+			<string key="number_bg6@2x.png">{155, 144}</string>
 			<string key="plus@2x.png">{124, 118}</string>
 			<string key="vote_number_1@2x.png">{276, 370}</string>
 		</dictionary>

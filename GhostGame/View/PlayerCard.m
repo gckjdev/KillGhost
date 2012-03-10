@@ -283,11 +283,6 @@
 
 - (void)drawWillShowCover:(CGContextRef)context
 {
-//    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-//
-//    CGContextFillRect(context, self.bounds);
-//    CGContextSaveGState(context);
-    
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
     
     [self drawFlashRect:context];
@@ -297,38 +292,25 @@
 
 - (void)drawUnShowCover:(CGContextRef)context
 {
-//    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
-//    CGContextFillRect(context, self.bounds);
-    
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
 }
 
 - (void)drawShowedCover:(CGContextRef)context
 {
-//    CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
-//    CGContextFillRect(context, self.bounds);
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
     [self drawImage:context fileName:@"card_shadow.png"];
 }
 
 - (void)drawVoteCover:(CGContextRef)context
-{
-//    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-//    CGContextFillRect(context, self.bounds);
-    
-//    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-//    CGContextFillRect(context, self.bounds);
-//    CGContextSaveGState(context);
-    
+{    
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
-    
     
     CGContextTranslateCTM(context, 00, self.bounds.size.height);
     CGContextScaleCTM(context, 1, -1);
     CGRect imageRect;
     imageRect.origin = CGPointMake(27, 0);
     imageRect.size = CGSizeMake(18, 18);
-    UIImage *backImage = [UIImage imageNamed:@"number_bg1.png"];
+    UIImage *backImage = [UIImage imageNamed:@"number_bg5.png"];
     CGImageRef backImageRef = CGImageRetain(backImage.CGImage);
     CGContextDrawImage(context, imageRect, backImageRef);
     
@@ -337,7 +319,6 @@
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
     NSString *tips = [NSString stringWithFormat:@"%d",_voteNumber];    
-    //[tips drawAtPoint:CGPointMake(28, 0) withFont:[UIFont systemFontOfSize:15]];
     [tips drawInRect:CGRectMake(27, 0, 18, 18) withFont:[UIFont systemFontOfSize:14] lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentCenter];
     
     CGContextSaveGState(context);
@@ -352,14 +333,17 @@
 
 - (void)drawDeadCover:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+    //CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    //CGContextFillRect(context, self.bounds);
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
+    [self drawImage:context fileName:@"card_shadow.png"];
+    [self drawImage:context fileName:@"ban.png"];
 }
 - (void)drawShowingRect:(CGContextRef)context
 {
-//    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
-//    CGContextFillRect(context, self.bounds);
-//    CGContextSaveGState(context);
+    //CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    //CGContextFillRect(context, self.bounds);
+    //CGContextSaveGState(context);
     
     //翻转context
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
@@ -374,7 +358,6 @@
     //画完图，翻转回来
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
-    
     
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
@@ -408,16 +391,21 @@
 
 - (void)drawExamine:(CGContextRef)context
 {
-    CGContextSetFillColorWithColor(context, [UIColor orangeColor].CGColor);
-    CGContextFillRect(context, self.bounds);
+    [self drawImage:context fileName:@"card_back.png"];
+    CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
+	CGContextScaleCTM(context, 1.0, -1.0);
+    
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
-    
     NSString *indexString = [NSString stringWithFormat:@"%d",self.index];    
-    [indexString drawAtPoint:CGPointMake(0, 0) withFont:[UIFont systemFontOfSize:16]];  
-    [_player.name drawAtPoint:CGPointMake(3, 23) withFont:[UIFont systemFontOfSize:20]];
-//    [_player.word drawAtPoint:CGPointMake(6, 35) withFont:[UIFont systemFontOfSize:18]];
+    [indexString drawInRect:CGRectMake(3, 8, 40, CARD_WIDTH) withFont:[UIFont systemFontOfSize:15] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
+    
+    if (_player.type == GhostType) {
+        CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    }
+    [_player.name drawInRect:CGRectMake(3, 28, 40, CARD_WIDTH) withFont:[UIFont systemFontOfSize:15] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
+    
     CGContextSaveGState(context);
 }
 
@@ -455,13 +443,6 @@
         default:
             break;
     }
-    if ( self.status == DEAD ) {
-        [self drawIndexNumber:context];
-    }
-    
-//    if (self.status != WILLSHOW && self.status != UNSHOW && self.status != SHOWING && self.status != EXAMINE) {
-//        [self drawIndexNumber:context];
-//    }
 }
 
 

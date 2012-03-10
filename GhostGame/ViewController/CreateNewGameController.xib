@@ -304,13 +304,13 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="849091211">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="630232203">
 							<int key="type">1</int>
-							<double key="pointSize">11</double>
+							<double key="pointSize">13</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="391987295">
+						<object class="NSFont" key="IBUIFont" id="970584585">
 							<string key="NSName">Helvetica</string>
-							<double key="NSSize">11</double>
+							<double key="NSSize">13</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
@@ -336,8 +336,8 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="849091211"/>
-						<reference key="IBUIFont" ref="391987295"/>
+						<reference key="IBUIFontDescription" ref="630232203"/>
+						<reference key="IBUIFont" ref="970584585"/>
 					</object>
 					<object class="IBUILabel" id="1021084923">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -361,8 +361,8 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="849091211"/>
-						<reference key="IBUIFont" ref="391987295"/>
+						<reference key="IBUIFontDescription" ref="630232203"/>
+						<reference key="IBUIFont" ref="970584585"/>
 					</object>
 					<object class="IBUILabel" id="307905238">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -386,8 +386,8 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="849091211"/>
-						<reference key="IBUIFont" ref="391987295"/>
+						<reference key="IBUIFontDescription" ref="630232203"/>
+						<reference key="IBUIFont" ref="970584585"/>
 					</object>
 					<object class="IBUILabel" id="421856827">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -1207,6 +1207,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">clickTips:</string>
+						<reference key="source" ref="183014313"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickMainMenu:</string>
 						<reference key="source" ref="722274830"/>
 						<reference key="destination" ref="372490531"/>
@@ -1600,7 +1609,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">82</int>
+			<int key="maxID">83</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1613,6 +1622,7 @@
 						<string key="clickMainMenu:">id</string>
 						<string key="clickQuit:">id</string>
 						<string key="clickSetting:">id</string>
+						<string key="clickTips:">id</string>
 						<string key="pickWords:">id</string>
 						<string key="randomWords:">id</string>
 					</dictionary>
@@ -1635,6 +1645,10 @@
 						</object>
 						<object class="IBActionInfo" key="clickSetting:">
 							<string key="name">clickSetting:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clickTips:">
+							<string key="name">clickTips:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="pickWords:">
