@@ -340,6 +340,12 @@
     [self.view addSubview:self.changeVoteNumberController.view];
 }
 
+
+- (IBAction)clickprevious:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)clickBackgroundButton:(id)sender
 {
     if (self.changeVoteNumberController.view) {

@@ -9,6 +9,8 @@
 #import "HelpController.h"
 
 @implementation HelpController
+@synthesize descriptionTextView;
+@synthesize flowChartScrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +34,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.flowChartScrollView.hidden = YES;
+    self.flowChartScrollView.contentSize = CGSizeMake(292, 812);
+    
+    
+    NSArray *stepArray = [NSArray arrayWithObjects:@"确定人数", @"确认身份和词语", @"第一轮描述词语", @"投票淘汰", @"下一轮游戏", nil];
+    
+    NSInteger num = 0;
+    for (NSString *str in stepArray) {
+        UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 150 * num + 61, 290, 20)];
+        stepLabel.text = str;
+        stepLabel.backgroundColor = [UIColor clearColor];
+        stepLabel.textAlignment = UITextAlignmentCenter;
+        [self.flowChartScrollView addSubview:stepLabel];
+        [stepLabel release];
+        
+        num ++;
+    }
+    
+    
 }
 
 - (void)viewDidUnload
 {
+    [self setDescriptionTextView:nil];
+    [self setFlowChartScrollView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,8 +70,24 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (IBAction)clickText:(id)sender{
+    self.descriptionTextView.hidden = NO;
+    self.flowChartScrollView.hidden = YES;
+}
+
+- (IBAction)clickFlowChart:(id)sender
+{
+    self.descriptionTextView.hidden = YES;
+    self.flowChartScrollView.hidden = NO;
+}
+
 - (IBAction)clickBack:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)dealloc {
+    [descriptionTextView release];
+    [flowChartScrollView release];
+    [super dealloc];
 }
 @end

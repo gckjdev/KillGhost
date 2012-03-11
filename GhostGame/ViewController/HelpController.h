@@ -10,5 +10,9 @@
 
 @interface HelpController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (retain, nonatomic) IBOutlet UIScrollView *flowChartScrollView;
+
+
 - (IBAction)clickBack:(id)sender;
 @end
