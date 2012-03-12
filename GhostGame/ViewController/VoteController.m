@@ -23,6 +23,7 @@
 @synthesize playerManager = _playerManager;
 @synthesize lineViewArray = _lineViewArray;
 @synthesize changeVoteNumberController;
+@synthesize tipsController;
 
 #pragma mark - line segment
 
@@ -94,6 +95,8 @@
     [changeVoteNumberController release];
     [_mainMenuBarView release];
     [_mainMenuButton release];
+    [changeVoteNumberController release];
+    [tipsController release];
     [super dealloc];
 }
 
@@ -291,6 +294,8 @@
 {
     [self setMainMenuBarView:nil];
     [self setMainMenuButton:nil];
+    [self setChangeVoteNumberController:nil];
+    [self setTipsController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -393,5 +398,12 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)clickTips:(id)sender
+{
+    TipsController *tc = [[TipsController alloc] initWithTips:@"点击牌进行投票"];
+    self.tipsController = tc;
+    [tc release];
+    [self.view addSubview:self.tipsController.view];
+}
 
 @end

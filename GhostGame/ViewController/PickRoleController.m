@@ -18,6 +18,7 @@
 @synthesize game = _game;
 @synthesize mainMenuBarView = _mainMenuBarView;
 @synthesize mainMenuButton = _mainMenuButton;
+@synthesize tipsController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +49,7 @@
 {
     [_mainMenuBarView release];
     [_mainMenuButton release];
+    [tipsController release];
     [super dealloc];
 }
 
@@ -95,6 +97,7 @@
 {
     [self setMainMenuBarView:nil];
     [self setMainMenuButton:nil];
+    [self setTipsController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -145,6 +148,14 @@
 - (IBAction)clickQuit:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTips:(id)sender
+{
+    TipsController *tc = [[TipsController alloc] initWithTips:@"请将手机按顺序传给每个玩家，玩家点击查看各自的牌"];
+    self.tipsController = tc;
+    [tc release];
+    [self.view addSubview:self.tipsController.view];
 }
 
 @end

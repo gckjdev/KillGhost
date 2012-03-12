@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TipsController.h"
 
 @interface StateController : UIViewController
 
@@ -25,7 +26,7 @@
 
 @property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
-
+@property (retain, nonatomic) TipsController *tipsController;
 
 - (IBAction)previous:(id)sender;
 - (IBAction)next:(id)sender;

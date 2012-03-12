@@ -106,6 +106,8 @@
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
 		A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D114E1091E00BD0DCF /* GrainLace.png */; };
 		A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */; };
+		A3E66088150DA55700C366FD /* TipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E66086150DA55700C366FD /* TipsController.m */; };
+		A3E66089150DA55700C366FD /* TipsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E66087150DA55700C366FD /* TipsController.xib */; };
 		A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */; };
 		A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */; };
 		A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EC828014E8AA0E00AD4B66 /* ResultManager.m */; };
@@ -284,6 +286,9 @@
 		A3D9E3CD14E108DA00BD0DCF /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		A3D9E3D114E1091E00BD0DCF /* GrainLace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrainLace.png; sourceTree = "<group>"; };
 		A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrainLace@2x.png"; sourceTree = "<group>"; };
+		A3E66085150DA55700C366FD /* TipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsController.h; sourceTree = "<group>"; };
+		A3E66086150DA55700C366FD /* TipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsController.m; sourceTree = "<group>"; };
+		A3E66087150DA55700C366FD /* TipsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsController.xib; sourceTree = "<group>"; };
 		A3E9EECD14EBAC2D004B4130 /* ChangeVoteNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVoteNumberController.h; sourceTree = "<group>"; };
 		A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVoteNumberController.m; sourceTree = "<group>"; };
 		A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeVoteNumberController.xib; sourceTree = "<group>"; };
@@ -562,6 +567,9 @@
 				CA1C3CF414F5E1080022A8CD /* SettingsController.h */,
 				CA1C3CF514F5E1080022A8CD /* SettingsController.m */,
 				CA1C3CF614F5E1080022A8CD /* SettingsController.xib */,
+				A3E66085150DA55700C366FD /* TipsController.h */,
+				A3E66086150DA55700C366FD /* TipsController.m */,
+				A3E66087150DA55700C366FD /* TipsController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -880,6 +888,7 @@
 				A3BB354A150CE603002D708D /* help_text_bg@2x.png in Resources */,
 				A3BB354B150CE603002D708D /* picture_button@2x.png in Resources */,
 				A3BB354C150CE603002D708D /* text_button@2x.png in Resources */,
+				A3E66089150DA55700C366FD /* TipsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +954,7 @@
 				CA1C3CFB14F5E2030022A8CD /* ConfigureManager.m in Sources */,
 				A3579A4B14FF6C4D00200A4B /* LocaleUtils.m in Sources */,
 				A3AF899015007F2A00085AB6 /* CreateNewGameController.m in Sources */,
+				A3E66088150DA55700C366FD /* TipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

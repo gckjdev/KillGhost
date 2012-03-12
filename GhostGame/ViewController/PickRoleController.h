@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
 #import "PlayerCard.h"
+#import "TipsController.h"
 
 @class Game;
 @class PlayerCardManager;
@@ -21,7 +22,7 @@
 @property(nonatomic, retain)Game *game;
 @property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
-
+@property (retain, nonatomic) TipsController *tipsController;
 
 - (IBAction)clickNextButton:(id)sender;
 - (IBAction)clickBackButton:(id)sender;

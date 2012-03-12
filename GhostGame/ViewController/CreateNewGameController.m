@@ -17,6 +17,7 @@
 #import "SettingsController.h"
 #import "HelpController.h"
 
+
 @implementation CreateNewGameController
 @synthesize playerNumberTextField;
 @synthesize judgeNumberLabel;
@@ -31,6 +32,7 @@
 @synthesize foolWordTextField;
 @synthesize civilianWordTextField;
 @synthesize mainMenuBarView;
+@synthesize tipsController;
 
 //- (UITextField *)createTextFieldWithKeyBoradType:(UIKeyboardType)type
 //{
@@ -71,6 +73,7 @@
     [foolNumberImageView release];
     [civilianNumberImageView release];
     [mainMenuBarView release];
+    [tipsController release];
     [super dealloc];
 }
 
@@ -190,6 +193,7 @@
     [self setFoolNumberImageView:nil];
     [self setCivilianNumberImageView:nil];
     [self setMainMenuBarView:nil];
+    [self setTipsController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -388,39 +392,10 @@
 
 - (IBAction)clickTips:(id)sender
 {
-    UIImageView *tipsImageView = (UIImageView *)[self.view viewWithTag:100];
-    
-    if (tipsImageView) {
-        [tipsImageView removeFromSuperview];
-        UIView *grayBackgroundView = [self.view viewWithTag:99];
-        [grayBackgroundView removeFromSuperview];
-        
-    }
-    else{
-        
-        //[grayBackgroundButton addTarget:self action:(clickTips:) forControlEvents:UIControlEventTouchUpInside];
-        
-//        UIButton *grayBackgroundButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-//        grayBackgroundButton.backgroundColor = [UIColor blackColor];
-//        grayBackgroundButton.alpha = 0.5;
-//        grayBackgroundButton.tag = 99;
-//        [self.view addSubview:grayBackgroundButton];
-//        [grayBackgroundButton release];
-        
-        UIView *grayBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
-        grayBackgroundView.backgroundColor = [UIColor blackColor];
-        grayBackgroundView.alpha = 0.5;
-        grayBackgroundView.tag = 99;
-        [self.view addSubview:grayBackgroundView];
-        [grayBackgroundView release];
-        
-        tipsImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"output_box.png"]];
-        tipsImageView.frame = CGRectMake((320-270)/2, (480-202)/2, 270, 202);
-        tipsImageView.tag = 100;
-        [self.view addSubview:tipsImageView];
-        [tipsImageView release];
-    }
-    
+    TipsController *tc = [[TipsController alloc] initWithTips:@"确定人数以及选择词语"];
+    self.tipsController = tc;
+    [tc release];
+    [self.view addSubview:self.tipsController.view];
 }
 
 #pragma mark - pick words delegate

@@ -27,6 +27,7 @@
 @synthesize operationLabel_0;
 @synthesize operationLabel_1;
 @synthesize selectIndex;
+@synthesize tipsController;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -125,6 +126,7 @@
     [self setOperationView_1:nil];
     [self setMainMenuBarView:nil];
     [self setMainMenuButton:nil];
+    [self setTipsController:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -146,6 +148,7 @@
     [operationView_1 release];
     [mainMenuBarView release];
     [mainMenuButton release];
+    [tipsController release];
     [super dealloc];
 }
 
@@ -305,6 +308,14 @@
 - (IBAction)clickQuit:(id)sender
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)clickTips:(id)sender
+{
+    TipsController *tc = [[TipsController alloc] initWithTips:@"法官按步骤宣读指示"];
+    self.tipsController = tc;
+    [tc release];
+    [self.view addSubview:self.tipsController.view];
 }
 
 @end
