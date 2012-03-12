@@ -11,6 +11,7 @@
 @implementation GRViewController
 @synthesize tapGestureRecognizerEnable = _tapGestureRecognizerEnable;
 @synthesize panGestureRecognizerEnable = _panGestureRecognizerEnable;
+@synthesize currentKeyboardType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -283,9 +283,9 @@
         }
         [self.view addSubview:card];
     }
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];  
-    [self.view addGestureRecognizer:pan];
-    [pan release];
+//    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(performPan:)];  
+//    [self.view addGestureRecognizer:pan];
+//    [pan release];
     [self.playerManager setVoteDelegate:self];
     self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
 }

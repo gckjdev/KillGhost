@@ -49,5 +49,6 @@
 - (IBAction)clickHelp:(id)sender;
 - (IBAction)clickQuit:(id)sender;
 - (IBAction)clickTips:(id)sender;
+@property (retain, nonatomic) IBOutlet UIView *coverView;
 
 @end

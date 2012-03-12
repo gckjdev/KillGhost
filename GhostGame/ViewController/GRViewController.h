@@ -12,10 +12,12 @@
 {
     UITapGestureRecognizer *_tapGesture;
     UIPanGestureRecognizer *_panGesture;
+    UIKeyboardType currentKeyboardType;
 }
 
 @property(nonatomic, assign, getter = isTapGestureRecognizerEnable) BOOL tapGestureRecognizerEnable;
 @property(nonatomic, assign, getter = isPanGestureRecognizerEnable) BOOL panGestureRecognizerEnable;
+@property(nonatomic, assign) UIKeyboardType currentKeyboardType;
 
 - (void)performTapGesture:(UITapGestureRecognizer *)tap;
 - (void)performPanGesture:(UIPanGestureRecognizer *)pan;
