@@ -11,6 +11,7 @@
 @implementation HelpController
 @synthesize descriptionTextView;
 @synthesize flowChartScrollView;
+@synthesize footerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +54,17 @@
     }
     
     
+    FooterController *fc = [[[FooterController alloc] init] autorelease];
+    fc.view.frame = CGRectMake(0,442,320,38);
+    [fc setSuperView:self.view buttonTarget:self nextButtonTitle:@"下一步" nextButtonActon:@selector(clickFlowChart:) previousButtonTitle:@"下一步" nextButtonActon:@selector(clickFlowChart:)];
+    self.footerController = fc;
+    [fc release];
+    [self.footerController show];
+    
+//    [fc setNextButtonAction:@selector(clickFlowChart:) target:self];
+//    self.footerController = fc;
+//    [fc release];
+//    [self.view addSubview:self.footerController.view];
 }
 
 - (void)viewDidUnload
