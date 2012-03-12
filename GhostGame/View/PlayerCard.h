@@ -7,17 +7,17 @@
 //
 
 enum CARD_STATUS {
-    UNSHOW = 0,
-    SHOWING = 1,
-    SHOWED = 2,
-    WILLSHOW = 3,
-    VOTE = 10,
-    VOTED,
-    CANDIDATE,
-    DEAD,
-    EXAMINE = 20,
-    JUDGE = 30,
-    UNCERTAIN = 31
+    UNSHOW = 0,  // if the card unshowed but will not show next time.
+    SHOWING = 1,//if the card is showing
+    SHOWED = 2,//if the card was showed
+    WILLSHOW = 3, //if the card will show next time
+    VOTE = 10, //when enter the vote process, but before voting.
+    VOTED, //if the card is voted
+    CANDIDATE, //if the card has the same vote with other players
+    DEAD, //if the role is dead
+    EXAMINE = 20,  //show the Identity
+    JUDGE = 30, //if the card is judge
+    UNCERTAIN = 31 //before picked the judge
     
 };
 

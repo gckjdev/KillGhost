@@ -118,6 +118,7 @@
     }
     switch (status) {
         case WILLSHOW:
+        case UNCERTAIN:
         case CANDIDATE:
         {
             _flashShowed = YES;
@@ -133,6 +134,7 @@
         case VOTED:
         case DEAD:
         case EXAMINE:
+        case JUDGE:            
             [self stopFlashTimer];    
             [self setScale:1 center:_position];
             break;
@@ -192,6 +194,9 @@
     }else if(self.status == VOTE)
     {
         
+    }else if(self.status == UNCERTAIN)
+    {
+        self.status = JUDGE;
     }
     
     if (_delegate && [_delegate respondsToSelector:@selector(didClickedPlayerCard:)]) {
@@ -266,15 +271,6 @@
 
 - (void)drawFlashRect:(CGContextRef)context
 {
-//    if (!_flashShowed) {
-//        CGContextSetStrokeColorWithColor(context, [UIColor orangeColor].CGColor);
-//    }else{
-//        CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
-//    }
-//    CGFloat lineWidth = 3.0;
-//    CGRect frame = CGRectMake(lineWidth / 2, lineWidth / 2, self.frame.size.width - lineWidth, self.frame.size.height - lineWidth); CGContextStrokeRectWithWidth(context, frame, lineWidth);    
-//    CGContextSaveGState(context);
-    
     if (!_flashShowed) {
         [self drawImage:context fileName: @"frame_light.png"];
     }
@@ -284,7 +280,6 @@
 - (void)drawWillShowCover:(CGContextRef)context
 {
     [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
-    
     [self drawFlashRect:context];
 }
 
@@ -409,6 +404,21 @@
     CGContextSaveGState(context);
 }
 
+
+- (void)drawUncertain:(CGContextRef)context
+{
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_number_%d.png",self.index]];
+    [self drawFlashRect:context];
+
+}
+
+- (void)drawJudge:(CGContextRef)context
+{
+    [self drawImage:context fileName:[NSString stringWithFormat:@"card_judge.png",self.index]];
+    [self drawFlashRect:context];
+}
+
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
@@ -440,6 +450,13 @@
         case EXAMINE:
             [self drawExamine:context];
             break;
+        case UNCERTAIN:
+            [self drawUncertain:context];
+            break;
+        case JUDGE:
+            [self drawJudge:context];
+            break;
+            
         default:
             break;
     }
