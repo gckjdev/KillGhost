@@ -32,4 +32,7 @@
              civilianWord:(NSString *)civilianWord 
                foolNumber:(NSInteger)foolNumber
                  foolWord:(NSString *)foolWord;
+
+- (NSInteger)playerCount;
+
 @end

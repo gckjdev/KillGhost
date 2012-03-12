@@ -47,6 +47,11 @@
     }
     return self;
 }
+
+- (NSInteger)playerCount
+{
+    return self.ghostNumber + self.civilianNumber + self.foolNumber + 1;
+}
 - (void)dealloc
 {
     [_ghostWord release];

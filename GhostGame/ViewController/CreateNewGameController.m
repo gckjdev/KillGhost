@@ -19,6 +19,7 @@
 
 
 @implementation CreateNewGameController
+@synthesize coverView;
 @synthesize playerNumberTextField;
 @synthesize judgeNumberLabel;
 @synthesize ghostNumberLabel;
@@ -34,27 +35,13 @@
 @synthesize mainMenuBarView;
 @synthesize tipsController;
 
-//- (UITextField *)createTextFieldWithKeyBoradType:(UIKeyboardType)type
-//{
-//    UITextField *textField = [[[UITextField alloc] initWithFrame:CGRectMake(120, 2, 100, 40)] autorelease];
-//    textField.delegate = self;
-//    textField.keyboardType = type;
-//    textField.returnKeyType = UIReturnKeyDone;
-//    textField.borderStyle = UITextBorderStyleRoundedRect;
-//    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-//    return textField;
-//}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-     //   [self setPlayerNumberTextField:[self createTextFieldWithKeyBoradType:UIKeyboardTypeNumberPad]];
-//        
-//        [self setWordLengthTextField:[self createTextFieldWithKeyBoradType:UIKeyboardTypeNumberPad]];
-//        [self setCivilianWordTextField:[self createTextFieldWithKeyBoradType:UIKeyboardTypeDefault]];
-//        [self setFoolWordTextField:[self createTextFieldWithKeyBoradType:UIKeyboardTypeDefault]];
+ 
     }
     return self;
 }
@@ -74,6 +61,7 @@
     [civilianNumberImageView release];
     [mainMenuBarView release];
     [tipsController release];
+    [coverView release];
     [super dealloc];
 }
 
@@ -171,6 +159,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.coverView setHidden:YES];
     [self setTapGestureRecognizerEnable:YES];
     [self hideNumber];
     self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
@@ -194,6 +183,7 @@
     [self setCivilianNumberImageView:nil];
     [self setMainMenuBarView:nil];
     [self setTipsController:nil];
+    [self setCoverView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -204,6 +194,8 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+
 
 - (IBAction)clickNewGame:(id)sender {
     
@@ -239,17 +231,8 @@
     
     WordsManager *manager = [WordsManager defaultManager];
     [manager addUsedWords:words];
-    //    [ConfigureManager addWords:words];
     [words release];
-    
-    //   PlayGameController
-    //    if ((gNumber > 0) & (cNumber > 0) & (fNumber > 0) & ([gWord length] > 0) & ([cWord length] > 0) & ([fWord length] > 0)) {
-    //        
-    //    }else{
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"信息不完整,或者人数小于0" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    //        [alert show];
-    //        [alert release];
-    //    }
+
 }
 
 - (IBAction)clickBackButton:(id)sender {
@@ -265,11 +248,10 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [self.coverView setHidden:NO];
     [super textFieldDidBeginEditing:textField];
     _currentTextField = textField;
-    //    [self setTapGestureRecognizerEnable:YES];
-   // CGFloat width = stepTable.frame.size.width;
-   // CGFloat height = stepTable.frame.size.height;
+    self.currentKeyboardType = textField.keyboardType;
     if (textField == self.wordLengthTextField || 
         textField == self.foolWordTextField || 
         textField == self.civilianWordTextField) {
@@ -279,30 +261,14 @@
             self.view.frame = CGRectOffset(self.view.frame,0, -180);
             [UIView commitAnimations];
         }
-
-        
-//        if (textField == self.civilianWordTextField) {
-         //   stepTable.frame = CGRectMake(0, -200, width, height);
-//        }else{
-           // stepTable.frame = CGRectMake(0, -160, width, height);
-//        }
-      //  NSIndexPath *path = [NSIndexPath indexPathForRow:3 inSection:2];
-     //   [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-//    else if(textField == self.civilianNumber){
-//        NSIndexPath *path = [NSIndexPath indexPathForRow:2 inSection:1];
-//        [stepTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
-//    }
-    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    //    [self setTapGestureRecognizerEnable:NO];
+    [self.coverView setHidden:YES];
+
     [super textFieldDidEndEditing:textField];
-//    CGFloat width = stepTable.frame.size.width;
-//    CGFloat height = stepTable.frame.size.height;
-//    stepTable.frame = CGRectMake(0, 0, width, height);
     [UIView beginAnimations:@"downView" context:nil];
     self.view.frame = (CGRect){CGPointMake(0, 0), self.view.frame.size};
     [UIView commitAnimations];
@@ -325,14 +291,7 @@
     [self setFieldsWithWords:words];
 }
 
-//- (UIButton *)getRandomWordsButton
-//{
-//    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    randomWord.frame = CGRectMake(20, 2, 80, 40);
-//    [randomWord setTitle:@"随即选词" forState:UIControlStateNormal];
-//    [randomWord addTarget:self action:@selector(randomWords:) forControlEvents:UIControlEventTouchUpInside];
-//    return randomWord;
-//}
+
 
 - (IBAction)pickWords:(id)sender
 {
@@ -342,14 +301,6 @@
     [pcc release];
 }
 
-//- (UIButton *)getPickWordsButton
-//{
-//    UIButton *randomWord = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    randomWord.frame = CGRectMake(180, 2, 80, 40);
-//    [randomWord setTitle:@"选词" forState:UIControlStateNormal];
-//    [randomWord addTarget:self action:@selector(pickWords:) forControlEvents:UIControlEventTouchUpInside];
-//    return randomWord;
-//}
 
 
 - (IBAction)clickMainMenu:(id)sender
@@ -403,5 +354,6 @@
 {
     [self setFieldsWithWords:words];
 }
+
 
 @end

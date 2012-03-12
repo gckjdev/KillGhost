@@ -161,6 +161,7 @@
 		CAE8EDA214DA2FF80003B6A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CAE8EDA014DA2FF80003B6A1 /* InfoPlist.strings */; };
 		CAE8EDA514DA2FF80003B6A1 /* GhostGameTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CAE8EDA414DA2FF80003B6A1 /* GhostGameTests.h */; };
 		CAE8EDA714DA2FF80003B6A1 /* GhostGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE8EDA614DA2FF80003B6A1 /* GhostGameTests.m */; };
+		CAF81FCF150DEF9A007B5D0A /* card_judge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CAF81FCE150DEF9A007B5D0A /* card_judge@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -368,6 +369,7 @@
 		CAE8EDA314DA2FF80003B6A1 /* GhostGameTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GhostGameTests-Prefix.pch"; sourceTree = "<group>"; };
 		CAE8EDA414DA2FF80003B6A1 /* GhostGameTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GhostGameTests.h; sourceTree = "<group>"; };
 		CAE8EDA614DA2FF80003B6A1 /* GhostGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GhostGameTests.m; sourceTree = "<group>"; };
+		CAF81FCE150DEF9A007B5D0A /* card_judge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_judge@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +401,7 @@
 		A37D80B914FF347800F301E8 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				CAF81FCE150DEF9A007B5D0A /* card_judge@2x.png */,
 				A3BB3543150CE603002D708D /* exchange@2x.png */,
 				A3BB3544150CE603002D708D /* flow_chart@2x.png */,
 				A3BB3545150CE603002D708D /* help_text_bg@2x.png */,
@@ -889,6 +892,7 @@
 				A3BB354B150CE603002D708D /* picture_button@2x.png in Resources */,
 				A3BB354C150CE603002D708D /* text_button@2x.png in Resources */,
 				A3E66089150DA55700C366FD /* TipsController.xib in Resources */,
+				CAF81FCF150DEF9A007B5D0A /* card_judge@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

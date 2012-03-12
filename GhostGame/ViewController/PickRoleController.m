@@ -38,9 +38,10 @@
     if (self) {
         self.game = aGame;
         _playerCardManager = [PlayerCardManager defaultManager];
-        [_playerCardManager createCardsFromGame:aGame];
-        
-        [[PlayerCardManager showCardManager] createCardsFromGame:aGame];
+        [_playerCardManager createUncertainCardsWithGame:aGame];
+        [[PlayerCardManager showCardManager] createUncertainCardsWithGame:aGame];
+//        [_playerCardManager createCardsFromGame:aGame];
+//        [[PlayerCardManager showCardManager] createCardsFromGame:aGame];
     }
     return self;
 }
@@ -57,7 +58,7 @@
 {
     for (PlayerCard *card in _playerCardManager.playerCardList) {
         if (card.status != DEAD) {
-            card.status = WILLSHOW;
+            card.status = UNCERTAIN;
         }
         [self.view addSubview:card];
     }
