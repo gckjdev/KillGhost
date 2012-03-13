@@ -15,7 +15,7 @@
 @class LineSegmentView;
 @class ChangeVoteNumberController;
 
-@interface VoteController : UIViewController<UIGestureRecognizerDelegate, VoteDelegate>
+@interface VoteController : UIViewController<UIGestureRecognizerDelegate, VoteDelegate, UIAlertViewDelegate>
 {
     PlayerCardManager *_playerManager;
  //   BOOL _isVoteLine;
@@ -24,12 +24,13 @@
     LineSegmentView *_currentVoteLine;
 }
 
-@property(nonatomic, retain)PlayerCardManager *playerManager;
-@property(nonatomic, retain)NSMutableArray *lineViewArray;
-@property(nonatomic, retain)ChangeVoteNumberController *changeVoteNumberController;
+@property(nonatomic, retain) PlayerCardManager *playerManager;
+@property(nonatomic, retain) NSMutableArray *lineViewArray;
+@property(nonatomic, retain) ChangeVoteNumberController *changeVoteNumberController;
 @property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
 @property (retain, nonatomic) TipsController *tipsController;
+@property (retain, nonatomic) PlayerCard *willDeadPlayerCard;
 
 - (IBAction)finishVote:(id)sender;
 - (IBAction)clickShowButton:(id)sender;

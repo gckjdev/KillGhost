@@ -190,7 +190,7 @@
         [self show];
     }else if(self.status == CANDIDATE)
     {
-        self.status = DEAD;
+        //self.status = DEAD;
     }else if(self.status == VOTE)
     {
         

@@ -108,6 +108,7 @@
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
 		A3D9E3D314E1091E00BD0DCF /* GrainLace.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D114E1091E00BD0DCF /* GrainLace.png */; };
 		A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */; };
+		A3DCB5FE150EE7F6009DF482 /* card_number_13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DCB5FD150EE7F6009DF482 /* card_number_13@2x.png */; };
 		A3E66088150DA55700C366FD /* TipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E66086150DA55700C366FD /* TipsController.m */; };
 		A3E66089150DA55700C366FD /* TipsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E66087150DA55700C366FD /* TipsController.xib */; };
 		A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */; };
@@ -292,6 +293,7 @@
 		A3D9E3CD14E108DA00BD0DCF /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		A3D9E3D114E1091E00BD0DCF /* GrainLace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GrainLace.png; sourceTree = "<group>"; };
 		A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GrainLace@2x.png"; sourceTree = "<group>"; };
+		A3DCB5FD150EE7F6009DF482 /* card_number_13@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_number_13@2x.png"; sourceTree = "<group>"; };
 		A3E66085150DA55700C366FD /* TipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsController.h; sourceTree = "<group>"; };
 		A3E66086150DA55700C366FD /* TipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsController.m; sourceTree = "<group>"; };
 		A3E66087150DA55700C366FD /* TipsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsController.xib; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				A32E54471508697E00F4FD22 /* card_number_10@2x.png */,
 				A32E54481508697E00F4FD22 /* card_number_11@2x.png */,
 				A32E54491508697F00F4FD22 /* card_number_12@2x.png */,
+				A3DCB5FD150EE7F6009DF482 /* card_number_13@2x.png */,
 				A3BFA06D150738D900D49DBC /* light_1@2x.png */,
 				A3BFA06E150738D900D49DBC /* light_2@2x.png */,
 				A3BFA06F150738D900D49DBC /* light_3@2x.png */,
@@ -902,6 +905,7 @@
 				A3E66089150DA55700C366FD /* TipsController.xib in Resources */,
 				CAF81FCF150DEF9A007B5D0A /* card_judge@2x.png in Resources */,
 				A336DA63150E16100009E472 /* FooterController.xib in Resources */,
+				A3DCB5FE150EE7F6009DF482 /* card_number_13@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
