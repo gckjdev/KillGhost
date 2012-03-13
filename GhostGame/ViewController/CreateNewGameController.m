@@ -159,6 +159,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    srand(time(0) - rand() % time(0));
     [self.coverView setHidden:YES];
     [self setTapGestureRecognizerEnable:YES];
     [self hideNumber];
