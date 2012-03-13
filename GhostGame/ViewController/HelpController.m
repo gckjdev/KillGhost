@@ -58,6 +58,10 @@
     footView.currentViewController = self;
     footView.tips = @"测试";
     footView.nextViewController = hp;
+    footView.previousButton.hidden = YES;
+    footView.nextButton.hidden = YES;
+    //footView.tipsButton.hidden = YES;
+    footView.mainMenuButton.hidden = YES;
     [hp release];
     [footView show];
     [footView release];

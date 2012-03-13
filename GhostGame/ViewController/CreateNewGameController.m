@@ -32,9 +32,7 @@
 @synthesize wordLengthTextField;
 @synthesize foolWordTextField;
 @synthesize civilianWordTextField;
-@synthesize mainMenuBarView;
-@synthesize tipsController;
-
+@synthesize footerView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,9 +57,8 @@
     [ghostNumberImageView release];
     [foolNumberImageView release];
     [civilianNumberImageView release];
-    [mainMenuBarView release];
-    [tipsController release];
     [coverView release];
+    [footerView release];
     [super dealloc];
 }
 
@@ -101,22 +98,22 @@
 
 - (void)finishEdited:(UITextField *)textField
 {
+    [self updateButtonStatus];
     if (textField == self.civilianWordTextField) {
         self.wordLengthTextField.text = [NSString stringWithFormat:@"%d",textField.text.length];
     }else if (textField == self.playerNumberTextField) {
         NSInteger count = [textField.text integerValue];
-        if (count < 7) {
+        if (count < 7 || count > 13) {
             [self hideNumber];
             self.playerNumberTextField.text = @"";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"人数不足哦，至少7个人！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-            return;
-        }else if(count > 13)
-        {
-            [self hideNumber];
-            self.playerNumberTextField.text = @"";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"人数太多，玩不了哦！建议分成几群人玩。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            NSString *message = nil;
+            if (count < 7) {
+                message = @"人数不足哦，至少7个人！";
+            }
+            else {
+                message = @"人数太多，玩不了哦！建议分成几群人玩。";
+            }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
             [alert show];
             [alert release];
             return;
@@ -154,8 +151,33 @@
     }
 }
 
-#pragma mark - View lifecycle
+- (void)showFooter
+{
+    FooterView *fv = [[FooterView alloc] init];
+    self.footerView = fv;
+    [fv release];
+    
+    self.footerView.currentViewController = self;
+    self.footerView.tips = @"确定人数以及选择词语";
+    [self.footerView.nextButton addTarget:self action:@selector(clickNewGame:)  forControlEvents:UIControlEventTouchUpInside];
+    self.footerView.nextButton.hidden = YES;
+    [self.footerView show];
+}
 
+- (void)updateButtonStatus
+{
+    if (self.playerNumberTextField.text.integerValue >= 7 
+        && self.playerNumberTextField.text.integerValue <= 13
+        && self.civilianWordTextField.text.length > 0
+        && self.foolWordTextField.text.length > 0) {
+        self.footerView.nextButton.hidden = NO;
+    }
+    else {
+        self.footerView.nextButton.hidden = YES;
+    }
+}
+
+#pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -163,10 +185,9 @@
     [self.coverView setHidden:YES];
     [self setTapGestureRecognizerEnable:YES];
     [self hideNumber];
-    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+    
+    [self showFooter];
 }
-
-
 
 - (void)viewDidUnload
 {
@@ -182,9 +203,8 @@
     [self setGhostNumberImageView:nil];
     [self setFoolNumberImageView:nil];
     [self setCivilianNumberImageView:nil];
-    [self setMainMenuBarView:nil];
-    [self setTipsController:nil];
     [self setCoverView:nil];
+    [self setFooterView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -290,8 +310,8 @@
     NSInteger index = rand() % [wordsArray count];
     Words *words = [wordsArray objectAtIndex:index];
     [self setFieldsWithWords:words];
+    [self updateButtonStatus];
 }
-
 
 
 - (IBAction)pickWords:(id)sender
@@ -303,57 +323,11 @@
 }
 
 
-
-- (IBAction)clickMainMenu:(id)sender
-{
-    if (self.mainMenuBarView.frame.origin.y < 345) {
-        [UIView beginAnimations:@"downMainMenu" context:nil];
-        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
-        [UIView commitAnimations];
-    }
-    else{
-        [UIView beginAnimations:@"upMainMenu" context:nil];
-        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
-        [UIView commitAnimations];
-    }
-}
-
-- (IBAction)clickContinue:(id)sender
-{
-    
-}
-
-- (IBAction)clickSetting:(id)sender
-{
-    SettingsController *settings = [[SettingsController alloc] init];
-    [self.navigationController pushViewController:settings animated:YES];
-    [settings release];
-}
-
-- (IBAction)clickHelp:(id)sender
-{
-    HelpController *hc = [[HelpController alloc] init];
-    [self.navigationController pushViewController:hc animated:YES];
-    [hc release];
-}
-
-- (IBAction)clickQuit:(id)sender
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (IBAction)clickTips:(id)sender
-{
-    TipsController *tc = [[TipsController alloc] initWithTips:@"确定人数以及选择词语"];
-    self.tipsController = tc;
-    [tc release];
-    [self.view addSubview:self.tipsController.view];
-}
-
 #pragma mark - pick words delegate
 - (void)didPickedWords:(Words *)words
 {
     [self setFieldsWithWords:words];
+    [self updateButtonStatus];
 }
 
 

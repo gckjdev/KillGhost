@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
 #import "PickerWordsController.h"
-#import "TipsController.h"
+#import "FooterView.h"
 
 @interface CreateNewGameController : GRViewController<PickWordsDelegate>
 {
@@ -37,18 +37,11 @@
 @property (retain, nonatomic) IBOutlet UITextField *wordLengthTextField;
 @property (retain, nonatomic) IBOutlet UITextField *foolWordTextField;
 @property (retain, nonatomic) IBOutlet UITextField *civilianWordTextField;
-@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
-@property (retain, nonatomic) TipsController *tipsController;
+@property (retain, nonatomic) FooterView *footerView;
 
 - (IBAction)randomWords:(id)sender;
 - (IBAction)pickWords:(id)sender;
 
-- (IBAction)clickMainMenu:(id)sender;
-- (IBAction)clickContinue:(id)sender;
-- (IBAction)clickSetting:(id)sender;
-- (IBAction)clickHelp:(id)sender;
-- (IBAction)clickQuit:(id)sender;
-- (IBAction)clickTips:(id)sender;
 @property (retain, nonatomic) IBOutlet UIView *coverView;
 
 @end

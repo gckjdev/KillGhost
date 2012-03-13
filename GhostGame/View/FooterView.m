@@ -29,7 +29,11 @@
 {
     self = [super initWithFrame:CGRectMake(0, 480-40, 320, 40)];
     if (self) {
-        
+        self.mainMenuBarView = [self createMainMenuBarView];
+        self.mainMenuButton = [self createMainMenuButton];
+        self.previousButton = [self createPreviousButton:@"上一步"];
+        self.nextButton = [self createNextButton:@"下一步"];
+        self.tipsButton = [self createTipsButton];
     }
     return self;
 }
@@ -110,6 +114,9 @@
 
 - (void)clickMainMenuButton:(id)sender
 {
+    [_currentViewController.view bringSubviewToFront:self.mainMenuBarView];
+    [_currentViewController.view bringSubviewToFront:self];
+    
     if (_status == CLOSED) {
         self.status = OPEN;
     }
@@ -127,7 +134,9 @@
 - (void)clickNextButton:(id)sender
 {
     self.status = CLOSED;
-    [_currentViewController.navigationController pushViewController:_nextViewController animated:YES];
+    if (_nextViewController) {
+        [_currentViewController.navigationController pushViewController:_nextViewController animated:YES];
+    }
 }
 
 #define BACK_BUTTON_TAG 100
@@ -158,7 +167,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 139, 270, 202)];
     imageView.image = [UIImage imageNamed:@"output_box.png"];
-    imageView.userInteractionEnabled = YES;
+    //imageView.userInteractionEnabled = YES;
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(36, 34, 186, 118)];
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:15];
@@ -302,18 +311,16 @@
 - (void)show
 {
     if (_currentViewController) {
-        self.mainMenuBarView = [self createMainMenuBarView];
-        self.mainMenuButton = [self createMainMenuButton];
-        self.previousButton = [self createPreviousButton:@"上一步"];
-        self.nextButton = [self createNextButton:@"下一步"];
-        self.tipsButton = [self createTipsButton];
-        [self addButtonToMainMenuBarView];
-        [_currentViewController.view addSubview:self.mainMenuBarView];
+        if (self.mainMenuButton.hidden == NO) {
+            [self addButtonToMainMenuBarView];
+            [_currentViewController.view addSubview:self.mainMenuBarView];
+        }
         
         [self.nextButton addTarget:self action:@selector(clickNextButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.previousButton addTarget:self action:@selector(clickPrivousButton:) forControlEvents:UIControlEventTouchUpInside]; 
         [self.mainMenuButton addTarget:self action:@selector(clickMainMenuButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.tipsButton addTarget:self action:@selector(clickTipsButton:) forControlEvents:UIControlEventTouchUpInside];
+        
         [self addSubview:self.mainMenuButton];
         [self addSubview:self.previousButton];
         [self addSubview:self.nextButton];
