@@ -31,7 +31,8 @@
 
 - (void)addPlayerCards
 {
-    NSArray *cards = [PlayerCardManager showCardManager].playerCardList;
+    PlayerCardManager *manager = [PlayerCardManager showCardManager];
+    NSArray *cards = manager.playerCardList;
     for (PlayerCard *card in cards) {
         card.status = EXAMINE;
         [self.view addSubview:card];

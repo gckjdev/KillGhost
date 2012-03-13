@@ -140,7 +140,7 @@
             break;
         default:
             [self stopFlashTimer];
-            [self setScale:5.8 center:CGPointMake(160, 260)];
+            [self setScale:320.0 / CARD_WIDTH + 0.2  center:CGPointMake(160, 240)];
             break;
     }
     [self setNeedsDisplay];
@@ -213,6 +213,8 @@
             [self show];
         }else{
             //wrong password
+        [UIUtils showTextView:@"请输入密码" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self secureTextEntry:YES];
+
         }
     }
 }
@@ -234,6 +236,14 @@
     [tap release];
 }
 
+- (id)init{
+    self = [super init];
+    if (self) {
+        [self defaultSetting];
+    }
+    return self;
+}
+
 - (id)initWithPlayer:(Player *)player position:(CGPoint)position
 {
     self = [super init];
@@ -241,8 +251,7 @@
         self.player = player;
         self.position = position;
         self.center = position;
-        UIImage *img = [PlayerCard imageForPlayerType:player.type];
-        imageRef = CGImageRetain(img.CGImage);
+
         [self defaultSetting];
 
     }
@@ -252,7 +261,9 @@
 - (void)dealloc
 {
     [_player release];
-    CGImageRelease(imageRef);
+    [_passWord release];
+    [_voteForPlayer release];
+//    CGImageRelease(imageRef);
     [super dealloc];
 }
 
@@ -345,6 +356,8 @@
 	CGContextScaleCTM(context, 1.0, -1.0); 
     
     //image
+    UIImage *img = [PlayerCard imageForPlayerType:self.player.type];
+    imageRef = img.CGImage;//CGImageRetain(img.CGImage);
     CGRect imageRect;
 	imageRect.origin = CGPointMake(0, cardSize.height - imageSize.height);
 	imageRect.size = CGSizeMake(imageSize.width, imageSize.height);
@@ -365,6 +378,9 @@
     
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     NSString *tips = @"(请记住你的身份和词语)";
+    if (self.player.type == GhostType) {
+        tips = @"(请记住你的身份和提示)";
+    }
     [tips drawInRect:CGRectMake(0, imageSize.height * 0.9, imageSize.width, 20) withFont:[UIFont systemFontOfSize:_fontSize/1.5] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
 }
 
@@ -398,6 +414,9 @@
     
     if (_player.type == GhostType) {
         CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    }else if(_player.type == JudgeType)
+    {
+        CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
     }
     [_player.name drawInRect:CGRectMake(3, 28, 40, CARD_WIDTH) withFont:[UIFont systemFontOfSize:15] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
     

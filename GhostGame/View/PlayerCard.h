@@ -47,6 +47,7 @@ enum CARD_STATUS {
     NSInteger _status;
     id <PlayerCardDelegate> _delegate;
     NSTimer *_flashTimer;
+    NSString *_password;
     BOOL _flashShowed;
 }
 

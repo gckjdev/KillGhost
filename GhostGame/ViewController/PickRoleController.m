@@ -40,8 +40,6 @@
         _playerCardManager = [PlayerCardManager defaultManager];
         [_playerCardManager createUncertainCardsWithGame:aGame];
         [[PlayerCardManager showCardManager] createUncertainCardsWithGame:aGame];
-//        [_playerCardManager createCardsFromGame:aGame];
-//        [[PlayerCardManager showCardManager] createCardsFromGame:aGame];
     }
     return self;
 }

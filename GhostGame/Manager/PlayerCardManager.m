@@ -198,19 +198,22 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
     srand(time(0));
     for (int i = 0; i < count; ++ i) {
         Player *player = [_playerList objectAtIndex:(index + 1 + i) % [_playerList count]];
-        int r = rand() % total;
+        int r = (ABS(rand() + time(0))) % total;
         if (r < fCount) {
             //fool
             [player setType:FoolType];
+            [player setWord:self.game.foolWord];
             fCount -- ;
         }else if( r < fCount + gCount){
             //ghost
             [player setType:GhostType];
+            [player setWord:self.game.ghostWord];
             gCount --;
  
         }else{
             //civilian
             [player setType:CivilianType];
+            [player setWord:self.game.civilianWord];
             cCount --;
         }
         total --;
@@ -219,7 +222,7 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
 
 - (void)synchronizeWithPlayerManager:(PlayerCardManager *)manager
 {
-    [self reset];
+//    [self reset];
     self.game = manager.game;
     self.voteDelegate = manager.voteDelegate;
     judgeIndex = manager.judgeIndex;
