@@ -9,13 +9,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GRViewController.h"
-#import "PlayerCard.h"
+#import "PlayerCardManager.h"
 #import "TipsController.h"
 
 @class Game;
 @class PlayerCardManager;
 
-@interface PickRoleController : GRViewController<PlayerCardDelegate> {
+@interface PickRoleController : GRViewController<PickRoleDelegate> {
     PlayerCardManager *_playerCardManager;
 }
 
@@ -23,6 +23,7 @@
 @property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
 @property (retain, nonatomic) TipsController *tipsController;
+@property (retain, nonatomic) IBOutlet UILabel *controllerTitle;
 
 - (IBAction)clickNextButton:(id)sender;
 - (IBAction)clickBackButton:(id)sender;

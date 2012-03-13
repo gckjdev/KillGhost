@@ -47,7 +47,9 @@ enum CARD_STATUS {
     NSInteger _status;
     id <PlayerCardDelegate> _delegate;
     NSTimer *_flashTimer;
+    NSString *_password;
     BOOL _flashShowed;
+    Player *_player;
 }
 
 @property(nonatomic, retain)Player *player;
@@ -63,8 +65,8 @@ enum CARD_STATUS {
 
 - (void)show;
 - (void)cover;
-
-- (id)initWithPlayer:(Player *)player position:(CGPoint)position;
+//- (id)initWithPlayer:(Player *)player position:(CGPoint)position showIngindex:(NSInteger)index;
+- (id)initWithPlayer:(Player *)player position:(CGPoint)position showIngindex:(NSInteger)index status:(NSInteger)status;
 - (void)setScale:(CGFloat)scale center:(CGPoint)center;
 
 @end

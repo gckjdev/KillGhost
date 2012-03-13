@@ -19,7 +19,8 @@ enum PlayerType {
 
 
 @interface Player : NSObject {
-    
+    NSInteger _type;
+    NSString *_word;
 }
 
 @property(nonatomic, assign) NSInteger type;

@@ -13,10 +13,17 @@
 
 @protocol VoteDelegate <NSObject>
 
+@optional
 - (void)willPickCandidate:(PlayerCard *)playerCard;
 - (void)didPickedCandidate:(PlayerCard *)playerCard;
-
 @end
+
+@protocol PickRoleDelegate <NSObject>
+
+@optional
+- (void)didPickedJudge:(PlayerCard *)Judge;
+@end
+
 
 @interface PlayerCardManager : NSObject<PlayerCardDelegate>
 {
@@ -30,25 +37,21 @@
 @property(nonatomic, readonly) PlayerCard *showingCard;
 @property(nonatomic, retain) NSMutableArray *playerCardList;
 @property(nonatomic, assign) id<VoteDelegate>voteDelegate;
+@property(nonatomic, assign) id<PickRoleDelegate>pickRoleDelegate;
+
 @property(nonatomic, retain) NSMutableArray *playerList;
 @property(nonatomic, retain) Game *game;
 @property(nonatomic, readonly) NSInteger judgeIndex;
 
 + (PlayerCardManager *)defaultManager;
-+ (PlayerCardManager *)showCardManager;
 - (PlayerCard *)playerCardAtIndex:(NSInteger)index;
 - (NSInteger)indexOfPlayerCard:(PlayerCard *)playerCard;
 - (NSInteger)playerCardCount;
 - (void)reset;
 - (void)createUncertainCardsWithGame:(Game *)game;
 - (void)createCertainCardsWithJudgeIndex:(NSInteger)index;
-- (void)synchronizeWithPlayerManager:(PlayerCardManager *)manager;
-
-//- (void)createCardsWithGame:(Game *)game judgeIndex:(NSInteger)index;
-//- (void)createCardsFromGame:(Game *)game;
-//- (void)createCardsFromPlayerList:(NSArray *)playerList;
+- (void)uncertainAllPlayers;
 
 
 @end
 extern PlayerCardManager *GlobalGetPlayerCardManager();
-extern PlayerCardManager *GlobalGetShowPlayerCardManager();

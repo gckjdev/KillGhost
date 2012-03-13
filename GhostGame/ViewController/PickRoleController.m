@@ -19,6 +19,7 @@
 @synthesize mainMenuBarView = _mainMenuBarView;
 @synthesize mainMenuButton = _mainMenuButton;
 @synthesize tipsController;
+@synthesize controllerTitle = _controllerTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,9 +40,7 @@
         self.game = aGame;
         _playerCardManager = [PlayerCardManager defaultManager];
         [_playerCardManager createUncertainCardsWithGame:aGame];
-        [[PlayerCardManager showCardManager] createUncertainCardsWithGame:aGame];
-//        [_playerCardManager createCardsFromGame:aGame];
-//        [[PlayerCardManager showCardManager] createCardsFromGame:aGame];
+//        [[PlayerCardManager showCardManager] createUncertainCardsWithGame:aGame];
     }
     return self;
 }
@@ -51,6 +50,7 @@
     [_mainMenuBarView release];
     [_mainMenuButton release];
     [tipsController release];
+    [_controllerTitle release];
     [super dealloc];
 }
 
@@ -92,6 +92,8 @@
     [super viewDidLoad];
     [self addPlayerCardViews];
     self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+    [self.controllerTitle setText:@"确定法官位置"];
+    [[PlayerCardManager defaultManager] setPickRoleDelegate:self];
 }
 
 - (void)viewDidUnload
@@ -99,6 +101,7 @@
     [self setMainMenuBarView:nil];
     [self setMainMenuButton:nil];
     [self setTipsController:nil];
+    [self setControllerTitle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -110,7 +113,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Pick Role delegate
+- (void)didPickedJudge:(PlayerCard *)Judge
+{
+    if (Judge) {
+        [self.controllerTitle setText:@"确定身份"];
+    }
+}
 
+
+#pragma mark - Action
 - (IBAction)clickMainMenu:(id)sender
 {
     [self.view bringSubviewToFront:self.mainMenuBarView];
@@ -153,7 +165,11 @@
 
 - (IBAction)clickTips:(id)sender
 {
-    TipsController *tc = [[TipsController alloc] initWithTips:@"请将手机按顺序传给每个玩家，玩家点击查看各自的牌"];
+    NSString *tips = @"请将手机按顺序传给每个玩家，玩家点击查看各自的牌";
+    if ([PlayerCardManager defaultManager].judgeIndex == -1) {
+        tips = @"法官选择自己的位置";
+    }
+    TipsController *tc = [[TipsController alloc] initWithTips:tips];
     self.tipsController = tc;
     [tc release];
     [self.view addSubview:self.tipsController.view];
