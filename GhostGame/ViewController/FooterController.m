@@ -172,9 +172,50 @@
     
     [self.nextButton addTarget:target action:nextAction forControlEvents:UIControlEventTouchUpInside];
     [self.previousButton addTarget:target action:previoustAction forControlEvents:UIControlEventTouchUpInside]; 
-    [self.mainMenuButton addTarget:self action:@selector(clickMainMenuButton123:) forControlEvents:UIControlEventTouchUpInside]; 
- //       [self.mainMenuButton addTarget:target action:previoustAction forControlEvents:UIControlEventTouchUpInside]; 
-//    [self.mainMenuButton addTarget:self action:@selector(clickMainMenuButton:) forControlEvents:UIControlEventTouchUpInside];
+    ActionHandler *handler = [ActionHandler defaultHander];
+    handler.deletegate = self;
+    [self.mainMenuButton addTarget:handler action:@selector(clickMainMenu:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)clikedMainMenu
+{
+    NSLog(@"haha");
+    if (self.mainMenuBarView.frame.origin.y < 345) {
+        [UIView beginAnimations:@"downMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
+    else{
+        [UIView beginAnimations:@"upMainMenu" context:nil];
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        [UIView commitAnimations];
+    }
 }
      
+@end
+
+ActionHandler *actionHandler;
+ActionHandler *GlobalGetActionHander()
+{
+    if (actionHandler == nil) {
+        actionHandler = [[ActionHandler  alloc] init];
+    }
+    return actionHandler;
+}
+@implementation ActionHandler
+@synthesize deletegate;
+
++(ActionHandler *)defaultHander
+{
+    return GlobalGetActionHander();
+}
+
+- (void)clickMainMenu:(id)sender
+{
+    NSLog(@"clickMainMenu");
+    if (self.deletegate && [self.deletegate respondsToSelector:@selector(clikedMainMenu:)]) {
+        [self.deletegate clikedMainMenu];
+    }
+}
+
 @end

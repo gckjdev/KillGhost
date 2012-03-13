@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FooterController : UIViewController
+@protocol ActionHandlerDeletegate <NSObject>
+@optional
+- (void)clikedMainMenu;
+
+@end
+
+
+
+@interface FooterController : UIViewController <ActionHandlerDeletegate>
 
 
 @property (nonatomic,retain) UIButton *mainMenuButton;
@@ -30,6 +38,19 @@
  previousButtonTitle:(NSString *)previoustTitle
      nextButtonActon:(SEL)previoustAction;
 
-- (IBAction)clickMainMenuButton123:(id)sender;
 
 @end
+
+
+
+
+
+@interface ActionHandler : NSObject
+
+@property (nonatomic,assign) id<ActionHandlerDeletegate> deletegate;
+
++(ActionHandler *)defaultHander;
+- (void)clickMainMenu:(id)sender;
+
+@end;
+extern ActionHandler *GlobalGetActionHander();

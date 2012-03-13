@@ -7,7 +7,7 @@
 //
 
 #import "HelpController.h"
-
+#import "FooterView.h"
 @implementation HelpController
 @synthesize descriptionTextView;
 @synthesize flowChartScrollView;
@@ -53,18 +53,14 @@
         num ++;
     }
     
-    
-    FooterController *fc = [[[FooterController alloc] init] autorelease];
-    fc.view.frame = CGRectMake(0,442,320,38);
-    [fc setSuperView:self.view buttonTarget:self nextButtonTitle:@"下一步" nextButtonActon:@selector(clickFlowChart:) previousButtonTitle:@"下一步" nextButtonActon:@selector(clickFlowChart:)];
-    self.footerController = fc;
-    [fc release];
-    [self.footerController show];
-    
-//    [fc setNextButtonAction:@selector(clickFlowChart:) target:self];
-//    self.footerController = fc;
-//    [fc release];
-//    [self.view addSubview:self.footerController.view];
+    HelpController *hp = [[HelpController alloc] init];
+    FooterView *footView = [[FooterView alloc] init];
+    footView.currentViewController = self;
+    footView.tips = @"测试";
+    footView.nextViewController = hp;
+    [hp release];
+    [footView show];
+    [footView release];
 }
 
 - (void)viewDidUnload
