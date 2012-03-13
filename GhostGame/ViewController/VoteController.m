@@ -327,7 +327,8 @@
 
 - (void)didPickedCandidate:(PlayerCard *)playerCard
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", self.willDeadPlayerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    self.willDeadPlayerCard = playerCard;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", playerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
     [alertView show];
     [alertView release];
 }
