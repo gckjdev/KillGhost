@@ -24,6 +24,7 @@
 @synthesize lineViewArray = _lineViewArray;
 @synthesize changeVoteNumberController;
 @synthesize tipsController;
+@synthesize willDeadPlayerCard;
 
 #pragma mark - line segment
 
@@ -96,6 +97,7 @@
     [_mainMenuBarView release];
     [_mainMenuButton release];
     [tipsController release];
+    [willDeadPlayerCard release];
     [super dealloc];
 }
 
@@ -245,16 +247,20 @@
             candidateCount ++;
             temp = card;
         }else{
+            NSInteger voteNumber = card.voteNumber;
             card.status = VOTED;
+            card.voteNumber = voteNumber;
         }
     }
+    
     if (candidateCount == 1) {
         //go end
-        temp.status = DEAD;
-        ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:temp];
-        [self.navigationController pushViewController:rc animated:YES];
-        [rc release];
-    }else if(candidateCount > 1)
+        self.willDeadPlayerCard = temp;
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", self.willDeadPlayerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        [alertView show];
+        [alertView release];
+    }
+    else if(candidateCount > 1)
     {
         //pk
         [self showPKView:candidateCount];
@@ -294,6 +300,7 @@
     [self setMainMenuButton:nil];
     [self setChangeVoteNumberController:nil];
     [self setTipsController:nil];
+    [self setWillDeadPlayerCard:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -320,9 +327,9 @@
 
 - (void)didPickedCandidate:(PlayerCard *)playerCard
 {
-    ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:playerCard];
-    [self.navigationController pushViewController:rc animated:YES];
-    [rc release];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", self.willDeadPlayerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    [alertView show];
+    [alertView release];
 }
 
 - (void)willPickCandidate:(PlayerCard *)playerCard
@@ -332,12 +339,8 @@
     if (self.changeVoteNumberController.view) {
         [self.changeVoteNumberController.view removeFromSuperview];
     }
-    
     ChangeVoteNumberController *cvnc = [[ChangeVoteNumberController alloc] initWithPlayerCard:playerCard] ;
-    
     cvnc.view.frame = (CGRect){CGPointMake((320 - cvnc.view.frame.size.width)/2, 259-cvnc.view.frame.size.height/2), cvnc.view.frame.size};
-    
-    //cvnc.view.frame = CGRectMake(90, 205, 140, 70);
     self.changeVoteNumberController = cvnc;
     [cvnc release];
     [self.view addSubview:self.changeVoteNumberController.view];
@@ -402,6 +405,26 @@
     self.tipsController = tc;
     [tc release];
     [self.view addSubview:self.tipsController.view];
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        self.willDeadPlayerCard.status = DEAD;
+        ResultController *rc = [[ResultController alloc] initWithCurrentPlayerCard:self.willDeadPlayerCard];
+        [self.navigationController pushViewController:rc animated:YES];
+        [rc release];
+    }
+    else if (buttonIndex == 1){
+        for (PlayerCard *card in self.playerManager.playerCardList) {
+            if (card.status != DEAD && card.status != JUDGE) {
+                NSInteger voteNumber = card.voteNumber;
+                card.status = VOTE;
+                card.voteNumber = voteNumber;
+            }
+        }
+    }
 }
 
 @end

@@ -299,6 +299,21 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
         if (playerCard.status == VOTE) {
             return;
         }
+        
+        if (playerCard.status == CANDIDATE) {
+            for (PlayerCard * card in _playerCardList) {
+                if (card.status != DEAD && card.status != JUDGE) {
+                    NSInteger voteNumber = card.voteNumber;
+                    card.status = VOTE;
+                    card.voteNumber = voteNumber;
+                }
+            }
+            if (self.voteDelegate && [self.voteDelegate respondsToSelector:@selector(didPickedCandidate:)]) {
+                [self.voteDelegate didPickedCandidate:playerCard];
+            }
+            return;
+        }
+        
         if (playerCard.status == DEAD) {
             for (PlayerCard * card in _playerCardList) {
                 if (card.status != DEAD && card.status != JUDGE) {
