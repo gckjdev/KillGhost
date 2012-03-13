@@ -31,11 +31,12 @@
 
 - (void)addPlayerCards
 {
-    PlayerCardManager *manager = [PlayerCardManager showCardManager];
-    NSArray *cards = manager.playerCardList;
-    for (PlayerCard *card in cards) {
-        card.status = EXAMINE;
-        [self.view addSubview:card];
+    PlayerCardManager *manager = [PlayerCardManager defaultManager];
+    for (PlayerCard *card in manager.playerCardList) {
+        PlayerCard *showCard = [[PlayerCard alloc] initWithPlayer:card.player position:card.position showIngindex:card.index status:EXAMINE];
+//        showCard.status = EXAMINE;
+        [self.view addSubview:showCard];
+        [showCard release];
     }
 }
 

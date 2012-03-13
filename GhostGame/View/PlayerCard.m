@@ -243,19 +243,32 @@
     }
     return self;
 }
-
-- (id)initWithPlayer:(Player *)player position:(CGPoint)position
+- (id)initWithPlayer:(Player *)player position:(CGPoint)position showIngindex:(NSInteger)index
 {
     self = [super init];
     if (self) {
         self.player = player;
         self.position = position;
         self.center = position;
-
+        self.index = index;
         [self defaultSetting];
-
     }
-    return self;
+    return self;    
+}
+
+
+- (id)initWithPlayer:(Player *)player position:(CGPoint)position showIngindex:(NSInteger)index status:(NSInteger)status
+{
+    self = [super init];
+    if (self) {
+        self.player = player;
+        self.position = position;
+        self.center = position;
+        self.index = index;
+        [self defaultSetting];
+        self.status = status;
+    }
+    return self;    
 }
 
 - (void)dealloc

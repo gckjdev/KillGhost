@@ -19,19 +19,13 @@ PlayerCardManager *GlobalGetPlayerCardManager()
     return defaultPlayerCardManager;
 }
 
-PlayerCardManager *showPlayerCardManager;
-PlayerCardManager *GlobalGetShowPlayerCardManager()
-{
-    if (showPlayerCardManager == nil) {
-        showPlayerCardManager = [[PlayerCardManager alloc] init];
-    }
-    return showPlayerCardManager;
-}
+
 
 @implementation PlayerCardManager
 @synthesize playerCardList = _playerCardList;
 @synthesize showingCard = _showingCard;
 @synthesize voteDelegate = _voteDelegate;
+@synthesize pickRoleDelegate = _pickRoleDelegate;
 @synthesize playerList = _playerList;
 @synthesize game = _game;
 @synthesize judgeIndex;
@@ -52,6 +46,7 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
     
     
     _pickIndex = -1;
+    judgeIndex = -1;
     _showingCard = nil;
 }
 - (id)init
@@ -74,11 +69,6 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
 + (PlayerCardManager *)defaultManager
 {
     return GlobalGetPlayerCardManager();
-}
-
-+ (PlayerCardManager *)showCardManager
-{
-    return GlobalGetShowPlayerCardManager();
 }
 
 - (PlayerCard *)playerCardAtIndex:(NSInteger)index
@@ -155,11 +145,11 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
     }
     NSInteger i = 0;
     NSInteger count = [_playerList count];
+    [_playerCardList removeAllObjects];
     for (Player *player in _playerList) {
         CGPoint center = CGPointMake(cosf(M_PI * 2.0 * i / count - M_PI_2) * 138 + 160, sinf(M_PI * 2.0 / count * i - M_PI_2) * 138 + 260);
-        PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center];
+        PlayerCard *card = [[PlayerCard alloc] initWithPlayer:player position:center showIngindex:++i status:UNCERTAIN];
         card.delegate = self;
-        card.index = ++i;
         [_playerCardList addObject:card];
         [card release];
     }
@@ -220,17 +210,17 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
     }
 }
 
-- (void)synchronizeWithPlayerManager:(PlayerCardManager *)manager
+- (void)uncertainAllPlayers
 {
-//    [self reset];
-    self.game = manager.game;
-    self.voteDelegate = manager.voteDelegate;
-    judgeIndex = manager.judgeIndex;
-    self.playerList = manager.playerList;
-    [self createCardsFromPlayerList:self.playerList];
+    for (Player *player in _playerList) {
+        [player setType:UncertainType];
+        [player setWord:nil];
+    }
+    for (PlayerCard *playerCard in _playerCardList) {
+        [playerCard setStatus:UNCERTAIN];
+    }
 
 }
-
 
 #pragma mark - PlayerCard Delegate
 
@@ -316,7 +306,11 @@ PlayerCardManager *GlobalGetShowPlayerCardManager()
         
         if (playerCard.status == JUDGE) {
             [[PlayerCardManager defaultManager] createCertainCardsWithJudgeIndex:playerCard.index - 1];
-            [[PlayerCardManager showCardManager] synchronizeWithPlayerManager:[PlayerCardManager defaultManager]];           
+
+            if (self.pickRoleDelegate && [self.pickRoleDelegate respondsToSelector:@selector(didPickedJudge:)]) {
+                [self.pickRoleDelegate didPickedJudge:playerCard];
+            }
+            
         }
         
         PlayerCard *card = [self getNextWillShowCard];
