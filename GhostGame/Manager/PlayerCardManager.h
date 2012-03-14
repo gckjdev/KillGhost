@@ -51,7 +51,7 @@
 - (void)createUncertainCardsWithGame:(Game *)game;
 - (void)createCertainCardsWithJudgeIndex:(NSInteger)index;
 - (void)uncertainAllPlayers;
-
+- (BOOL)isAllCardsShow;
 
 @end
 extern PlayerCardManager *GlobalGetPlayerCardManager();
