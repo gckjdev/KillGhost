@@ -30,8 +30,7 @@ enum MAINMENU_VIEW_STATUS {
 @property (retain,nonatomic) UIViewController *nextViewController;
 @property (retain,nonatomic) NSString *tips;
 @property (nonatomic, assign) NSInteger status;
-
-
+@property (nonatomic, assign) BOOL isCustomPreviousAction;
 
 - (id)init;
 - (void)show;

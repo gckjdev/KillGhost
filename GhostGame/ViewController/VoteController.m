@@ -23,8 +23,8 @@
 @synthesize playerManager = _playerManager;
 @synthesize lineViewArray = _lineViewArray;
 @synthesize changeVoteNumberController;
-@synthesize tipsController;
 @synthesize willDeadPlayerCard;
+@synthesize footerView;
 
 #pragma mark - line segment
 
@@ -69,8 +69,6 @@
     return self;
 }
 
-
-
 - (id)init
 {
     self = [super init];
@@ -79,7 +77,6 @@
     }
     return self;
 }
-
 
 - (id)initWithPlayerManager:(PlayerCardManager *)manager
 {
@@ -96,8 +93,8 @@
     [changeVoteNumberController release];
     [_mainMenuBarView release];
     [_mainMenuButton release];
-    [tipsController release];
     [willDeadPlayerCard release];
+    [footerView release];
     [super dealloc];
 }
 
@@ -263,7 +260,25 @@
     else if(candidateCount > 1)
     {
         //pk
-        [self showPKView:candidateCount];
+        //[self showPKView:candidateCount];
+        if (maxVoteNumber == 0) {
+            for (PlayerCard *card in _playerManager.playerCardList) {
+                if (card.status == DEAD || card.status == JUDGE) {
+                    continue;
+                }
+                else {
+                    card.status = VOTE;
+                }
+            }
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"全部玩家都是0票，请点击牌进行投票" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+            [alertView release];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"现在出现了%d个票数相同的玩家，需要进行陈述进行pk，陈述完毕之后投票选出谁最有可能是鬼。", candidateCount] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+            [alertView release];
+        }
         
     }else{
         //bug ?
@@ -274,6 +289,18 @@
     ShowPlayerCardsController *spc = [[ShowPlayerCardsController alloc] init];
     [self.navigationController pushViewController:spc animated:YES];
     [spc release];
+}
+
+- (void)showFooter
+{
+    FooterView *fv = [[FooterView alloc] init];
+    self.footerView = fv;
+    [fv release];
+    
+    self.footerView.currentViewController = self;
+    self.footerView.tips = @"点击牌进行投票";
+    [self.footerView.nextButton addTarget:self action:@selector(finishVote:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView show];
 }
 
 #pragma mark - View lifecycle
@@ -291,7 +318,8 @@
 //    [self.view addGestureRecognizer:pan];
 //    [pan release];
     [self.playerManager setVoteDelegate:self];
-    self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+    
+    [self showFooter];
 }
 
 - (void)viewDidUnload
@@ -299,8 +327,8 @@
     [self setMainMenuBarView:nil];
     [self setMainMenuButton:nil];
     [self setChangeVoteNumberController:nil];
-    [self setTipsController:nil];
     [self setWillDeadPlayerCard:nil];
+    [self setFooterView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -335,8 +363,6 @@
 
 - (void)willPickCandidate:(PlayerCard *)playerCard
 {
-    NSLog(@"--------willPickCandidate");
-    
     if (self.changeVoteNumberController.view) {
         [self.changeVoteNumberController.view removeFromSuperview];
     }
@@ -400,13 +426,6 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)clickTips:(id)sender
-{
-    TipsController *tc = [[TipsController alloc] initWithTips:@"点击牌进行投票"];
-    self.tipsController = tc;
-    [tc release];
-    [self.view addSubview:self.tipsController.view];
-}
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

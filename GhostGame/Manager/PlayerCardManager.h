@@ -22,6 +22,7 @@
 
 @optional
 - (void)didPickedJudge:(PlayerCard *)Judge;
+- (void)didpickedplayercard:(PlayerCard *)playerCard;
 @end
 
 

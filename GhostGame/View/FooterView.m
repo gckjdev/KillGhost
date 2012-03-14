@@ -13,6 +13,12 @@
 #import "UIUtils.h"
 #import "ConfigureManager.h"
 
+#define FRAME_HEIGHT 40
+#define MAINMENU_WIDTH 81
+#define PREVIOUS_WIDTH 90
+#define NEXT_WIDTH 90
+#define TIPS_WIDTH 30
+
 @implementation FooterView
 
 @synthesize mainMenuButton;
@@ -24,16 +30,18 @@
 @synthesize tipsButton;
 @synthesize tips;
 @synthesize status = _status;
+@synthesize isCustomPreviousAction;
 
 - (id)init
 {
-    self = [super initWithFrame:CGRectMake(0, 480-40, 320, 40)];
+    self = [super initWithFrame:CGRectMake(0, 480-FRAME_HEIGHT, 320, FRAME_HEIGHT)];
     if (self) {
         self.mainMenuBarView = [self createMainMenuBarView];
         self.mainMenuButton = [self createMainMenuButton];
         self.previousButton = [self createPreviousButton:@"上一步"];
         self.nextButton = [self createNextButton:@"下一步"];
         self.tipsButton = [self createTipsButton];
+        self.isCustomPreviousAction = NO;
     }
     return self;
 }
@@ -127,8 +135,10 @@
 
 - (void)clickPrivousButton:(id)sender
 {
-    self.status = CLOSED;
-    [_currentViewController.navigationController popViewControllerAnimated:YES];
+    if (!isCustomPreviousAction) {
+        self.status = CLOSED;
+        [_currentViewController.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)clickNextButton:(id)sender
@@ -189,7 +199,7 @@
 #pragma mark - create button
 - (UIButton *)createMainMenuButton
 {
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(-2, self.frame.size.height-40, 82, 40)] autorelease];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(-2, self.frame.size.height-41, MAINMENU_WIDTH, 41)] autorelease];
     [button setImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
     
     return button;
@@ -197,14 +207,14 @@
 
 - (UIButton *)createPreviousButton:(NSString *)previousButtonTitle
 {
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(81, self.frame.size.height-38, 96, 38)] autorelease];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(MAINMENU_WIDTH, self.frame.size.height-40, PREVIOUS_WIDTH, 40)] autorelease];
     
     UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"previous.png"]];
-    iv.frame= CGRectMake(0, 0, 36, 36);
+    iv.frame= CGRectMake(-1, 5, 39, 36);
     [button addSubview:iv];
     [iv release];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 64, 38)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 2, 54, 40)];
     label.font = [UIFont boldSystemFontOfSize:15];
     label.textColor = [UIColor colorWithRed:0xF3/255.0 green:0xB1/255.0 blue:0x5B/255.0 alpha:1.0];
     label.backgroundColor = [UIColor clearColor];
@@ -218,14 +228,14 @@
 
 - (UIButton *)createNextButton:(NSString *)nextButtonTitle
 {
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(240, self.frame.size.height-38, 80, 38)] autorelease];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(240, self.frame.size.height-40, NEXT_WIDTH, 40)] autorelease];
     
     UIImageView *iv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next.png"]];
-    iv.frame= CGRectMake(44, 0, 36, 36);
+    iv.frame= CGRectMake(44, 5, 39, 36);
     [button addSubview:iv];
     [iv release];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 38)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, 51, 40)];
     label.font = [UIFont boldSystemFontOfSize:15];
     label.textColor = [UIColor colorWithRed:0xF3/255.0 green:0xB1/255.0 blue:0x5B/255.0 alpha:1.0];
     label.backgroundColor = [UIColor clearColor];
@@ -239,16 +249,16 @@
 
 - (UIButton *)createTipsButton
 {
-    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(180, self.frame.size.height-38, 38, 38)] autorelease];
+    UIButton *button = [[[UIButton alloc] initWithFrame:CGRectMake(MAINMENU_WIDTH+(320-MAINMENU_WIDTH)/2-TIPS_WIDTH/2, self.frame.size.height-32, TIPS_WIDTH, 32)] autorelease];
     [button setImage:[UIImage imageNamed:@"bulb.png"] forState:UIControlStateNormal];
     return button;
 }
 
 - (UIView *)createMainMenuBarView
 {
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 230, 68, 230)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 230, 68, 243)] autorelease];
     
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 17, 68, 213)];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 17, 68, 226)];
     backgroundImageView.image = [UIImage imageNamed:@"main_menu_bar_bg"];
     [view addSubview:backgroundImageView];
     [backgroundImageView release];
@@ -268,7 +278,8 @@
         button = [[UIButton alloc] initWithFrame:CGRectMake(0, 32+38*count, 68, 34)];
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [button setTitleColor:[UIColor colorWithRed:85/255.0 green:54/255.0 blue:24/255.0 alpha:1.0] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"button_bg_m.png"] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage imageNamed:@"button_bg_m.png"] forState:UIControlStateHighlighted];
         
         switch (count) {
             case 0:

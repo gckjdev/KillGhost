@@ -104,6 +104,7 @@
 		A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8160414DF88E30022D8AE /* WordsManager.m */; };
 		A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */; };
 		A3C8161E14DFD6000022D8AE /* PickerWordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */; };
+		A3CD06E31510535300EA3E42 /* DialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CD06E21510535300EA3E42 /* DialogView.m */; };
 		A3D5618B14EA596F00D097F2 /* Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3D5618A14EA596F00D097F2 /* Words.plist */; };
 		A3D9E3CE14E108DA00BD0DCF /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */; };
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
@@ -111,8 +112,6 @@
 		A3D9E3D414E1091E00BD0DCF /* GrainLace@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3D214E1091E00BD0DCF /* GrainLace@2x.png */; };
 		A3DCB5FE150EE7F6009DF482 /* card_number_13@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3DCB5FD150EE7F6009DF482 /* card_number_13@2x.png */; };
 		A3DCB602150F1FD3009DF482 /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DCB601150F1FD3009DF482 /* FooterView.m */; };
-		A3E66088150DA55700C366FD /* TipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E66086150DA55700C366FD /* TipsController.m */; };
-		A3E66089150DA55700C366FD /* TipsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E66087150DA55700C366FD /* TipsController.xib */; };
 		A3E9EED014EBAC2D004B4130 /* ChangeVoteNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */; };
 		A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */; };
 		A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EC828014E8AA0E00AD4B66 /* ResultManager.m */; };
@@ -290,6 +289,8 @@
 		A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsCell.h; sourceTree = "<group>"; };
 		A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsCell.m; sourceTree = "<group>"; };
 		A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsCell.xib; sourceTree = "<group>"; };
+		A3CD06E11510535300EA3E42 /* DialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogView.h; sourceTree = "<group>"; };
+		A3CD06E21510535300EA3E42 /* DialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogView.m; sourceTree = "<group>"; };
 		A3D5618A14EA596F00D097F2 /* Words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Words.plist; path = ../Manager/Words.plist; sourceTree = "<group>"; };
 		A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpController.xib; sourceTree = "<group>"; };
 		A3D9E3CC14E108DA00BD0DCF /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
@@ -299,9 +300,6 @@
 		A3DCB5FD150EE7F6009DF482 /* card_number_13@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card_number_13@2x.png"; sourceTree = "<group>"; };
 		A3DCB600150F1FD3009DF482 /* FooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FooterView.h; sourceTree = "<group>"; };
 		A3DCB601150F1FD3009DF482 /* FooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterView.m; sourceTree = "<group>"; };
-		A3E66085150DA55700C366FD /* TipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsController.h; sourceTree = "<group>"; };
-		A3E66086150DA55700C366FD /* TipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsController.m; sourceTree = "<group>"; };
-		A3E66087150DA55700C366FD /* TipsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TipsController.xib; sourceTree = "<group>"; };
 		A3E9EECD14EBAC2D004B4130 /* ChangeVoteNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeVoteNumberController.h; sourceTree = "<group>"; };
 		A3E9EECE14EBAC2D004B4130 /* ChangeVoteNumberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeVoteNumberController.m; sourceTree = "<group>"; };
 		A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeVoteNumberController.xib; sourceTree = "<group>"; };
@@ -587,9 +585,6 @@
 				CA1C3CF414F5E1080022A8CD /* SettingsController.h */,
 				CA1C3CF514F5E1080022A8CD /* SettingsController.m */,
 				CA1C3CF614F5E1080022A8CD /* SettingsController.xib */,
-				A3E66085150DA55700C366FD /* TipsController.h */,
-				A3E66086150DA55700C366FD /* TipsController.m */,
-				A3E66087150DA55700C366FD /* TipsController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -618,6 +613,8 @@
 				CA0A20D914DA77B700577C02 /* PlayerCard.m */,
 				A3DCB600150F1FD3009DF482 /* FooterView.h */,
 				A3DCB601150F1FD3009DF482 /* FooterView.m */,
+				A3CD06E11510535300EA3E42 /* DialogView.h */,
+				A3CD06E21510535300EA3E42 /* DialogView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -913,7 +910,6 @@
 				A3BB354A150CE603002D708D /* help_text_bg@2x.png in Resources */,
 				A3BB354B150CE603002D708D /* picture_button@2x.png in Resources */,
 				A3BB354C150CE603002D708D /* text_button@2x.png in Resources */,
-				A3E66089150DA55700C366FD /* TipsController.xib in Resources */,
 				CAF81FCF150DEF9A007B5D0A /* card_judge@2x.png in Resources */,
 				A336DA63150E16100009E472 /* FooterController.xib in Resources */,
 				A3DCB5FE150EE7F6009DF482 /* card_number_13@2x.png in Resources */,
@@ -983,9 +979,9 @@
 				CA1C3CFB14F5E2030022A8CD /* ConfigureManager.m in Sources */,
 				A3579A4B14FF6C4D00200A4B /* LocaleUtils.m in Sources */,
 				A3AF899015007F2A00085AB6 /* CreateNewGameController.m in Sources */,
-				A3E66088150DA55700C366FD /* TipsController.m in Sources */,
 				A336DA64150E16100009E472 /* FooterController.m in Sources */,
 				A3DCB602150F1FD3009DF482 /* FooterView.m in Sources */,
+				A3CD06E31510535300EA3E42 /* DialogView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

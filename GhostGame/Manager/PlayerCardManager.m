@@ -331,6 +331,12 @@ PlayerCardManager *GlobalGetPlayerCardManager()
             
         }
         
+        if (playerCard.status == SHOWED) { 
+            if (self.pickRoleDelegate && [self.pickRoleDelegate respondsToSelector:@selector(didpickedplayercard:)]) {
+                [self.pickRoleDelegate didpickedplayercard:playerCard];
+            }
+        }
+        
         PlayerCard *card = [self getNextWillShowCard];
         if (card) {
             card.status = WILLSHOW;

@@ -64,7 +64,25 @@
 
 - (IBAction)clickNextButton:(id)sender {
     StateController *sc = [[StateController alloc] init];
-    sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    sc.toSayArray = [NSArray arrayWithObjects:
+                     @"法官宣布:天黑,请所有玩家闭眼。",
+                     @"法官宣布:鬼睁开眼,并且商量谁第一个发言",
+                     @"法官宣布:鬼闭眼。",
+                     @"法官宣布:天亮,所有玩家睁眼。",
+                     @"法官指定第一个发言者，按顺序开始描述。",
+                     @"法官宣布:进入投票阶段。",
+                     nil];
+    
+    
+    sc.explainArray = [NSArray arrayWithObjects:
+                       @"(所有玩家闭眼后，则点击下一步)", 
+                       @"(鬼商量之后,则点击下一步)",
+                       @"(所有鬼闭眼后，则点击下一步)",
+                       @"(所有玩家睁开眼后，则点击下一步)",
+                       @"(直到全部玩家描述完毕，则点击下一步)",
+                       @"",
+                       nil];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
@@ -89,11 +107,30 @@
     
     self.footerView.currentViewController = self;
     StateController *sc = [[StateController alloc] init];
-    sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    sc.toSayArray = [NSArray arrayWithObjects:
+                     @"法官宣布:天黑,请所有玩家闭眼。",
+                     @"法官宣布:鬼睁开眼,并且商量谁第一个发言",
+                     @"法官宣布:鬼闭眼。",
+                     @"法官宣布:天亮,所有玩家睁眼。",
+                     @"法官指定第一个发言者，按顺序开始描述。",
+                     @"法官宣布:进入投票阶段。",
+                     nil];
+    
+    
+    sc.explainArray = [NSArray arrayWithObjects:
+                       @"(所有玩家闭眼后，则点击下一步)", 
+                       @"(鬼商量之后,则点击下一步)",
+                       @"(所有鬼闭眼后，则点击下一步)",
+                       @"(所有玩家睁开眼后，则点击下一步)",
+                       @"(直到全部玩家描述完毕，则点击下一步)",
+                       @"",
+                       nil];
+    
     self.footerView.nextViewController = sc;
     [sc release];
     self.footerView.tips = @"请将手机按顺序传给每个玩家，玩家点击查看各自的牌";
-    //self.footerView.nextButton.hidden = YES;
+    self.footerView.nextButton.hidden = YES;
     [self.footerView show];
 }
 
@@ -131,6 +168,14 @@
 {
     if (Judge) {
         [self.controllerTitle setText:@"确定身份"];
+    }
+}
+
+- (void)didpickedplayercard:(PlayerCard *)playerCard
+{
+    self.footerView.previousButton.hidden = YES;
+    if ([[PlayerCardManager defaultManager] isAllCardsShow]) {
+        self.footerView.nextButton.hidden = NO;
     }
 }
 

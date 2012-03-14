@@ -15,21 +15,16 @@
 #import "CreateNewGameController.h"
 
 @implementation ResultController
-@synthesize resultDescriptionLabel;
-@synthesize promptLabel;
 @synthesize guessRightButton;
 @synthesize guessWrongButton;
-@synthesize continueGameButton;
 @synthesize quitButton;
 @synthesize againButton;
 @synthesize currentPlayerCard;
 @synthesize result;
-@synthesize winnerImageView;
 @synthesize lightImageView;
 @synthesize lightIndex;
-@synthesize continueImageView;
-@synthesize continueLabel;
-@synthesize dialogBoxImageView;
+@synthesize footerView;
+@synthesize dialogView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -107,14 +102,10 @@
     self.guessWrongButton.hidden = YES;
     self.quitButton.hidden = YES;
     self.againButton.hidden = YES;
-    self.continueGameButton.hidden = YES;
-    self.continueLabel.hidden = YES;
-    self.continueImageView.hidden = YES;
 }
 
 - (void)addButton
 {
-    
     self.guessWrongButton = [self createButton:@"wrong.png" text:@"猜错了" position:40 ];
     [self.guessWrongButton  addTarget:self action:@selector(clickGuessWrongButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.guessWrongButton];
@@ -130,32 +121,36 @@
     self.againButton =  [self createButton:@"again.png" text:@"再来一盘" position:200 ];
     [self.againButton addTarget:self action:@selector(clickAgainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.againButton];
+}
+
+- (void)showFooter
+{
+    FooterView *fv = [[FooterView alloc] init];
+    self.footerView = fv;
+    [fv release];
     
-    
+    self.footerView.currentViewController = self;
+    self.footerView.tips = @"由于游戏继续";
+    [self.footerView.nextButton addTarget:self action:@selector(continueGame:) forControlEvents:UIControlEventTouchUpInside];
+    self.footerView.previousButton.hidden = YES;
+    [self.footerView show];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    DialogView *dv = [[DialogView alloc] init];
+    self.dialogView = dv;
+    [dv release];
+    [self.view addSubview:self.dialogView];
+    
     [self addButton];
     [self hideButton];
-    
-    self.resultDescriptionLabel.frame = CGRectMake(40-11, 40, 240, 40);
-    self.promptLabel.frame = CGRectMake(40-11, 100, 220, 60);
-    self.promptLabel.lineBreakMode = UILineBreakModeWordWrap;
-    self.promptLabel.numberOfLines = 0;
-    
-    UIImageView *dbv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dialog_box.png"]];
-    dbv.frame = CGRectMake(11, 100, 297, 288);
-    self.dialogBoxImageView = dbv;
-    [dbv release];
-    [self.dialogBoxImageView addSubview:self.resultDescriptionLabel];
-    [self.dialogBoxImageView addSubview:self.promptLabel];
-    [self.view addSubview:self.dialogBoxImageView];
         
     if (self.currentPlayerCard.player.type == GhostType ) {
-        self.resultDescriptionLabel.text = @"此玩家是鬼,请猜词";
-        self.promptLabel.text = @"提示:法官根据鬼说的词语,判断猜对或猜错";
+        self.dialogView.toSay.text = @"此玩家是鬼,请猜词" ;
+        self.dialogView.explain.text = @"提示:法官根据鬼说的词语,判断猜对或猜错";
+        
         self.guessRightButton.hidden = NO;
         self.guessWrongButton.hidden = NO;
     }
@@ -169,67 +164,72 @@
 
 - (void)showResult
 {
-    self.resultDescriptionLabel.text = nil;
-    self.promptLabel.text = nil;
     [self hideButton];
     
     //游戏继续
     if (result == ResultContinue) { 
-        self.resultDescriptionLabel.text = @"游戏继续";
+        self.dialogView.toSay.text = @"法官宣布:游戏继续";
         
         //游戏继续有两个理由
         if (self.currentPlayerCard.player.type == GhostType) {
-            self.promptLabel.text = @"理由:鬼没有猜对词语";
+            self.dialogView.explain.text = @"理由:鬼没有猜对词语";
         }
         else
         {
-            self.promptLabel.text = @"理由:此玩家不是鬼";
+            self.dialogView.explain.text = @"理由:此玩家不是鬼";
         }
         
-        self.continueGameButton.hidden = NO;
-        self.continueLabel.hidden = NO;
-        self.continueImageView.hidden = NO;
+        [self showFooter];
     }
     //游戏结束
     else  
     {
-        [self.dialogBoxImageView removeFromSuperview];
+        [self.dialogView removeFromSuperview];
         
-        self.resultDescriptionLabel.frame = CGRectMake(20, 240, 220, 40);
-        self.promptLabel.frame = CGRectMake(20, 280, 220, 60);
-        self.promptLabel.lineBreakMode = UILineBreakModeWordWrap;
-        self.promptLabel.numberOfLines = 0;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((320-255)/2, 80, 255, 353)];
+        UILabel *resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 250, 220, 40)];
+        resultLabel.lineBreakMode = UILineBreakModeWordWrap;
+        resultLabel.numberOfLines = 0;
+        resultLabel.font = [UIFont boldSystemFontOfSize:22];
+        resultLabel.backgroundColor = [UIColor clearColor];
+        resultLabel.textAlignment = UITextAlignmentCenter;
         
-        UIImageView *wiv = [[UIImageView alloc] initWithFrame:CGRectMake((320-255)/2, 80, 255, 353)];
-        self.winnerImageView = wiv;
-        [wiv release];
-        [self.winnerImageView addSubview:self.resultDescriptionLabel];
-        [self.winnerImageView addSubview:self.promptLabel];
-        [self.view addSubview:self.winnerImageView];
+        UILabel *reasonLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 280, 220, 60)];
+        reasonLabel.lineBreakMode = UILineBreakModeWordWrap;
+        reasonLabel.numberOfLines = 0;
+        reasonLabel.font = [UIFont systemFontOfSize:14];
+        reasonLabel.backgroundColor = [UIColor clearColor];
+        reasonLabel.textAlignment = UITextAlignmentCenter;
         
         if (result == ResultGhostWin) 
         {
-            self.winnerImageView.image = [UIImage imageNamed:@"ghost_win@2x.png"];
-            self.resultDescriptionLabel.text = @"游戏结束,鬼胜出！";
+            imageView.image = [UIImage imageNamed:@"ghost_win@2x.png"];
+            resultLabel.text = @"游戏结束,鬼胜出!";
             //鬼胜出有两个理由
             if (self.currentPlayerCard.player.type == GhostType) 
-                self.promptLabel.text = @"理由:鬼猜对了词语";
+                reasonLabel.text = @"理由:鬼猜对了词语";
             else
-                self.promptLabel.text = @"理由:被错杀的数量等于鬼的总数量";
+                reasonLabel.text = @"理由:被错杀的数量等于鬼的总数量";
         }
         else if (result == ResultCivilianWin)
         {
-            self.winnerImageView.image = [UIImage imageNamed:@"civilian_win@2x.png"];
-            self.resultDescriptionLabel.text = @"游戏结束,平民胜出！";
-            self.promptLabel.text = @"理由:所有的鬼已被杀死";
+            imageView.image = [UIImage imageNamed:@"civilian_win@2x.png"];
+            resultLabel.text = @"游戏结束,平民胜出!";
+            reasonLabel.text = @"理由:所有的鬼已被杀死";
         }
+        [imageView addSubview:resultLabel];
+        [resultLabel release];
+        [imageView addSubview:reasonLabel];
+        [reasonLabel release];
+        [self.view addSubview:imageView];
+        [imageView release];
         
         self.againButton.hidden = NO;
         self.quitButton.hidden = NO;
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
-        self.lightImageView = imageView;
-        [imageView release];
+        UIImageView *iv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
+        self.lightImageView = iv;
+        [iv release];
         [self.view addSubview:self.lightImageView];
         [self lightAnimation];
     }
@@ -238,18 +238,17 @@
 
 - (void)viewDidUnload
 {
-    [self setResultDescriptionLabel:nil];
-    [self setPromptLabel:nil];
+    //[self setResultDescriptionLabel:nil];
+    //[self setPromptLabel:nil];
     [self setGuessRightButton:nil];
     [self setGuessWrongButton:nil];
     [self setCurrentPlayerCard:nil];
-    [self setContinueGameButton:nil];
     [self setQuitButton:nil];
     [self setAgainButton:nil];
     [self setLightImageView:nil];
-    [self setContinueImageView:nil];
-    [self setContinueLabel:nil];
-    [self setDialogBoxImageView:nil];
+    //[self setDialogBoxImageView:nil];
+    [self setFooterView:nil];
+    [self setDialogView:nil];
     [super viewDidUnload];
 }
 
@@ -260,18 +259,17 @@
 }
 
 - (void)dealloc {
-    [resultDescriptionLabel release];
-    [promptLabel release];
+    //[resultDescriptionLabel release];
+    //[promptLabel release];
     [guessRightButton release];
     [guessWrongButton release];
     [currentPlayerCard release];
-    [continueGameButton release];
     [quitButton release];
     [againButton release];
     [lightImageView release];
-    [continueImageView release];
-    [continueLabel release];
-    [dialogBoxImageView release];
+    //[dialogBoxImageView release];
+    [footerView release];
+    [dialogView release];
     [super dealloc];
 }
 
@@ -287,10 +285,20 @@
     [self showResult];
 }
 
-- (IBAction)continueGame:(id)sender
+- (void)continueGame:(id)sender
 {
     StateController *sc = [[StateController alloc] init];
-    sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:由出局者的下一位玩家，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:由出局者的下一位玩家，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
+    sc.toSayArray = [NSArray arrayWithObjects:
+                     @"法官宣布:由出局者的下一位玩家，按顺序开始描述。",
+                     @"法官宣布:进入投票阶段。",
+                     nil];
+    
+    
+    sc.explainArray = [NSArray arrayWithObjects:
+                       @"(直到全部玩家描述完毕，则点击下一步))", 
+                       @"",
+                       nil];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }

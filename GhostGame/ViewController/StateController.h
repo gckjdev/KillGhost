@@ -7,30 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TipsController.h"
+#import "FooterView.h"
+#import "DialogView.h"
 
 @interface StateController : UIViewController
 
-
-@property (retain, nonatomic) NSArray * operationTipsArray;
 @property (assign,nonatomic) int selectIndex;
+@property (retain, nonatomic) NSArray * toSayArray;
+@property (retain, nonatomic) NSArray * explainArray;
+@property (retain, nonatomic) DialogView *dialogView_0;
+@property (retain, nonatomic) DialogView *dialogView_1;
 
-@property (retain, nonatomic) IBOutlet UIButton *previousButton;
-@property (retain, nonatomic) IBOutlet UIButton *nextButton;
+@property (retain, nonatomic) FooterView *footerView;
 
-@property (retain, nonatomic) UILabel *operationLabel_0;
-@property (retain, nonatomic) UILabel *operationLabel_1;
-
-@property (retain, nonatomic) UIView *operationView_0;
-@property (retain, nonatomic) UIView *operationView_1;
-
-@property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
-@property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
-@property (retain, nonatomic) TipsController *tipsController;
-
-- (IBAction)previous:(id)sender;
-- (IBAction)next:(id)sender;
-- (void)updateView;
+- (void)previous:(id)sender;
+- (void)next:(id)sender;
 
 - (void)translationOnX:(UIView*)view from:(float)fromValue to:(float)toValue;
 

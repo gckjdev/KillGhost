@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PlayerCardManager.h"
-#import "TipsController.h"
+#import "FooterView.h"
 
 @class PlayerCardManager;
 @class LineSegment;
@@ -29,8 +29,8 @@
 @property(nonatomic, retain) ChangeVoteNumberController *changeVoteNumberController;
 @property (retain, nonatomic) IBOutlet UIView *mainMenuBarView;
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
-@property (retain, nonatomic) TipsController *tipsController;
 @property (retain, nonatomic) PlayerCard *willDeadPlayerCard;
+@property (retain, nonatomic) FooterView *footerView;
 
 - (IBAction)finishVote:(id)sender;
 - (IBAction)clickShowButton:(id)sender;

@@ -8,10 +8,11 @@
 
 #import "HelpController.h"
 #import "FooterView.h"
+#import "DialogView.h"
+
 @implementation HelpController
 @synthesize descriptionTextView;
 @synthesize flowChartScrollView;
-@synthesize footerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,18 +54,13 @@
         num ++;
     }
     
-    HelpController *hp = [[HelpController alloc] init];
-    FooterView *footView = [[FooterView alloc] init];
-    footView.currentViewController = self;
-    footView.tips = @"测试";
-    footView.nextViewController = hp;
-    footView.previousButton.hidden = YES;
-    footView.nextButton.hidden = YES;
-    //footView.tipsButton.hidden = YES;
-    footView.mainMenuButton.hidden = YES;
-    [hp release];
-    [footView show];
-    [footView release];
+    //DialogView *dialog = [[DialogView alloc] initWithToSay:@"法官宣布:所有玩家闭眼。" explain: @"(所有玩家闭眼后，则进入下一步)"];
+//    DialogView *dialog = [[DialogView alloc] init];
+//    dialog.toSay.text = @"法官宣布:所有玩家闭眼。333";
+//    dialog.explain.text = @"(所有玩家闭眼后，则进入下一步111)";
+//    [self.view addSubview:dialog];
+//    [dialog release];
+    
 }
 
 - (void)viewDidUnload
