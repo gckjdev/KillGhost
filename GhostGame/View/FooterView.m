@@ -266,6 +266,7 @@
     UIButton *button = nil;
     for (int count= 0; count<5; count++) {
         button = [[UIButton alloc] initWithFrame:CGRectMake(0, 32+38*count, 68, 34)];
+        [button.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [button setTitleColor:[UIColor colorWithRed:85/255.0 green:54/255.0 blue:24/255.0 alpha:1.0] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"button_bg_m.png"] forState:UIControlStateHighlighted];
         
