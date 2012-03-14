@@ -154,12 +154,15 @@ PlayerCardManager *GlobalGetPlayerCardManager()
         [card release];
     }
 }
-//- (void)createCardsFromGame:(Game *)game;
-//{
-//    [self reset];
-//    [self createPlayerListFromGame:game];
-//    [self createCardsFromPlayerList:self.playerList];
-//}
+- (BOOL)isAllCardsShow
+{
+    for (PlayerCard *card in self.playerCardList) {
+        if (card.status != JUDGE && card.status != SHOWED) {
+            return NO;
+        }
+    }
+    return YES;
+}
 
 - (void)createUncertainCardsWithGame:(Game *)game
 {
