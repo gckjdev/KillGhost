@@ -23,6 +23,7 @@
 @synthesize dialogView_1;
 @synthesize toSayArray;
 @synthesize explainArray;
+@synthesize tipsArray;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +50,7 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"点击牌进行投票";
+    self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
     [self.footerView.previousButton addTarget:self action:@selector(previous:) forControlEvents:UIControlEventTouchUpInside];
     self.footerView.isCustomPreviousAction = YES;
     [self.footerView.nextButton addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
@@ -115,6 +116,7 @@
     [self setDialogView_1:nil];
     [self setToSayArray:nil];
     [self setExplainArray:nil];
+    [self setTipsArray:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -132,6 +134,7 @@
     [dialogView_0 release];
     [toSayArray release];
     [explainArray release];
+    [tipsArray release];
     [super dealloc];
 }
 
@@ -161,6 +164,7 @@
         [self RightIntoAnimation:self.dialogView_1];
     }
     
+    self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
 }
 
 - (void)next:(id)sender
@@ -193,6 +197,8 @@
         self.dialogView_0.explain.text = [self.explainArray objectAtIndex:selectIndex];
         [self leftIntoAnimation:self.dialogView_0];
     }
+    
+    self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
 }
 
 - (void)translationOnX:(UIView*)view from:(float)fromValue to:(float)toValue
@@ -229,5 +235,7 @@
 {
     [self translationOnX:view from:self.view.frame.size.width/2 to:320+self.view.frame.size.width/2];
 }
+
+
 
 @end

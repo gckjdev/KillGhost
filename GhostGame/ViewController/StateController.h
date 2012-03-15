@@ -15,6 +15,7 @@
 @property (assign,nonatomic) int selectIndex;
 @property (retain, nonatomic) NSArray * toSayArray;
 @property (retain, nonatomic) NSArray * explainArray;
+@property (retain, nonatomic) NSArray * tipsArray;
 @property (retain, nonatomic) DialogView *dialogView_0;
 @property (retain, nonatomic) DialogView *dialogView_1;
 

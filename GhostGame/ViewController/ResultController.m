@@ -130,7 +130,6 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"由于游戏继续";
     [self.footerView.nextButton addTarget:self action:@selector(continueGame:) forControlEvents:UIControlEventTouchUpInside];
     self.footerView.previousButton.hidden = YES;
     [self.footerView show];
@@ -148,8 +147,8 @@
     [self hideButton];
         
     if (self.currentPlayerCard.player.type == GhostType ) {
-        self.dialogView.toSay.text = @"此玩家是鬼,请猜词" ;
-        self.dialogView.explain.text = @"提示:法官根据鬼说的词语,判断猜对或猜错";
+        self.dialogView.toSay.text = @"法官宣布: 此玩家是鬼,请此玩家猜词" ;
+        self.dialogView.explain.text = @"(根据鬼说的词语,判断猜对或猜错)";
         
         self.guessRightButton.hidden = NO;
         self.guessWrongButton.hidden = NO;
@@ -168,18 +167,20 @@
     
     //游戏继续
     if (result == ResultContinue) { 
-        self.dialogView.toSay.text = @"法官宣布:游戏继续";
+        [self showFooter];
         
         //游戏继续有两个理由
         if (self.currentPlayerCard.player.type == GhostType) {
-            self.dialogView.explain.text = @"理由:鬼没有猜对词语";
+            self.dialogView.toSay.text = @"法官宣布: 鬼没有猜对词语,游戏继续。";
+            self.dialogView.explain.text = @"(宣布完请点击下一步)";
+            self.footerView.tips = @"鬼没有猜对词语，并且还有鬼没被杀，因此游戏将继续";
         }
         else
         {
-            self.dialogView.explain.text = @"理由:此玩家不是鬼";
+            self.dialogView.toSay.text = @"法官宣布: 此玩家不是鬼,游戏继续。";
+            self.dialogView.explain.text = @"(宣布完请点击下一步)";
+            self.footerView.tips = @"此玩家不是鬼,游戏继续";
         }
-        
-        [self showFooter];
     }
     //游戏结束
     else  
@@ -288,17 +289,20 @@
 - (void)continueGame:(id)sender
 {
     StateController *sc = [[StateController alloc] init];
-    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:由出局者的下一位玩家，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
     sc.toSayArray = [NSArray arrayWithObjects:
-                     @"法官宣布:由出局者的下一位玩家，按顺序开始描述。",
-                     @"法官宣布:进入投票阶段。",
+                     @"法官宣布: 由出局者的下一位玩家,按顺序开始陈述。",
+                     @"法官宣布: 进入投票阶段。",
                      nil];
     
-    
     sc.explainArray = [NSArray arrayWithObjects:
-                       @"(直到全部玩家描述完毕，则点击下一步))", 
-                       @"",
+                       @"(直到全部玩家陈述完毕，则点击下一步)", 
+                       @"(宣布完即可点击下一步)",
                        nil];
+    
+    sc.tipsArray = [NSArray arrayWithObjects:
+                    @"这是一轮新的描述,继续展开紧张的博弈吧",
+                    @"宣布进入投票后即可点击下一步",
+                    nil];
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
@@ -316,7 +320,5 @@
     cngc.civilianWordTextField.text= @"";
     [self.navigationController popToViewController:cngc animated:YES];
 }
-
-
 
 @end

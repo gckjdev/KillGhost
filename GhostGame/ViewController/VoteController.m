@@ -298,7 +298,7 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"点击牌进行投票";
+    self.footerView.tips = @"每个玩家对应一张牌，点击牌，然后点击加号或减号可以添加或减少得票数";
     [self.footerView.nextButton addTarget:self action:@selector(finishVote:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView show];
 }

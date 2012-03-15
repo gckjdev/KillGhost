@@ -149,6 +149,7 @@
         [_currentTextField resignFirstResponder];
         [self finishEdited:_currentTextField];
     }
+    self.footerView.status = CLOSED;
 }
 
 - (void)showFooter
@@ -158,7 +159,7 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"确定人数以及选择词语";
+    self.footerView.tips = @"此时手机在法官手上\n1.填写玩家总人数(7至13人)\n2.从词库选择词语，也可以自定义词语\n(完成这两步才能点下一步)";
     [self.footerView.nextButton addTarget:self action:@selector(clickNewGame:)  forControlEvents:UIControlEventTouchUpInside];
     self.footerView.nextButton.hidden = YES;
     [self.footerView show];

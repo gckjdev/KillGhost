@@ -62,31 +62,6 @@
     }
 }
 
-- (IBAction)clickNextButton:(id)sender {
-    StateController *sc = [[StateController alloc] init];
-    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
-    sc.toSayArray = [NSArray arrayWithObjects:
-                     @"法官宣布:天黑,请所有玩家闭眼。",
-                     @"法官宣布:鬼睁开眼,并且商量谁第一个发言",
-                     @"法官宣布:鬼闭眼。",
-                     @"法官宣布:天亮,所有玩家睁眼。",
-                     @"法官指定第一个发言者，按顺序开始描述。",
-                     @"法官宣布:进入投票阶段。",
-                     nil];
-    
-    
-    sc.explainArray = [NSArray arrayWithObjects:
-                       @"(所有玩家闭眼后，则点击下一步)", 
-                       @"(鬼商量之后,则点击下一步)",
-                       @"(所有鬼闭眼后，则点击下一步)",
-                       @"(所有玩家睁开眼后，则点击下一步)",
-                       @"(直到全部玩家描述完毕，则点击下一步)",
-                       @"",
-                       nil];
-    [self.navigationController pushViewController:sc animated:YES];
-    [sc release];
-}
-
 - (IBAction)clickBackButton:(id)sender {
     [[self navigationController] popViewControllerAnimated:YES];
 }
@@ -104,33 +79,10 @@
     FooterView *fv = [[FooterView alloc] init];
     self.footerView = fv;
     [fv release];
-    
     self.footerView.currentViewController = self;
-    StateController *sc = [[StateController alloc] init];
-    //sc.operationTipsArray = [NSArray arrayWithObjects:@"法官宣布:所有玩家闭眼。\n\n(所有玩家闭眼后，则进入下一步)",@"法官宣布:鬼睁开眼,并且商量谁第一个发言。\n\n(鬼商量之后,则进入下一步)",@"法官宣布:鬼闭眼。\n\n(所有鬼闭眼后，则进入下一步)",@"法官宣布:所有玩家睁眼。\n\n(所有玩家睁开眼后，则进入下一步)",@"法官指定第一个发言者，按顺序开始描述。\n\n(直到全部玩家描述完毕，则进入下一步)",@"法官宣布:进入投票阶段。", nil];
-    sc.toSayArray = [NSArray arrayWithObjects:
-                     @"法官宣布:天黑,请所有玩家闭眼。",
-                     @"法官宣布:鬼睁开眼,并且商量谁第一个发言",
-                     @"法官宣布:鬼闭眼。",
-                     @"法官宣布:天亮,所有玩家睁眼。",
-                     @"法官指定第一个发言者，按顺序开始描述。",
-                     @"法官宣布:进入投票阶段。",
-                     nil];
-    
-    
-    sc.explainArray = [NSArray arrayWithObjects:
-                       @"(所有玩家闭眼后，则点击下一步)", 
-                       @"(鬼商量之后,则点击下一步)",
-                       @"(所有鬼闭眼后，则点击下一步)",
-                       @"(所有玩家睁开眼后，则点击下一步)",
-                       @"(直到全部玩家描述完毕，则点击下一步)",
-                       @"",
-                       nil];
-    
-    self.footerView.nextViewController = sc;
-    [sc release];
-    self.footerView.tips = @"请将手机按顺序传给每个玩家，玩家点击查看各自的牌";
+    self.footerView.tips = @"法官先确定自己的位置，从法官的下一位开始将手机按顺序传给每个玩家，玩家点击查看各自的牌，最终将手机交会给法官。";
     self.footerView.nextButton.hidden = YES;
+    [self.footerView.nextButton addTarget:self action:@selector(nextAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView show];
 }
 
@@ -177,6 +129,41 @@
     if ([[PlayerCardManager defaultManager] isAllCardsShow]) {
         self.footerView.nextButton.hidden = NO;
     }
+}
+
+- (void)nextAction:(id)sender
+{
+    StateController *sc = [[StateController alloc] init];
+    
+    sc.toSayArray = [NSArray arrayWithObjects:
+                     @"法官宣布: 天黑,请闭眼。",
+                     @"法官宣布: 鬼睁开眼,商量并且指定谁第一个发言",
+                     @"法官宣布: 鬼闭眼。",
+                     @"法官宣布: 天亮,所有玩家睁眼。",
+                     @"法官指定第一个发言者,按顺序开始陈述。",
+                     @"法官宣布: 进入投票阶段。",
+                     nil];
+    
+    
+    sc.explainArray = [NSArray arrayWithObjects:
+                       @"(玩家闭眼后,则点击下一步)", 
+                       @"(鬼指定之后,则点击下一步)",
+                       @"(鬼闭眼后,则点击下一步)",
+                       @"(玩家睁开眼后,则点击下一步)",
+                       @"(直到全部玩家描述完毕,则点击下一步)",
+                       @"(宣布完即可点击下一步)",
+                       nil];
+    
+    sc.tipsArray = [NSArray arrayWithObjects:
+                    @"确保所有玩家都闭眼哦", 
+                    @"鬼之间用眼神或手势交流，并且用手势告诉法官谁第一个发言",
+                    @"确保所有玩家都闭眼哦",
+                    @"大家睁开眼，即将进入激烈的博弈",
+                    @"发言内容是描述各自看到的词语，平民的发言尽量让其他平民知道自己是平民，同时不要让鬼猜出词语，鬼的发言尽量让平民以为自己是平民。",
+                    @"宣布进入投票后即可点击下一步",
+                    nil];
+    [self.navigationController pushViewController:sc animated:YES];
+    [sc release];
 }
 
 @end

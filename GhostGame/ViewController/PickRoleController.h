@@ -25,7 +25,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *controllerTitle;
 @property (retain, nonatomic) FooterView *footerView;
 
-- (IBAction)clickNextButton:(id)sender;
 - (IBAction)clickBackButton:(id)sender;
 - (id)initWithGame:(Game *)aGame;
 @end

@@ -64,7 +64,7 @@
     //explainLabel.backgroundColor = [UIColor yellowColor];
     explainLabel.numberOfLines = 0;
     explainLabel.lineBreakMode = UILineBreakModeWordWrap;
-    explainLabel.font = [UIFont boldSystemFontOfSize:15];
+    explainLabel.font = [UIFont boldSystemFontOfSize:18];
     self.explain = explainLabel;
     [explainLabel release];
     [self addSubview:self.explain];
