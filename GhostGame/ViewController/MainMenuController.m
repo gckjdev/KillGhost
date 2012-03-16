@@ -100,9 +100,9 @@
     [self addAnimationToLine:settingLine];
     [self addAnimationToLine:helpLine];
     
-    [self.startGameButton setTitle:NSLS(@"Start") forState:UIControlStateNormal];
-    [self.settingButton setTitle:NSLS(@"Settings") forState:UIControlStateNormal];
-    [self.helpButton setTitle:NSLS(@"Help") forState:UIControlStateNormal];
+    [self.startGameButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
+    [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
+    [self.helpButton setTitle:NSLS(@"kHelp") forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload

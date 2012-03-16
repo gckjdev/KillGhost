@@ -59,6 +59,9 @@
     [super dealloc];
 }
 
+#define HIDEMAINBUTTON_TAG_1 99
+//#define HIDEMAINBUTTON_TAG_2 98
+
 - (void)setStatus:(NSInteger)status
 {
     _status = status;
@@ -66,18 +69,48 @@
         [UIView beginAnimations:@"downMainMenu" context:nil];
         self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
         [UIView commitAnimations];
+        
+        UIView *bv = [self.currentViewController.view viewWithTag:HIDEMAINBUTTON_TAG_1];
+        [bv removeFromSuperview];
     }
     else{
         [UIView beginAnimations:@"upMainMenu" context:nil];
         self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
         [UIView commitAnimations];
+        
+        UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
+        backView.alpha = 0.5;
+        backView.backgroundColor = [UIColor blackColor];
+        UIButton *hideMainButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
+        [hideMainButton addTarget:self action:@selector(clickMainMenuButton:) forControlEvents:UIControlEventTouchUpInside];
+        [backView addSubview:hideMainButton];
+        [hideMainButton release];
+        backView.tag = HIDEMAINBUTTON_TAG_1;
+        [self.currentViewController.view addSubview:backView];
+        [backView release];
+        
+        [_currentViewController.view bringSubviewToFront:self.mainMenuBarView];
+        [_currentViewController.view bringSubviewToFront:self];
+        
+        //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, MAINMENU_WIDTH, 320-MAINMENU_WIDTH, FRAME_HEIGHT)];
+        //view.alpha = 0.5;
+        //view.backgroundColor = [UIColor blackColor];
+        //UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320-MAINMENU_WIDTH , FRAME_HEIGHT)];
+        //button.backgroundColor = [UIColor blackColor];
+        //button.tag = HIDEMAINBUTTON_TAG_1;
+        //[button addTarget:self action:@selector(clickMainMenuButton:) forControlEvents:UIControlEventTouchUpInside];
+        //[view addSubview:button];
+        //[button release];
+        //[self addSubview:view];
+        //[view release];
     }
 }
 
 #pragma mark - action
+
 - (void)clickContinue:(id)sender
 {
-    self.status = CLOSED;
+    [self clickMainMenuButton:nil];
 }
 
 - (void)clickShowPlayer:(id)sender
@@ -130,6 +163,8 @@
     }
     else {
         self.status = CLOSED;
+        UIView *backView = [self.currentViewController.view viewWithTag:HIDEMAINBUTTON_TAG_1];
+        [backView removeFromSuperview];
     }
 }
 

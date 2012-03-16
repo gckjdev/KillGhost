@@ -16,7 +16,7 @@
 #import "ConfigureManager.h"
 #import "SettingsController.h"
 #import "HelpController.h"
-
+#import "LocaleUtils.h"
 
 @implementation CreateNewGameController
 @synthesize coverView;
@@ -33,6 +33,16 @@
 @synthesize foolWordTextField;
 @synthesize civilianWordTextField;
 @synthesize footerView;
+@synthesize viewTitleLabel;
+@synthesize firstStepLabel;
+@synthesize judgeLabel;
+@synthesize ghostLabel;
+@synthesize foolLabel;
+@synthesize civilianLabel;
+@synthesize secondStepLabel;
+@synthesize ghostWordLabel;
+@synthesize foolWordLabel;
+@synthesize civilianWordLabel;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +69,16 @@
     [civilianNumberImageView release];
     [coverView release];
     [footerView release];
+    [viewTitleLabel release];
+    [firstStepLabel release];
+    [judgeLabel release];
+    [ghostLabel release];
+    [foolLabel release];
+    [civilianLabel release];
+    [secondStepLabel release];
+    [ghostWordLabel release];
+    [foolWordLabel release];
+    [civilianWordLabel release];
     [super dealloc];
 }
 
@@ -108,12 +128,12 @@
             self.playerNumberTextField.text = @"";
             NSString *message = nil;
             if (count < 7) {
-                message = @"人数不足哦，至少7个人！";
+                message = NSLS(@"kTooLittle");
             }
             else {
-                message = @"人数太多，玩不了哦！建议分成几群人玩。";
+                message = NSLS(@"kTooMuch");
             }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:NSLS(@"kSure") otherButtonTitles:nil];
             [alert show];
             [alert release];
             return;
@@ -159,7 +179,7 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"此时手机在法官手上\n1.填写玩家总人数(7至13人)\n2.从词库选择词语，也可以自定义词语\n(完成这两步才能点下一步)";
+    self.footerView.tips = NSLS(@"kTips1");
     [self.footerView.nextButton addTarget:self action:@selector(clickNewGame:)  forControlEvents:UIControlEventTouchUpInside];
     self.footerView.nextButton.hidden = YES;
     [self.footerView show];
@@ -188,6 +208,17 @@
     [self hideNumber];
     
     [self showFooter];
+    
+    viewTitleLabel.text = NSLS(@"kGameInit");
+    firstStepLabel.text = NSLS(@"kFirstSept");
+    judgeLabel.text = NSLS(@"kJudge");
+    ghostLabel.text = NSLS(@"kGhost");
+    foolLabel.text = NSLS(@"kFool");
+    civilianLabel.text = NSLS(@"kCivilian");
+    secondStepLabel.text = NSLS(@"kSecondSept");
+    ghostWordLabel.text = NSLS(@"kGhostWord");
+    foolWordLabel.text = NSLS(@"kFoolWord");
+    civilianWordLabel.text = NSLS(@"kCivilianWord");
 }
 
 - (void)viewDidUnload
@@ -206,6 +237,16 @@
     [self setCivilianNumberImageView:nil];
     [self setCoverView:nil];
     [self setFooterView:nil];
+    [self setViewTitleLabel:nil];
+    [self setFirstStepLabel:nil];
+    [self setJudgeLabel:nil];
+    [self setGhostLabel:nil];
+    [self setFoolLabel:nil];
+    [self setCivilianLabel:nil];
+    [self setSecondStepLabel:nil];
+    [self setGhostWordLabel:nil];
+    [self setFoolWordLabel:nil];
+    [self setCivilianWordLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -229,14 +270,14 @@
     NSString *fWord = self.foolWordTextField.text;
     
     if (self.playerNumberTextField.text.integerValue < 7 || self.playerNumberTextField.text.integerValue > 13) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"没设定人数哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kNotSetNumber") delegate:nil cancelButtonTitle:NSLS(@"kSure") otherButtonTitles:nil];
         [alert show];
         [alert release];
         return ;
     }
     
     if (civilianWordTextField.text.length == 0 || self.foolWordTextField.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"没设定键字哦" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kNotSetWord") delegate:nil cancelButtonTitle:@"kSure" otherButtonTitles:nil];
         [alert show];
         [alert release];
         return ;

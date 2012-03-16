@@ -12,6 +12,7 @@
 
 @implementation SettingsController
 @synthesize passwordField;
+@synthesize passwordTipsLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,12 +51,17 @@
 {
     [super viewDidLoad];
     [self setTapGestureRecognizerEnable:YES];
+    if ([ConfigureManager getPassword]) {
+        self.passwordTipsLabel.hidden = YES;
+    }
+    
     passwordField.text = [ConfigureManager getPassword];
 }
 
 - (void)viewDidUnload
 {
     [self setPasswordField:nil];
+    [self setPasswordTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -69,6 +75,7 @@
 
 - (void)dealloc {
     [passwordField release];
+    [passwordTipsLabel release];
     [super dealloc];
 }
 - (IBAction)clickBack:(id)sender {

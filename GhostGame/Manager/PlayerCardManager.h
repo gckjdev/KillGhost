@@ -21,6 +21,7 @@
 @protocol PickRoleDelegate <NSObject>
 
 @optional
+- (void)willPickplayercard:(PlayerCard *)playerCard;
 - (void)didPickedJudge:(PlayerCard *)Judge;
 - (void)didpickedplayercard:(PlayerCard *)playerCard;
 @end

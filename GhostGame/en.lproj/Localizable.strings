@@ -6,8 +6,6 @@
   Copyright (c) 2012年 orange. All rights reserved.
 */
 
-"Start" = "      Start";
-
-"Settings" = "      Set";
-
-"Help" = "      Help";
+"kStart" = "      Start";
+"Skettings" = "      Set";
+"kHelp" = "      Help";

@@ -101,6 +101,7 @@
     // Do any additional setup after loading the view from its nib.
     [self updateVoteNumberLabel];
     [self setCardImage];
+    [self updateButtonStatus]; 
 }
 
 - (void)viewDidUnload
@@ -155,29 +156,32 @@
         self.minusOneButton.enabled = YES;
     
     
-    if (self.playerCard.voteNumber == [[[PlayerCardManager defaultManager] playerCardList ] count]) {
+    if (self.playerCard.voteNumber == [[[PlayerCardManager defaultManager] playerCardList ] count] - 1) {
         self.plusOneButton.enabled = NO;
     }
     else{
         self.plusOneButton.enabled = YES;
     }
     
-//    int allVoteCount = 0, hasVoteCount = 0;
-//    for (PlayerCard *card in [[PlayerCardManager defaultManager] playerCardList ]) {
-//        if (card.status != DEAD)
-//        {
-//            allVoteCount ++;
-//            hasVoteCount += card.voteNumber;
-//        }
-//    }
-//    
-//    if (self.playerCard.voteNumber == allVoteCount - 1 || self.playerCard.voteNumber == allVoteCount - hasVoteCount) {
-//        self.plusOneButton.enabled = NO;
-//    }
-//    else
-//    {
-//        self.plusOneButton.enabled = YES;
-//    }
+    int allVoteCount = 0, hasVoteCount = 0;
+    for (PlayerCard *card in [[PlayerCardManager defaultManager] playerCardList ]) {
+        if (card.status != DEAD && card.status != JUDGE)
+        {
+            allVoteCount ++;
+            hasVoteCount += card.voteNumber;
+        }
+    }
+    NSLog(@"%d",[[[PlayerCardManager defaultManager] playerCardList] count]);
+    NSLog(@"%d",allVoteCount);
+    NSLog(@"%d",hasVoteCount);
+    
+    if (self.playerCard.voteNumber == allVoteCount - 1 || hasVoteCount >= allVoteCount ) {
+        self.plusOneButton.enabled = NO;
+    }
+    else
+    {
+        self.plusOneButton.enabled = YES;
+    }
     
 }
 

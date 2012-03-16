@@ -670,7 +670,6 @@
 						<string key="NSFrame">{{231, 353}, {53, 53}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -828,6 +827,86 @@
 						<reference key="destination" ref="917795412"/>
 					</object>
 					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewTitleLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="776026298"/>
+					</object>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">firstStepLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="393325511"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">judgeLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="330725645"/>
+					</object>
+					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ghostLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="914746793"/>
+					</object>
+					<int key="connectionID">93</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">foolLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="941464874"/>
+					</object>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">civilianLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="112414555"/>
+					</object>
+					<int key="connectionID">95</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">secondStepLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="421856827"/>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">ghostWordLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="84353081"/>
+					</object>
+					<int key="connectionID">97</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">foolWordLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="629360146"/>
+					</object>
+					<int key="connectionID">98</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">civilianWordLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="357775369"/>
+					</object>
+					<int key="connectionID">99</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1129,7 +1208,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">89</int>
+			<int key="maxID">99</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1137,40 +1216,10 @@
 					<string key="className">CreateNewGameController</string>
 					<string key="superclassName">GRViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="clickContinue:">id</string>
-						<string key="clickHelp:">id</string>
-						<string key="clickMainMenu:">id</string>
-						<string key="clickQuit:">id</string>
-						<string key="clickSetting:">id</string>
-						<string key="clickTips:">id</string>
 						<string key="pickWords:">id</string>
 						<string key="randomWords:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="clickContinue:">
-							<string key="name">clickContinue:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickHelp:">
-							<string key="name">clickHelp:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickMainMenu:">
-							<string key="name">clickMainMenu:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickQuit:">
-							<string key="name">clickQuit:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickSetting:">
-							<string key="name">clickSetting:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clickTips:">
-							<string key="name">clickTips:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="pickWords:">
 							<string key="name">pickWords:</string>
 							<string key="candidateClassName">id</string>
@@ -1181,28 +1230,45 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="civilianLabel">UILabel</string>
 						<string key="civilianNumberImageView">UIImageView</string>
 						<string key="civilianNumberLabel">UILabel</string>
+						<string key="civilianWordLabel">UILabel</string>
 						<string key="civilianWordTextField">UITextField</string>
 						<string key="coverView">UIView</string>
+						<string key="firstStepLabel">UILabel</string>
+						<string key="foolLabel">UILabel</string>
 						<string key="foolNumberImageView">UIImageView</string>
 						<string key="foolNumberLabel">UILabel</string>
+						<string key="foolWordLabel">UILabel</string>
 						<string key="foolWordTextField">UITextField</string>
+						<string key="ghostLabel">UILabel</string>
 						<string key="ghostNumberImageView">UIImageView</string>
 						<string key="ghostNumberLabel">UILabel</string>
+						<string key="ghostWordLabel">UILabel</string>
+						<string key="judgeLabel">UILabel</string>
 						<string key="judgeNumberImageView">UIImageView</string>
 						<string key="judgeNumberLabel">UILabel</string>
-						<string key="mainMenuBarView">UIView</string>
 						<string key="playerNumberTextField">UITextField</string>
+						<string key="secondStepLabel">UILabel</string>
+						<string key="viewTitleLabel">UILabel</string>
 						<string key="wordLengthTextField">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="civilianLabel">
+							<string key="name">civilianLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="civilianNumberImageView">
 							<string key="name">civilianNumberImageView</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="civilianNumberLabel">
 							<string key="name">civilianNumberLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="civilianWordLabel">
+							<string key="name">civilianWordLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="civilianWordTextField">
@@ -1213,6 +1279,14 @@
 							<string key="name">coverView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="firstStepLabel">
+							<string key="name">firstStepLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="foolLabel">
+							<string key="name">foolLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="foolNumberImageView">
 							<string key="name">foolNumberImageView</string>
 							<string key="candidateClassName">UIImageView</string>
@@ -1221,9 +1295,17 @@
 							<string key="name">foolNumberLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="foolWordLabel">
+							<string key="name">foolWordLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="foolWordTextField">
 							<string key="name">foolWordTextField</string>
 							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ghostLabel">
+							<string key="name">ghostLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="ghostNumberImageView">
 							<string key="name">ghostNumberImageView</string>
@@ -1231,6 +1313,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="ghostNumberLabel">
 							<string key="name">ghostNumberLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="ghostWordLabel">
+							<string key="name">ghostWordLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="judgeLabel">
+							<string key="name">judgeLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="judgeNumberImageView">
@@ -1241,13 +1331,17 @@
 							<string key="name">judgeNumberLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="mainMenuBarView">
-							<string key="name">mainMenuBarView</string>
-							<string key="candidateClassName">UIView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="playerNumberTextField">
 							<string key="name">playerNumberTextField</string>
 							<string key="candidateClassName">UITextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="secondStepLabel">
+							<string key="name">secondStepLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="viewTitleLabel">
+							<string key="name">viewTitleLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="wordLengthTextField">
 							<string key="name">wordLengthTextField</string>

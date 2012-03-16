@@ -15,4 +15,5 @@
 - (IBAction)clickSave:(id)sender;
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;
 
+@property (retain, nonatomic) IBOutlet UILabel *passwordTipsLabel;
 @end

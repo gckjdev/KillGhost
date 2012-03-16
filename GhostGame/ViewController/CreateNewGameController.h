@@ -39,6 +39,18 @@
 @property (retain, nonatomic) IBOutlet UITextField *civilianWordTextField;
 @property (retain, nonatomic) FooterView *footerView;
 
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *firstStepLabel;
+@property (retain, nonatomic) IBOutlet UILabel *judgeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *ghostLabel;
+@property (retain, nonatomic) IBOutlet UILabel *foolLabel;
+@property (retain, nonatomic) IBOutlet UILabel *civilianLabel;
+@property (retain, nonatomic) IBOutlet UILabel *secondStepLabel;
+@property (retain, nonatomic) IBOutlet UILabel *ghostWordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *foolWordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *civilianWordLabel;
+
+
 - (IBAction)randomWords:(id)sender;
 - (IBAction)pickWords:(id)sender;
 
