@@ -210,11 +210,12 @@
     [view addSubview:button];
     [button release];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 139, 270, 202)];
-    imageView.image = [UIImage imageNamed:@"output_box.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 154, 320, 296)];
+    imageView.image = [UIImage imageNamed:@"tips_box.png"];
     //imageView.userInteractionEnabled = YES;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(36, 34, 186, 118)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(38, 38, 240, 176)];
     label.backgroundColor = [UIColor clearColor];
+    //label.backgroundColor = [UIColor blueColor];
     label.font = [UIFont systemFontOfSize:15];
     label.numberOfLines = 0;
     label.lineBreakMode = UILineBreakModeWordWrap;

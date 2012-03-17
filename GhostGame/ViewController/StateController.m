@@ -15,12 +15,14 @@
 #import "ResultController.h"
 #import "VoteController.h"
 #import "SettingsController.h"
+#import "LocaleUtils.h"
 
 @implementation StateController
 @synthesize selectIndex;
 @synthesize footerView;
 @synthesize dialogView_0;
 @synthesize dialogView_1;
+@synthesize viewTitleLabel;
 @synthesize toSayArray;
 @synthesize explainArray;
 @synthesize tipsArray;
@@ -62,6 +64,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kGameInProgress");
     
     self.selectIndex = 0;
     
@@ -117,6 +120,7 @@
     [self setToSayArray:nil];
     [self setExplainArray:nil];
     [self setTipsArray:nil];
+    [self setViewTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -135,6 +139,7 @@
     [toSayArray release];
     [explainArray release];
     [tipsArray release];
+    [viewTitleLabel release];
     [super dealloc];
 }
 

@@ -13,6 +13,9 @@
 @implementation HelpController
 @synthesize descriptionTextView;
 @synthesize flowChartScrollView;
+@synthesize TextButton;
+@synthesize ImageButton;
+@synthesize TriangleImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +37,7 @@
 #pragma mark - View lifecycle
 - (void)addTextToFlowChart
 {
-    NSArray *stepArray = [NSArray arrayWithObjects:@"设定人数和词语", @"玩家查看身份和词语", @"第一轮陈述", @"投票淘汰", @"继续下一轮陈述", nil];
+    NSArray *stepArray = [NSArray arrayWithObjects:@"设定人数和词语", @"玩家查看身份和词语", @"鬼相认", @"陈述", @"投票淘汰", @"出局决策", @"继续陈述,胜负判断", nil];
     NSInteger num = 0;
     for (NSString *str in stepArray) {
         CGFloat y ;
@@ -43,22 +46,29 @@
                 y = 62;
                 break;
             case 1:
-                y = 210;
+                y = 207;
                 break;
             case 2:
-                y = 390;
+                y = 388;
                 break;
             case 3:
-                y = 534;
+                y = 545;
                 break;
             case 4:
-                y = 695;
+                y = 680;
+                break;
+            case 5:
+                y = 846;
+                break;
+            case 6:
+                y = 1006;
                 break;
             default:
                 break;
         }
         UILabel *stepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, 290, 20)];
         stepLabel.text = str;
+        stepLabel.font = [UIFont boldSystemFontOfSize:16];
         stepLabel.backgroundColor = [UIColor clearColor];
         stepLabel.textAlignment = UITextAlignmentCenter;
         [self.flowChartScrollView addSubview:stepLabel];
@@ -71,8 +81,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.TextButton setImage:[UIImage imageNamed:@"text_button_selected.png"] forState:UIControlStateNormal];
+    
     self.flowChartScrollView.hidden = YES;
-    self.flowChartScrollView.contentSize = CGSizeMake(292, 812);
+    self.flowChartScrollView.contentSize = CGSizeMake(292, 1037);
     [self addTextToFlowChart];
     
     self.descriptionTextView.text =
@@ -110,6 +122,9 @@
 {
     [self setDescriptionTextView:nil];
     [self setFlowChartScrollView:nil];
+    [self setTextButton:nil];
+    [self setImageButton:nil];
+    [self setTriangleImageView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -124,12 +139,21 @@
 - (IBAction)clickText:(id)sender{
     self.descriptionTextView.hidden = NO;
     self.flowChartScrollView.hidden = YES;
+    
+    [self.TextButton setImage:[UIImage imageNamed:@"text_button_selected.png"] forState:UIControlStateNormal];
+    [self.ImageButton setImage:[UIImage imageNamed:@"picture_button.png"] forState:UIControlStateNormal];
+    self.TriangleImageView.frame = (CGRect){CGPointMake(85, 133), self.TriangleImageView.frame.size};
+    
 }
 
 - (IBAction)clickFlowChart:(id)sender
 {
     self.descriptionTextView.hidden = YES;
     self.flowChartScrollView.hidden = NO;
+    
+    [self.TextButton setImage:[UIImage imageNamed:@"text_button.png"] forState:UIControlStateNormal];
+    [self.ImageButton setImage:[UIImage imageNamed:@"picture_button_selected.png"] forState:UIControlStateNormal];
+    self.TriangleImageView.frame = (CGRect){CGPointMake(214, 133), self.TriangleImageView.frame.size};
 }
 
 - (IBAction)clickBack:(id)sender {
@@ -139,6 +163,9 @@
 - (void)dealloc {
     [descriptionTextView release];
     [flowChartScrollView release];
+    [TextButton release];
+    [ImageButton release];
+    [TriangleImageView release];
     [super dealloc];
 }
 @end

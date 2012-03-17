@@ -13,6 +13,7 @@
 #import "Player.h"
 #import "StateController.h"
 #import "CreateNewGameController.h"
+#import "LocaleUtils.h"
 
 @implementation ResultController
 @synthesize guessRightButton;
@@ -106,19 +107,19 @@
 
 - (void)addButton
 {
-    self.guessWrongButton = [self createButton:@"wrong.png" text:@"猜错了" position:40 ];
+    self.guessWrongButton = [self createButton:@"wrong.png" text:NSLS(@"kWrong") position:40 ];
     [self.guessWrongButton  addTarget:self action:@selector(clickGuessWrongButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.guessWrongButton];
     
-    self.guessRightButton = [self createButton:@"right.png" text:@"猜对了" position:200 ];
+    self.guessRightButton = [self createButton:@"right.png" text:NSLS(@"kRight") position:200 ];
     [self.guessRightButton addTarget:self action:@selector(clickGuessRightButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.guessRightButton];
     
-    self.quitButton =  [self createButton:@"not_again.png" text:@"退出游戏" position:40];
+    self.quitButton =  [self createButton:@"not_again.png" text:NSLS(@"kQuitGame") position:40];
     [self.quitButton addTarget:self action:@selector(clickQuitButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.quitButton];
     
-    self.againButton =  [self createButton:@"again.png" text:@"再来一盘" position:200 ];
+    self.againButton =  [self createButton:@"again.png" text:NSLS(@"kAgain") position:200 ];
     [self.againButton addTarget:self action:@selector(clickAgainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.againButton];
 }
@@ -147,8 +148,8 @@
     [self hideButton];
         
     if (self.currentPlayerCard.player.type == GhostType ) {
-        self.dialogView.toSay.text = @"法官宣布: 此玩家是鬼,请此玩家猜词" ;
-        self.dialogView.explain.text = @"(根据鬼说的词语,判断猜对或猜错)";
+        self.dialogView.toSay.text = NSLS(@"kGuessWord") ;
+        self.dialogView.explain.text = NSLS(@"kPressRightOrWrong");
         
         self.guessRightButton.hidden = NO;
         self.guessWrongButton.hidden = NO;
@@ -171,15 +172,15 @@
         
         //游戏继续有两个理由
         if (self.currentPlayerCard.player.type == GhostType) {
-            self.dialogView.toSay.text = @"法官宣布: 鬼没有猜对词语,游戏继续。";
-            self.dialogView.explain.text = @"(宣布完请点击下一步)";
-            self.footerView.tips = @"鬼没有猜对词语，并且还有鬼没被杀，因此游戏将继续";
+            self.dialogView.toSay.text = NSLS(@"kGhostGuessGuessWrong");
+            self.dialogView.explain.text = NSLS(@"kClickNext");
+            self.footerView.tips = NSLS(@"kClickNext");
         }
         else
         {
-            self.dialogView.toSay.text = @"法官宣布: 此玩家不是鬼,游戏继续。";
-            self.dialogView.explain.text = @"(宣布完请点击下一步)";
-            self.footerView.tips = @"此玩家不是鬼,游戏继续";
+            self.dialogView.toSay.text = NSLS(@"kNotGhost");
+            self.dialogView.explain.text = NSLS(@"kClickNext");
+            self.footerView.tips = NSLS(@"kNotGhostAndContinue");
         }
     }
     //游戏结束
@@ -205,10 +206,10 @@
         if (result == ResultGhostWin) 
         {
             imageView.image = [UIImage imageNamed:@"ghost_win@2x.png"];
-            resultLabel.text = @"游戏结束,鬼胜出!";
+            resultLabel.text = NSLS(@"kGhostWin");
             //鬼胜出有两个理由
             if (self.currentPlayerCard.player.type == GhostType) 
-                reasonLabel.text = @"理由:鬼猜对了词语";
+                reasonLabel.text = NSLS(@"kGhostGuessRight");
             else
                 reasonLabel.text = @"理由:被错杀的数量等于鬼的总数量";
         }

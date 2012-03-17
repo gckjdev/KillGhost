@@ -319,6 +319,8 @@
         textField == self.foolWordTextField || 
         textField == self.civilianWordTextField) {
         
+        self.coverView.hidden = YES;
+        
         if (self.view.frame.origin.y ==0 ) {
             [UIView beginAnimations:@"upView" context:nil];
             self.view.frame = CGRectOffset(self.view.frame,0, -180);

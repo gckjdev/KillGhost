@@ -16,6 +16,7 @@
 #import "ShowPlayerCardsController.h"
 #import "SettingsController.h"
 #import "HelpController.h"
+#import "LocaleUtils.h"
 
 @implementation VoteController
 @synthesize mainMenuBarView = _mainMenuBarView;
@@ -25,6 +26,7 @@
 @synthesize changeVoteNumberController;
 @synthesize willDeadPlayerCard;
 @synthesize footerView;
+@synthesize viewTitleLabel = _viewTitleLabel;
 
 #pragma mark - line segment
 
@@ -95,6 +97,7 @@
     [_mainMenuButton release];
     [willDeadPlayerCard release];
     [footerView release];
+    [_viewTitleLabel release];
     [super dealloc];
 }
 
@@ -213,7 +216,7 @@
     pkView.frame = CGRectMake(0, 200, 10, 10);
     pkView.center = CGPointMake(160, 240);
     pkView.backgroundColor = [UIColor purpleColor];
-    NSString *title = [NSString stringWithFormat:@"现在出现了%d个票数相同的玩家，需要进行陈述进行pk，陈述完毕之后投票选出谁最有可能是鬼。",count];
+    NSString *title = [NSString stringWithFormat:NSLS(@"kNeedToPK"),count];
     [pkView setTitle:title forState:UIControlStateNormal];
     pkView.titleLabel.numberOfLines = 0;
     pkView.titleLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -253,7 +256,7 @@
     if (candidateCount == 1) {
         //go end
         self.willDeadPlayerCard = temp;
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", self.willDeadPlayerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kKillSomeone"), self.willDeadPlayerCard.index] delegate:self cancelButtonTitle:NSLS(@"kSure")     otherButtonTitles:NSLS(@"kCancel"), nil];
         [alertView show];
         [alertView release];
     }
@@ -270,12 +273,12 @@
                     card.status = VOTE;
                 }
             }
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"全部玩家都是0票，请点击牌进行投票" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kNeedToVote") delegate:nil cancelButtonTitle:NSLS(@"kSure") otherButtonTitles: nil];
             [alertView show];
             [alertView release];
         }
         else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"现在出现了%d个票数相同的玩家，需要进行陈述进行pk，陈述完毕之后投票选出谁最有可能是鬼。", candidateCount] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kNeedToPK"), candidateCount] delegate:nil cancelButtonTitle:NSLS(@"kSure") otherButtonTitles: nil];
             [alertView show];
             [alertView release];
         }
@@ -298,7 +301,7 @@
     [fv release];
     
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"每个玩家对应一张牌，点击牌，然后点击加号或减号可以添加或减少得票数";
+    self.footerView.tips = NSLS(@"kTips9");
     [self.footerView.nextButton addTarget:self action:@selector(finishVote:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView show];
 }
@@ -308,6 +311,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kVote");
+    
     for (PlayerCard *card in self.playerManager.playerCardList) {
         if (card.status != DEAD && card.status != JUDGE) {
             card.status = VOTE;
@@ -329,6 +334,7 @@
     [self setChangeVoteNumberController:nil];
     [self setWillDeadPlayerCard:nil];
     [self setFooterView:nil];
+    [self setViewTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -356,7 +362,7 @@
 - (void)didPickedCandidate:(PlayerCard *)playerCard
 {
     self.willDeadPlayerCard = playerCard;
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定淘汰%d号玩家?", playerCard.index] delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:NSLS(@"kKillSomeone"), playerCard.index] delegate:self cancelButtonTitle:NSLS(@"kSure") otherButtonTitles:NSLS(@"kCancel"), nil];
     [alertView show];
     [alertView release];
 }

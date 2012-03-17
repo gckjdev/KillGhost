@@ -284,7 +284,7 @@ PlayerCardManager *GlobalGetPlayerCardManager()
             [self.voteDelegate willPickCandidate:playerCard];
         }
     }
-    if (playerCard.status == WILLSHOW && playerCard.status == SHOWED) {
+    if (playerCard.status == WILLSHOW || playerCard.status == SHOWED) {
         if (self.pickRoleDelegate && [self.pickRoleDelegate respondsToSelector:@selector(willPickplayercard:)]) {
             [self.pickRoleDelegate willPickplayercard:playerCard];
         }

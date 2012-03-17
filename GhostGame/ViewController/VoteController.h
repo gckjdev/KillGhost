@@ -31,6 +31,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *mainMenuButton;
 @property (retain, nonatomic) PlayerCard *willDeadPlayerCard;
 @property (retain, nonatomic) FooterView *footerView;
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
 
 - (IBAction)finishVote:(id)sender;
 - (IBAction)clickShowButton:(id)sender;

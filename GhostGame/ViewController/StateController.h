@@ -19,6 +19,7 @@
 @property (retain, nonatomic) DialogView *dialogView_0;
 @property (retain, nonatomic) DialogView *dialogView_1;
 
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
 @property (retain, nonatomic) FooterView *footerView;
 
 - (void)previous:(id)sender;

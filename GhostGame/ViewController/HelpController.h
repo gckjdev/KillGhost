@@ -12,6 +12,10 @@
 
 @property (retain, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (retain, nonatomic) IBOutlet UIScrollView *flowChartScrollView;
+@property (retain, nonatomic) IBOutlet UIButton *TextButton;
+@property (retain, nonatomic) IBOutlet UIButton *ImageButton;
+
+@property (retain, nonatomic) IBOutlet UIImageView *TriangleImageView;
 
 - (IBAction)clickBack:(id)sender;
 @end

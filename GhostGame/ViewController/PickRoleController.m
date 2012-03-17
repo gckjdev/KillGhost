@@ -13,6 +13,7 @@
 #import "PlayerCardManager.h"
 #import "SettingsController.h"
 #import "HelpController.h"
+#import "LocaleUtils.h"
 
 @implementation PickRoleController
 @synthesize game = _game;
@@ -80,7 +81,7 @@
     self.footerView = fv;
     [fv release];
     self.footerView.currentViewController = self;
-    self.footerView.tips = @"法官先确定自己的位置，从法官的下一位开始将手机按顺序传给每个玩家，玩家点击查看各自的牌，最终将手机交会给法官。";
+    self.footerView.tips = NSLS(@"kTips2");
     self.footerView.nextButton.hidden = YES;
     [self.footerView.nextButton addTarget:self action:@selector(nextAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView show];
@@ -92,7 +93,7 @@
 {
     [super viewDidLoad];
     [self addPlayerCardViews];
-    [self.controllerTitle setText:@"确定法官位置"];
+    [self.controllerTitle setText:NSLS(@"kSelectJudgePosition")];
     [[PlayerCardManager defaultManager] setPickRoleDelegate:self];
     
     [self showFooter];
@@ -115,17 +116,42 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#define BACKVIEW_TAG 1000
+- (void)addBackView
+{
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    backView.backgroundColor = [UIColor blackColor];
+    backView.alpha = 0.5;
+    backView.tag = BACKVIEW_TAG;
+    [self.view addSubview:backView];
+    [backView release];
+}
+
+- (void)cancelBackView
+{
+    UIView *view = [self.view viewWithTag:BACKVIEW_TAG];
+    [view removeFromSuperview];
+}
+
 #pragma mark - Pick Role delegate
+
+
+- (void)willPickplayercard:(PlayerCard *)playerCard
+{
+    [self addBackView];
+}
+
 - (void)didPickedJudge:(PlayerCard *)Judge
 {
+    self.footerView.previousButton.hidden = YES;
     if (Judge) {
-        [self.controllerTitle setText:@"确定身份"];
+        [self.controllerTitle setText:NSLS(@"kDetermineIdentity")];
     }
 }
 
 - (void)didpickedplayercard:(PlayerCard *)playerCard
 {
-    self.footerView.previousButton.hidden = YES;
+    [self cancelBackView];
     if ([[PlayerCardManager defaultManager] isAllCardsShow]) {
         self.footerView.nextButton.hidden = NO;
     }
@@ -136,32 +162,32 @@
     StateController *sc = [[StateController alloc] init];
     
     sc.toSayArray = [NSArray arrayWithObjects:
-                     @"法官宣布: 天黑,请闭眼。",
-                     @"法官宣布: 鬼睁开眼,商量并且指定谁第一个发言",
-                     @"法官宣布: 鬼闭眼。",
-                     @"法官宣布: 天亮,所有玩家睁眼。",
-                     @"法官指定第一个发言者,按顺序开始陈述。",
-                     @"法官宣布: 进入投票阶段。",
+                     NSLS(@"kJudgeDeclared1"),
+                     NSLS(@"kJudgeDeclared2"),
+                     NSLS(@"kJudgeDeclared3"),
+                     NSLS(@"kJudgeDeclared4"),
+                     NSLS(@"kJudgeDeclared5"),
+                     NSLS(@"kJudgeDeclared6"),
                      nil];
     
-    
     sc.explainArray = [NSArray arrayWithObjects:
-                       @"(玩家闭眼后,则点击下一步)", 
-                       @"(鬼指定之后,则点击下一步)",
-                       @"(鬼闭眼后,则点击下一步)",
-                       @"(玩家睁开眼后,则点击下一步)",
-                       @"(直到全部玩家描述完毕,则点击下一步)",
-                       @"(宣布完即可点击下一步)",
+                       NSLS(@"kExplain1"),
+                       NSLS(@"kExplain2"),
+                       NSLS(@"kExplain3"),
+                       NSLS(@"kExplain4"),
+                       NSLS(@"kExplain5"),
+                       NSLS(@"kExplain6"),
                        nil];
     
     sc.tipsArray = [NSArray arrayWithObjects:
-                    @"确保所有玩家都闭眼哦", 
-                    @"鬼之间用眼神或手势交流，并且用手势告诉法官谁第一个发言",
-                    @"确保所有玩家都闭眼哦",
-                    @"大家睁开眼，即将进入激烈的博弈",
-                    @"发言内容是描述各自看到的词语，平民的发言尽量让其他平民知道自己是平民，同时不要让鬼猜出词语，鬼的发言尽量让平民以为自己是平民。",
-                    @"宣布进入投票后即可点击下一步",
+                    NSLS(@"kTips3"),
+                    NSLS(@"kTips4"),
+                    NSLS(@"kTips5"),
+                    NSLS(@"kTips6"),
+                    NSLS(@"kTips7"),
+                    NSLS(@"kTips8"),
                     nil];
+    
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
