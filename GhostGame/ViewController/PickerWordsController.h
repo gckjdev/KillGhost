@@ -25,6 +25,11 @@
 @property (retain, nonatomic) IBOutlet UITableView *wordsTable;
 @property (assign,nonatomic) int selectCellIndex;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *civilianWordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *foolWordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *backLabel;
+
 - (IBAction)clickBack:(id)sender;
 
 - (id)initWithCategory:(NSString *)categoryValue;

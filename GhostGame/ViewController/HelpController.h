@@ -14,6 +14,8 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *flowChartScrollView;
 @property (retain, nonatomic) IBOutlet UIButton *TextButton;
 @property (retain, nonatomic) IBOutlet UIButton *ImageButton;
+@property (retain, nonatomic) IBOutlet UILabel *backLabel;
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
 
 @property (retain, nonatomic) IBOutlet UIImageView *TriangleImageView;
 

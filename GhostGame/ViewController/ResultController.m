@@ -14,6 +14,7 @@
 #import "StateController.h"
 #import "CreateNewGameController.h"
 #import "LocaleUtils.h"
+#import "ConfigureManager.h"
 
 @implementation ResultController
 @synthesize guessRightButton;
@@ -26,6 +27,8 @@
 @synthesize lightIndex;
 @synthesize footerView;
 @synthesize dialogView;
+@synthesize viewTitleLabel;
+@synthesize lightChangeTimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,7 +59,7 @@
 - (void)lightAnimation
 {
     lightIndex = 0;
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeLight) userInfo:nil repeats:YES];
+    self.lightChangeTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeLight) userInfo:nil repeats:YES];
 }
 
 - (void)changeLight
@@ -139,6 +142,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kDieOut");
+    
     DialogView *dv = [[DialogView alloc] init];
     self.dialogView = dv;
     [dv release];
@@ -172,20 +177,25 @@
         
         //游戏继续有两个理由
         if (self.currentPlayerCard.player.type == GhostType) {
-            self.dialogView.toSay.text = NSLS(@"kGhostGuessGuessWrong");
+            self.dialogView.toSay.text = NSLS(@"kGhostGuessWrong");
             self.dialogView.explain.text = NSLS(@"kClickNext");
-            self.footerView.tips = NSLS(@"kClickNext");
+            self.footerView.tips = NSLS(@"kTips10");
         }
         else
         {
             self.dialogView.toSay.text = NSLS(@"kNotGhost");
             self.dialogView.explain.text = NSLS(@"kClickNext");
-            self.footerView.tips = NSLS(@"kNotGhostAndContinue");
+            self.footerView.tips = NSLS(@"kTips11");
+        }
+        if ([ConfigureManager getIsDefaultTips]) {
+            [self.footerView autoShowTips];
         }
     }
     //游戏结束
     else  
     {
+        self.viewTitleLabel.text = NSLS(@"kWin");
+        
         [self.dialogView removeFromSuperview];
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((320-255)/2, 80, 255, 353)];
@@ -211,13 +221,13 @@
             if (self.currentPlayerCard.player.type == GhostType) 
                 reasonLabel.text = NSLS(@"kGhostGuessRight");
             else
-                reasonLabel.text = @"理由:被错杀的数量等于鬼的总数量";
+                reasonLabel.text = NSLS(@"kVictimizesCount");
         }
         else if (result == ResultCivilianWin)
         {
             imageView.image = [UIImage imageNamed:@"civilian_win@2x.png"];
-            resultLabel.text = @"游戏结束,平民胜出!";
-            reasonLabel.text = @"理由:所有的鬼已被杀死";
+            resultLabel.text = NSLS(@"kCivilianWin");
+            reasonLabel.text = NSLS(@"kAllGhostKilled");
         }
         [imageView addSubview:resultLabel];
         [resultLabel release];
@@ -251,6 +261,8 @@
     //[self setDialogBoxImageView:nil];
     [self setFooterView:nil];
     [self setDialogView:nil];
+    [self setViewTitleLabel:nil];
+    [self setLightChangeTimer:nil];
     [super viewDidUnload];
 }
 
@@ -272,6 +284,8 @@
     //[dialogBoxImageView release];
     [footerView release];
     [dialogView release];
+    [viewTitleLabel release];
+    [lightChangeTimer release];
     [super dealloc];
 }
 
@@ -291,19 +305,20 @@
 {
     StateController *sc = [[StateController alloc] init];
     sc.toSayArray = [NSArray arrayWithObjects:
-                     @"法官宣布: 由出局者的下一位玩家,按顺序开始陈述。",
-                     @"法官宣布: 进入投票阶段。",
+                     NSLS(@"kJudgeDeclared7"),
+                     NSLS(@"kJudgeDeclared8"),
                      nil];
     
     sc.explainArray = [NSArray arrayWithObjects:
-                       @"(直到全部玩家陈述完毕，则点击下一步)", 
-                       @"(宣布完即可点击下一步)",
+                       NSLS(@"kExplain7"), 
+                       NSLS(@"kExplain8"),
                        nil];
     
     sc.tipsArray = [NSArray arrayWithObjects:
-                    @"这是一轮新的描述,继续展开紧张的博弈吧",
-                    @"宣布进入投票后即可点击下一步",
+                    NSLS(@"kTips12"),
+                    NSLS(@"kTips13"),
                     nil];
+    
     [self.navigationController pushViewController:sc animated:YES];
     [sc release];
 }
@@ -316,9 +331,10 @@
 - (void)clickAgainButton
 {
     CreateNewGameController *cngc = (CreateNewGameController *)[[self.navigationController viewControllers] objectAtIndex:1];
-    cngc.wordLengthTextField.text =@"";
-    cngc.foolWordTextField.text= @"";
-    cngc.civilianWordTextField.text= @"";
+    cngc.wordLengthTextField.text = @"";
+    cngc.foolWordTextField.text = @"";
+    cngc.civilianWordTextField.text = @"";
+    cngc.footerView.nextButton.hidden = YES;
     [self.navigationController popToViewController:cngc animated:YES];
 }
 

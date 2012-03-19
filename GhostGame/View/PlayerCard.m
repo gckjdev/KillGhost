@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "UIUtils.h"
 #import "ConfigureManager.h"
+#import "LocaleUtils.h"
 
 #define CARD_HEIGHT 57
 #define CARD_WIDTH  45 //(CARD_HEIGHT * 0.68)
@@ -183,7 +184,7 @@
     
     if(self.status == SHOWED){
         //need password
-        [UIUtils showTextView:@"请输入密码" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self secureTextEntry:YES];
+        [UIUtils showTextView:NSLS(@"kEntePassword") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];
     }else if(self.status == SHOWING){
         [self cover];        
     }else if(self.status == WILLSHOW){
@@ -213,11 +214,11 @@
             [self show];
         }else{
             //wrong password
-        [UIUtils showTextView:@"请输入密码" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self secureTextEntry:YES];
-
+        [UIUtils showTextView:NSLS(@"kEntePassword2") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];
         }
     }
 }
+
 - (void)defaultSetting
 {
     cardSize = CGSizeMake(CARD_WIDTH, CARD_HEIGHT);

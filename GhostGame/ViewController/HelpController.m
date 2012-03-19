@@ -7,14 +7,15 @@
 //
 
 #import "HelpController.h"
-#import "FooterView.h"
-#import "DialogView.h"
+#import "LocaleUtils.h"
 
 @implementation HelpController
 @synthesize descriptionTextView;
 @synthesize flowChartScrollView;
 @synthesize TextButton;
 @synthesize ImageButton;
+@synthesize backLabel;
+@synthesize viewTitleLabel;
 @synthesize TriangleImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +38,7 @@
 #pragma mark - View lifecycle
 - (void)addTextToFlowChart
 {
-    NSArray *stepArray = [NSArray arrayWithObjects:@"设定人数和词语", @"玩家查看身份和词语", @"鬼相认", @"陈述", @"投票淘汰", @"出局决策", @"继续陈述,胜负判断", nil];
+    NSArray *stepArray = [NSArray arrayWithObjects:NSLS(@"kFlowChartTitle1"), NSLS(@"kFlowChartTitle2"), NSLS(@"kFlowChartTitle3"), NSLS(@"kFlowChartTitle4"), NSLS(@"kFlowChartTitle5"), NSLS(@"kFlowChartTitle6"), NSLS(@"kFlowChartTitle7"), nil];
     NSInteger num = 0;
     for (NSString *str in stepArray) {
         CGFloat y ;
@@ -81,6 +82,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kHelp_short");
+    self.backLabel.text = NSLS(@"kBack");
+    
     [self.TextButton setImage:[UIImage imageNamed:@"text_button_selected.png"] forState:UIControlStateNormal];
     
     self.flowChartScrollView.hidden = YES;
@@ -125,6 +129,8 @@
     [self setTextButton:nil];
     [self setImageButton:nil];
     [self setTriangleImageView:nil];
+    [self setBackLabel:nil];
+    [self setViewTitleLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -166,6 +172,8 @@
     [TextButton release];
     [ImageButton release];
     [TriangleImageView release];
+    [backLabel release];
+    [viewTitleLabel release];
     [super dealloc];
 }
 @end

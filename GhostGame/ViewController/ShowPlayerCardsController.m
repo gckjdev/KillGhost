@@ -46,7 +46,6 @@
 {
     [super viewDidLoad];
     [self addPlayerCards];
-
 }
 
 - (void)viewDidUnload

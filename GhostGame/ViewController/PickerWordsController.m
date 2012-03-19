@@ -11,6 +11,7 @@
 #import "WordsManager.h"
 #import "PickerWordsCell.h"
 #import "ConfigureManager.h"
+#import "LocaleUtils.h"
 
 @implementation PickerWordsController
 @synthesize category;
@@ -18,6 +19,10 @@
 @synthesize wordsTable;
 @synthesize selectCellIndex;
 @synthesize delegate;
+@synthesize viewTitleLabel;
+@synthesize civilianWordLabel;
+@synthesize foolWordLabel;
+@synthesize backLabel;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,6 +59,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kSelectWords");
+    self.civilianWordLabel.text = NSLS(@"kCivilianWord");
+    self.foolWordLabel.text = NSLS(@"kFoolWord");
+    self.backLabel.text = NSLS(@"kBack");
     
     self.wordsArray = [[WordsManager defaultManager] getWordsArrayByCategory:self.category];
     self.selectCellIndex = -1;
@@ -65,6 +74,10 @@
     [self setCategory:nil];
     [self setWordsArray:nil];
     [self setWordsTable:nil];
+    [self setViewTitleLabel:nil];
+    [self setCivilianWordLabel:nil];
+    [self setFoolWordLabel:nil];
+    [self setBackLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -80,6 +93,10 @@
     [category release];
     [wordsArray release];
     [wordsTable release];
+    [viewTitleLabel release];
+    [civilianWordLabel release];
+    [foolWordLabel release];
+    [backLabel release];
     [super dealloc];
 }
 

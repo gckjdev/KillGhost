@@ -24,6 +24,8 @@
 @property (assign, nonatomic) NSInteger lightIndex;
 @property (retain, nonatomic) FooterView *footerView;
 @property (retain, nonatomic) DialogView *dialogView;
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+@property (retain, nonatomic) NSTimer *lightChangeTimer;
 
 - (void)continueGame:(id)sender;
 

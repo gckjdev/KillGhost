@@ -14,6 +14,12 @@
 - (IBAction)clickBack:(id)sender;
 - (IBAction)clickSave:(id)sender;
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;
+@property (retain, nonatomic) IBOutlet UISwitch *defaultTipsSwitch;
+@property (retain, nonatomic) IBOutlet UISwitch *soundSwitch;
 
 @property (retain, nonatomic) IBOutlet UILabel *passwordTipsLabel;
+
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+
+
 @end

@@ -12,12 +12,14 @@
 #import "ShowPlayerCardsController.h"
 #import "UIUtils.h"
 #import "ConfigureManager.h"
+#import "LocaleUtils.h"
 
 #define FRAME_HEIGHT 40
 #define MAINMENU_WIDTH 81
 #define PREVIOUS_WIDTH 90
 #define NEXT_WIDTH 90
 #define TIPS_WIDTH 30
+#define TIPS_SHOW_TIMER 4
 
 @implementation FooterView
 
@@ -31,6 +33,7 @@
 @synthesize tips;
 @synthesize status = _status;
 @synthesize isCustomPreviousAction;
+@synthesize showTipsTimer;
 
 - (id)init
 {
@@ -38,8 +41,8 @@
     if (self) {
         self.mainMenuBarView = [self createMainMenuBarView];
         self.mainMenuButton = [self createMainMenuButton];
-        self.previousButton = [self createPreviousButton:@"上一步"];
-        self.nextButton = [self createNextButton:@"下一步"];
+        self.previousButton = [self createPreviousButton:NSLS(@"kPrevious")];
+        self.nextButton = [self createNextButton:NSLS(@"kNext")];
         self.tipsButton = [self createTipsButton];
         self.isCustomPreviousAction = NO;
     }
@@ -56,6 +59,7 @@
     [_nextViewController release];
     [tipsButton release];
     [tips release];
+    [showTipsTimer release];
     [super dealloc];
 }
 
@@ -116,7 +120,7 @@
 - (void)clickShowPlayer:(id)sender
 {
     self.status = CLOSED;
-    [UIUtils showTextView:@"请输入密码" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self secureTextEntry:YES];
+    [UIUtils showTextView:NSLS(@"kEntePassword") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -129,6 +133,8 @@
             [_currentViewController.navigationController pushViewController:spc animated:YES];
             [spc release];
         }
+        else {
+            [UIUtils showTextView:NSLS(@"kEntePassword2") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];        }
     }
 }
 
@@ -184,6 +190,18 @@
     }
 }
 
+- (void)autoShowTips
+{
+    [self clickTipsButton:nil];
+    [self.showTipsTimer invalidate];
+    self.showTipsTimer = [NSTimer scheduledTimerWithTimeInterval:TIPS_SHOW_TIMER 
+                                     target:self
+                                   selector:@selector(cancelTips:) 
+                                   userInfo:nil 
+                                    repeats:NO];
+}
+
+
 #define BACK_BUTTON_TAG 100
 
 - (void)cancelTips:(id)sender
@@ -195,6 +213,8 @@
 - (void)clickTipsButton:(id)sender
 {
     self.status = CLOSED;
+    [self cancelTips:nil];
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     view.tag = BACK_BUTTON_TAG;
     view.backgroundColor = [UIColor clearColor];
@@ -376,6 +396,10 @@
         [_currentViewController.view addSubview:self];
         
         self.status = CLOSED;
+        
+        if ([ConfigureManager getIsDefaultTips]) {
+            [self autoShowTips];
+        }
     }
 }
 

@@ -13,6 +13,10 @@
 
 @property (retain, nonatomic) NSArray *categoryArray;
 @property (nonatomic, assign) id<PickWordsDelegate> delegate;
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *backLabel;
+
+
 - (IBAction)clickBack:(id)sender;
 
 @end

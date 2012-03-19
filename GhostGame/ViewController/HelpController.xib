@@ -79,7 +79,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">游戏规则</string>
+						<string key="IBUIText">帮助</string>
 						<object class="NSColor" key="IBUITextColor" id="480032845">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -390,6 +390,22 @@ iJnlubPmsJHojrfog5zlh7rvvIzmuLjmiI/nu5PmnZ/jgIIKKDIp5bmz5rCR5oiW5YK75a2Q5Ye65bGA
 					<int key="connectionID">27</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="160907557"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewTitleLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="517273697"/>
+					</object>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">clickBack:</string>
 						<reference key="source" ref="616781972"/>
@@ -549,7 +565,7 @@ iJnlubPmsJHojrfog5zlh7rvvIzmuLjmiI/nu5PmnZ/jgIIKKDIp5bmz5rCR5oiW5YK75a2Q5Ye65bGA
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">27</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

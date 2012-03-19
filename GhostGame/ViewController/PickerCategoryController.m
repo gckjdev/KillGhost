@@ -9,11 +9,14 @@
 #import "PickerCategoryController.h"
 #import "WordsManager.h"
 #import "PickerWordsController.h"
+#import "LocaleUtils.h"
 
 @implementation PickerCategoryController
 @synthesize categoryArray;
 //@synthesize categoryTable;
 @synthesize delegate;
+@synthesize viewTitleLabel;
+@synthesize backLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +40,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kSelectCategory");
+    self.backLabel.text = NSLS(@"kBack");
+    
     self.categoryArray = [[WordsManager defaultManager] getAllCategory];
     
 }
@@ -44,6 +50,8 @@
 - (void)viewDidUnload
 {
     [self setCategoryArray:nil];
+    [self setViewTitleLabel:nil];
+    [self setBackLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -57,6 +65,8 @@
 
 - (void)dealloc {
     [categoryArray release];
+    [viewTitleLabel release];
+    [backLabel release];
     [super dealloc];
 }
 
@@ -85,14 +95,12 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [self.categoryArray objectAtIndex:indexPath.row];
     if ([cell.textLabel.text isEqualToString:LAST_USED_CATEGORY]) {
-        cell.textLabel.text = @"最近使用";
+        cell.textLabel.text = NSLS(@"kRecentlyUsed");
     }
     
     
     return cell;
 }
-
-
 
 #pragma mark - tableView delegate
 

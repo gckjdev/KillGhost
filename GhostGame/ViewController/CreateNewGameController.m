@@ -277,7 +277,7 @@
     }
     
     if (civilianWordTextField.text.length == 0 || self.foolWordTextField.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kNotSetWord") delegate:nil cancelButtonTitle:@"kSure" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kNotSetWord") delegate:nil cancelButtonTitle:NSLS(@"kSure") otherButtonTitles:nil];
         [alert show];
         [alert release];
         return ;

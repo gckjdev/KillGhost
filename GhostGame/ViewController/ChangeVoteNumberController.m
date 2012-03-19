@@ -171,9 +171,6 @@
             hasVoteCount += card.voteNumber;
         }
     }
-    NSLog(@"%d",[[[PlayerCardManager defaultManager] playerCardList] count]);
-    NSLog(@"%d",allVoteCount);
-    NSLog(@"%d",hasVoteCount);
     
     if (self.playerCard.voteNumber == allVoteCount - 1 || hasVoteCount >= allVoteCount ) {
         self.plusOneButton.enabled = NO;

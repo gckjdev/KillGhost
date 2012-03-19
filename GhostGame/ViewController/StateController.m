@@ -8,7 +8,6 @@
 
 #import "StateController.h"
 #import <QuartzCore/QuartzCore.h>
-
 #import "PickerCategoryController.h"
 #import "PickerWordsController.h"
 #import "HelpController.h"
@@ -16,6 +15,7 @@
 #import "VoteController.h"
 #import "SettingsController.h"
 #import "LocaleUtils.h"
+#import "ConfigureManager.h"
 
 @implementation StateController
 @synthesize selectIndex;
@@ -170,6 +170,8 @@
     }
     
     self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
+    
+    
 }
 
 - (void)next:(id)sender
@@ -204,6 +206,9 @@
     }
     
     self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
+    if ([ConfigureManager getIsDefaultTips]) {
+        [self.footerView autoShowTips];
+    }
 }
 
 - (void)translationOnX:(UIView*)view from:(float)fromValue to:(float)toValue
