@@ -9,8 +9,11 @@
 #import "ShowPlayerCardsController.h"
 #import "PlayerCardManager.h"
 #import "PlayerCard.h"
+#import "LocaleUtils.h"
 
 @implementation ShowPlayerCardsController
+@synthesize viewTitleLabel;
+@synthesize backLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,11 +48,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.viewTitleLabel.text = NSLS(@"kShowIdentity");
+    self.backLabel.text = NSLS(@"kBack");
+    
     [self addPlayerCards];
 }
 
 - (void)viewDidUnload
 {
+    [self setViewTitleLabel:nil];
+    [self setBackLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -63,5 +71,10 @@
 
 - (IBAction)clickBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)dealloc {
+    [viewTitleLabel release];
+    [backLabel release];
+    [super dealloc];
 }
 @end

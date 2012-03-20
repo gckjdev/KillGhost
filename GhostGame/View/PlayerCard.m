@@ -11,6 +11,7 @@
 #import "UIUtils.h"
 #import "ConfigureManager.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 #define CARD_HEIGHT 57
 #define CARD_WIDTH  45 //(CARD_HEIGHT * 0.68)
@@ -381,7 +382,7 @@
     CGContextTranslateCTM(context, 0.0, self.bounds.size.height);
 	CGContextScaleCTM(context, 1.0, -1.0);
     
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, [ColorManager wordColor].CGColor);
 	CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 1.0);
 	CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0, -1.0));
     
@@ -390,7 +391,7 @@
     CGContextSetFillColorWithColor(context, [UIColor colorWithRed:244/255.0 green:52/255.0 blue:111/255.0 alpha:1.0].CGColor);
     [_player.word drawInRect:CGRectMake(0, imageSize.height * 0.8, imageSize.width, 35) withFont:[UIFont systemFontOfSize:_fontSize] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
     
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(context, [ColorManager wordColor].CGColor);
     NSString *tips = @"(请记住你的身份和词语)";
     if (self.player.type == GhostType) {
         tips = @"(请记住你的身份和提示)";
@@ -431,6 +432,9 @@
     }else if(_player.type == JudgeType)
     {
         CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    }
+    else {
+        CGContextSetFillColorWithColor(context, [ColorManager wordColor].CGColor);
     }
     [_player.name drawInRect:CGRectMake(3, 28, 40, CARD_WIDTH) withFont:[UIFont systemFontOfSize:15] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
     

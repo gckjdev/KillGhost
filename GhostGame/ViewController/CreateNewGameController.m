@@ -17,6 +17,7 @@
 #import "SettingsController.h"
 #import "HelpController.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 @implementation CreateNewGameController
 @synthesize coverView;
@@ -219,6 +220,16 @@
     ghostWordLabel.text = NSLS(@"kGhostWord");
     foolWordLabel.text = NSLS(@"kFoolWord");
     civilianWordLabel.text = NSLS(@"kCivilianWord");
+    
+    firstStepLabel.textColor = [ColorManager createGameColor];
+    judgeLabel.textColor = [ColorManager createGameColor];
+    ghostLabel.textColor = [ColorManager createGameColor];
+    foolLabel.textColor = [ColorManager createGameColor];
+    civilianLabel.textColor = [ColorManager createGameColor];
+    secondStepLabel.textColor= [ColorManager createGameColor];
+    ghostWordLabel.textColor = [ColorManager createGameColor];
+    foolWordLabel.textColor = [ColorManager createGameColor];
+    civilianWordLabel.textColor = [ColorManager createGameColor];
 }
 
 - (void)viewDidUnload

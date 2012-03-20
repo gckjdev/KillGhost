@@ -16,6 +16,9 @@
 @property (retain, nonatomic) IBOutlet UITextField *passwordField;
 @property (retain, nonatomic) IBOutlet UISwitch *defaultTipsSwitch;
 @property (retain, nonatomic) IBOutlet UISwitch *soundSwitch;
+@property (retain, nonatomic) IBOutlet UILabel *resetPasswordLabel;
+@property (retain, nonatomic) IBOutlet UILabel *gameSoundLabel;
+@property (retain, nonatomic) IBOutlet UILabel *autoTipsLabel;
 
 @property (retain, nonatomic) IBOutlet UILabel *passwordTipsLabel;
 

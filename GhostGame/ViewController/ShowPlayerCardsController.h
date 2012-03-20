@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ShowPlayerCardsController : UIViewController
+@property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
+@property (retain, nonatomic) IBOutlet UILabel *backLabel;
+
 - (IBAction)clickBackButton:(id)sender;
 
 @end

@@ -9,13 +9,18 @@
 #import "SettingsController.h"
 #import "ConfigureManager.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 @implementation SettingsController
 @synthesize passwordField;
 @synthesize defaultTipsSwitch;
 @synthesize soundSwitch;
+@synthesize resetPasswordLabel;
+@synthesize gameSoundLabel;
+@synthesize autoTipsLabel;
 @synthesize passwordTipsLabel;
 @synthesize viewTitleLabel;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,16 +59,24 @@
 {
     [super viewDidLoad];
     self.viewTitleLabel.text = NSLS(@"kSettings_short");
+    self.resetPasswordLabel.text = NSLS(@"kResetPassword");
+    self.gameSoundLabel.text = NSLS(@"kGameSound");
+    self.autoTipsLabel.text = NSLS(@"kAutoTips");
+    self.resetPasswordLabel.textColor = [ColorManager helpColor];
+    self.gameSoundLabel.textColor = [ColorManager helpColor];
+    self.autoTipsLabel.textColor = [ColorManager helpColor];
+    self.passwordTipsLabel.textColor = [ColorManager helpColor];
     
     [self setTapGestureRecognizerEnable:YES];
-    if ([ConfigureManager getPassword]) {
-        self.passwordTipsLabel.hidden = YES;
-    }
 
     self.defaultTipsSwitch.on = [ConfigureManager getIsDefaultTips];
     self.soundSwitch.on = [ConfigureManager getHaveSoung];
     
     passwordField.text = [ConfigureManager getPassword];
+    
+    if ([ConfigureManager getPassword]) {
+        self.passwordTipsLabel.hidden = YES;
+    }
 }
 
 - (void)viewDidUnload
@@ -73,6 +86,9 @@
     [self setDefaultTipsSwitch:nil];
     [self setSoundSwitch:nil];
     [self setViewTitleLabel:nil];
+    [self setResetPasswordLabel:nil];
+    [self setGameSoundLabel:nil];
+    [self setAutoTipsLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -90,6 +106,9 @@
     [defaultTipsSwitch release];
     [soundSwitch release];
     [viewTitleLabel release];
+    [resetPasswordLabel release];
+    [gameSoundLabel release];
+    [autoTipsLabel release];
     [super dealloc];
 }
 

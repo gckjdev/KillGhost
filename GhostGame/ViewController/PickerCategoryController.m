@@ -10,6 +10,7 @@
 #import "WordsManager.h"
 #import "PickerWordsController.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 @implementation PickerCategoryController
 @synthesize categoryArray;
@@ -94,6 +95,8 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [self.categoryArray objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [ColorManager wordColor];
+    
     if ([cell.textLabel.text isEqualToString:LAST_USED_CATEGORY]) {
         cell.textLabel.text = NSLS(@"kRecentlyUsed");
     }

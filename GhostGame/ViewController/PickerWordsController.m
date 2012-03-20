@@ -12,6 +12,7 @@
 #import "PickerWordsCell.h"
 #import "ConfigureManager.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 @implementation PickerWordsController
 @synthesize category;
@@ -126,6 +127,8 @@
     
     cell.civilianWordLabel.text = word.civilianWord;
     cell.foolWordLabel.text = word.foolWord;
+    cell.civilianWordLabel.textColor = [ColorManager wordColor];
+    cell.foolWordLabel.textColor = [ColorManager wordColor];
     
     if (self.selectCellIndex == indexPath.row) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

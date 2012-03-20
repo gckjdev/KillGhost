@@ -16,6 +16,7 @@
 #import "SettingsController.h"
 #import "LocaleUtils.h"
 #import "ConfigureManager.h"
+#import "PlayerCardManager.h"
 
 @implementation StateController
 @synthesize selectIndex;
@@ -26,6 +27,7 @@
 @synthesize toSayArray;
 @synthesize explainArray;
 @synthesize tipsArray;
+@synthesize inVote;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -102,13 +104,14 @@
 }
 
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer { 
-    
     if (recognizer.direction==UISwipeGestureRecognizerDirectionLeft) { 
-        [self next:nil];
+        if ([self.toSayArray count] - 1 != selectIndex)
+            [self next:nil];
     }
     
     if (recognizer.direction==UISwipeGestureRecognizerDirectionRight) { 
-        [self previous:nil];
+        if (0 != selectIndex) 
+            [self previous:nil];
     }
 }
 
@@ -171,13 +174,16 @@
     
     self.footerView.tips = [self.tipsArray objectAtIndex:selectIndex];
     
-    
+    if ( self.inVote == YES && selectIndex == 0){
+        self.footerView.previousButton.hidden = YES;
+    }
 }
 
 - (void)next:(id)sender
 {
     if (selectIndex == [self.toSayArray count] - 1 ) {
         selectIndex = selectIndex;
+        self.inVote = YES;
         VoteController *vc = [[VoteController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
         [vc release];
@@ -209,6 +215,8 @@
     if ([ConfigureManager getIsDefaultTips]) {
         [self.footerView autoShowTips];
     }
+    
+    self.footerView.previousButton.hidden = NO;
 }
 
 - (void)translationOnX:(UIView*)view from:(float)fromValue to:(float)toValue

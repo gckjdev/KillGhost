@@ -15,6 +15,7 @@
 #import "CreateNewGameController.h"
 #import "LocaleUtils.h"
 #import "ConfigureManager.h"
+#import "ColorManager.h"
 
 @implementation ResultController
 @synthesize guessRightButton;
@@ -204,6 +205,7 @@
         resultLabel.numberOfLines = 0;
         resultLabel.font = [UIFont boldSystemFontOfSize:22];
         resultLabel.backgroundColor = [UIColor clearColor];
+        resultLabel.textColor = [ColorManager wordColor];
         resultLabel.textAlignment = UITextAlignmentCenter;
         
         UILabel *reasonLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 280, 220, 60)];
@@ -211,6 +213,7 @@
         reasonLabel.numberOfLines = 0;
         reasonLabel.font = [UIFont systemFontOfSize:14];
         reasonLabel.backgroundColor = [UIColor clearColor];
+        reasonLabel.textColor = [ColorManager wordColor];
         reasonLabel.textAlignment = UITextAlignmentCenter;
         
         if (result == ResultGhostWin) 

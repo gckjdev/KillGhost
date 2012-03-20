@@ -7,6 +7,7 @@
 //
 
 #import "DialogView.h"
+#import "ColorManager.h"
 
 @implementation DialogView
 @synthesize toSay;
@@ -53,6 +54,7 @@
     //toSayLabel.backgroundColor = [UIColor blueColor];
     toSayLabel.numberOfLines = 0;
     toSayLabel.lineBreakMode = UILineBreakModeWordWrap;
+    toSayLabel.textColor = [ColorManager dialogColor];
     toSayLabel.font = [UIFont boldSystemFontOfSize:19];
     self.toSay = toSayLabel;
     [toSayLabel release];
@@ -64,6 +66,7 @@
     //explainLabel.backgroundColor = [UIColor yellowColor];
     explainLabel.numberOfLines = 0;
     explainLabel.lineBreakMode = UILineBreakModeWordWrap;
+    explainLabel.textColor = [ColorManager dialogColor];
     explainLabel.font = [UIFont boldSystemFontOfSize:18];
     self.explain = explainLabel;
     [explainLabel release];

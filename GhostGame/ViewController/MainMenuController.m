@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "LocaleUtils.h"
 #import "CreateNewGameController.h"
+#import "ColorManager.h"
 
 @implementation MainMenuController
 @synthesize startGameButton;
@@ -103,6 +104,10 @@
     [self.startGameButton setTitle:NSLS(@"kStart") forState:UIControlStateNormal];
     [self.settingButton setTitle:NSLS(@"kSettings") forState:UIControlStateNormal];
     [self.helpButton setTitle:NSLS(@"kHelp") forState:UIControlStateNormal];
+    
+    [self.startGameButton setTitleColor:[ColorManager mainMenuColor] forState:UIControlStateNormal];
+    [self.settingButton setTitleColor:[ColorManager mainMenuColor] forState:UIControlStateNormal];
+    [self.helpButton setTitleColor:[ColorManager mainMenuColor] forState:UIControlStateNormal];
 }
 
 - (void)viewDidUnload

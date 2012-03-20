@@ -13,13 +13,16 @@
 #import "UIUtils.h"
 #import "ConfigureManager.h"
 #import "LocaleUtils.h"
+#import "ColorManager.h"
 
 #define FRAME_HEIGHT 40
 #define MAINMENU_WIDTH 81
 #define PREVIOUS_WIDTH 90
 #define NEXT_WIDTH 90
-#define TIPS_WIDTH 30
+#define TIPS_WIDTH 40
 #define TIPS_SHOW_TIMER 4
+#define OPEN_POSITION  230
+#define CLOSED_POSITION  430
 
 @implementation FooterView
 
@@ -71,7 +74,7 @@
     _status = status;
     if (status == CLOSED) {
         [UIView beginAnimations:@"downMainMenu" context:nil];
-        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 430), self.mainMenuBarView.frame.size};
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, CLOSED_POSITION), self.mainMenuBarView.frame.size};
         [UIView commitAnimations];
         
         UIView *bv = [self.currentViewController.view viewWithTag:HIDEMAINBUTTON_TAG_1];
@@ -79,7 +82,7 @@
     }
     else{
         [UIView beginAnimations:@"upMainMenu" context:nil];
-        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, 230), self.mainMenuBarView.frame.size};
+        self.mainMenuBarView.frame = (CGRect){CGPointMake(0, OPEN_POSITION), self.mainMenuBarView.frame.size};
         [UIView commitAnimations];
         
         UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 442)];
@@ -95,18 +98,6 @@
         
         [_currentViewController.view bringSubviewToFront:self.mainMenuBarView];
         [_currentViewController.view bringSubviewToFront:self];
-        
-        //UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, MAINMENU_WIDTH, 320-MAINMENU_WIDTH, FRAME_HEIGHT)];
-        //view.alpha = 0.5;
-        //view.backgroundColor = [UIColor blackColor];
-        //UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320-MAINMENU_WIDTH , FRAME_HEIGHT)];
-        //button.backgroundColor = [UIColor blackColor];
-        //button.tag = HIDEMAINBUTTON_TAG_1;
-        //[button addTarget:self action:@selector(clickMainMenuButton:) forControlEvents:UIControlEventTouchUpInside];
-        //[view addSubview:button];
-        //[button release];
-        //[self addSubview:view];
-        //[view release];
     }
 }
 
@@ -241,6 +232,7 @@
     label.lineBreakMode = UILineBreakModeWordWrap;
     label.textAlignment = UITextAlignmentCenter;
     label.text = self.tips;
+    label.textColor = [ColorManager tipsColor];
     [imageView addSubview:label];
     [label release];
     
@@ -312,7 +304,7 @@
 
 - (UIView *)createMainMenuBarView
 {
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 230, 68, 243)] autorelease];
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, CLOSED_POSITION, 68, 243)] autorelease];
     
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 17, 68, 226)];
     backgroundImageView.image = [UIImage imageNamed:@"main_menu_bar_bg"];
@@ -340,31 +332,31 @@
         switch (count) {
             case 0:
             {
-                [button setTitle:@"继续" forState:UIControlStateNormal];
+                [button setTitle:NSLS(@"kMainButton1") forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(clickContinue:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             }
             case 1:
             {
-                [button setTitle:@"查看" forState:UIControlStateNormal];
+                [button setTitle:NSLS(@"kMainButton2") forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(clickShowPlayer:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             }
             case 2:
             {
-                [button setTitle:@"设置" forState:UIControlStateNormal];
+                [button setTitle:NSLS(@"kMainButton3") forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(clickSetting:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             }
             case 3:
             {
-                [button setTitle:@"帮助" forState:UIControlStateNormal];
+                [button setTitle:NSLS(@"kMainButton4") forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(clickHelp:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             }
             case 4:
             {
-                [button setTitle:@"退出" forState:UIControlStateNormal];
+                [button setTitle:NSLS(@"kMainButton5") forState:UIControlStateNormal];
                 [button addTarget:self action:@selector(clickQuit:) forControlEvents:UIControlEventTouchUpInside];
                 break;
             }
