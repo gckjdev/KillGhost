@@ -37,6 +37,8 @@
 "kCivilianWord" = "平民词语";
 "kSelectJudgePosition" = "确定法官位置";
 "kDetermineIdentity" = "确定身份";
+"kRememberIdentityAndWord" = "【请记住你的身份和词语】";
+"kRememberIdentityAndTips" = "【请记住你的身份和提示】";
 "kJudgeDeclared1" = "法官宣布: 天黑,请闭眼。";
 "kJudgeDeclared2" = "法官宣布: 鬼睁开眼,商量并指定谁第一个发言。";
 "kJudgeDeclared3" = "法官宣布: 鬼闭眼。";
