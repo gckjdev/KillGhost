@@ -4,6 +4,10 @@
 <dict>
 	<key>食物</key>
 	<dict>
+		<key>冬瓜</key>
+		<string>西瓜</string>
+		<key>木瓜</key>
+		<string>地瓜</string>
 		<key>叉烧包</key>
 		<string>汉堡包</string>
 		<key>鸡腿</key>
@@ -23,6 +27,8 @@
 	</dict>
 	<key>电子产品</key>
 	<dict>
+		<key>相机</key>
+		<string>手机</string>
 		<key>灯泡</key>
 		<string>蜡烛</string>
 		<key>风扇</key>
@@ -35,7 +41,7 @@
 		<string>鼠标</string>
 		<key>显示器</key>
 		<string>打印机</string>
-		<key>手机</key>
+		<key>音响</key>
 		<string>耳机</string>
 	</dict>
 	<key>人物</key>
@@ -57,6 +63,12 @@
 	</dict>
 	<key>运动</key>
 	<dict>
+		<key>象棋</key>
+		<string>围棋</string>
+		<key>跨栏</key>
+		<string>跳远</string>
+		<key>网球</key>
+		<string>台球</string>
 		<key>足球</key>
 		<string>篮球</string>
 		<key>羽毛球</key>
@@ -68,6 +80,10 @@
 	</dict>
 	<key>地方</key>
 	<dict>
+		<key>德国</key>
+		<string>法国</string>
+		<key>泰国</key>
+		<string>印度</string>
 		<key>长江</key>
 		<string>黄河</string>
 		<key>北京</key>

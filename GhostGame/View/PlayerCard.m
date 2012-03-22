@@ -211,7 +211,8 @@
     if (buttonIndex == 1) {
         //ok button
         NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
-        if ((pw == nil && self.passWord == nil) || (pw && [pw isEqualToString:self.passWord])) {
+        
+        if ([pw isEqualToString:[ConfigureManager getPassword]] || ([ConfigureManager getPassword] == nil && [pw isEqualToString:@"abc"])) {
             [self show];
         }else{
             //wrong password
@@ -392,9 +393,9 @@
     [_player.word drawInRect:CGRectMake(0, imageSize.height * 0.8, imageSize.width, 35) withFont:[UIFont systemFontOfSize:_fontSize] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
     
     CGContextSetFillColorWithColor(context, [ColorManager wordColor].CGColor);
-    NSString *tips = @"(请记住你的身份和词语)";
+    NSString *tips = NSLS(@"kRememberIdentityAndWord");
     if (self.player.type == GhostType) {
-        tips = @"(请记住你的身份和提示)";
+        tips = NSLS(@"kRememberIdentityAndTips");
     }
     [tips drawInRect:CGRectMake(0, imageSize.height * 0.9, imageSize.width, 20) withFont:[UIFont systemFontOfSize:_fontSize/1.5] lineBreakMode:UILineBreakModeMiddleTruncation alignment:UITextAlignmentCenter];
 }

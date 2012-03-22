@@ -11,7 +11,8 @@
 #define KEY_PASSWORD @"KEY_PASSWORD"
 #define KEY_LASTUSED_WORDS @"KEY_LASTUSED_WORDS"
 #define KEY_HAVE_SOUND @"KEY_HAVE_SOUND"
-#define KEY_IS_DEFAULT_TIPS @"KEY_IS_TIPS"
+#define KEY_IS_DEFAULT_TIPS @"KEY_IS_DEFAULT_TIPS"
+#define KEY_IS_ONCE_TIPS @"KEY_IS_ONCE_TIPS"
 
 @implementation ConfigureManager
 
@@ -66,7 +67,23 @@
         return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_IS_DEFAULT_TIPS];
     }
     else{
-        return YES;  //default show default tips
+        return NO;  //default not show default tips
+    }
+}
+
++ (void)setIsOnceTips:(BOOL)isOnceTips
+{
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:isOnceTips forKey:KEY_IS_ONCE_TIPS];
+}
+
++ (BOOL)getisOnceTips
+{
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:KEY_IS_ONCE_TIPS]) {
+        return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_IS_ONCE_TIPS];
+    }
+    else{
+        return YES;  //default YES
     }
 }
 

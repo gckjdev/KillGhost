@@ -20,4 +20,7 @@
 + (BOOL)getHaveSound;
 + (void)setIsDefaultTips:(BOOL)isDefaultTips;
 + (BOOL)getIsDefaultTips;
++ (void)setIsOnceTips:(BOOL)isOnceTips;
++ (BOOL)getisOnceTips;
+
 @end

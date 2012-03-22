@@ -11,7 +11,7 @@
 #import "PickerWordsController.h"
 #import "FooterView.h"
 
-@interface CreateNewGameController : GRViewController<PickWordsDelegate>
+@interface CreateNewGameController : GRViewController<PickWordsDelegate, UIAlertViewDelegate>
 {
     UILabel *judgeNumberLabel;
     UILabel *ghostNumberLabel;
