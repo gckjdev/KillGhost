@@ -20,9 +20,16 @@
 #define PREVIOUS_WIDTH 90
 #define NEXT_WIDTH 90
 #define TIPS_WIDTH 40
+
 #define TIPS_SHOW_TIMER 4
+
 #define OPEN_POSITION  230
 #define CLOSED_POSITION  430
+
+enum WHICH_ALERTVIEW {
+    ALERTVIEW_QUIT = 0,
+    ALERTVIEW_SHOWPLAYER = 1
+};
 
 @implementation FooterView
 
@@ -37,6 +44,7 @@
 @synthesize status = _status;
 @synthesize isCustomPreviousAction;
 @synthesize showTipsTimer;
+@synthesize whichAlert;
 
 - (id)init
 {
@@ -111,22 +119,37 @@
 - (void)clickShowPlayer:(id)sender
 {
     self.status = CLOSED;
+    self.whichAlert =  ALERTVIEW_SHOWPLAYER;
     [UIUtils showTextView:NSLS(@"kEntePassword") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        //ok button
-        NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
-        if ([pw isEqualToString:[ConfigureManager getPassword]]) {
-            ShowPlayerCardsController *spc = [[ShowPlayerCardsController alloc] init];
-            [_currentViewController.navigationController pushViewController:spc animated:YES];
-            [spc release];
+    if (self.whichAlert == ALERTVIEW_SHOWPLAYER) {
+        if (buttonIndex == 1) {
+            //ok button
+            NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
+            if ([pw isEqualToString:[ConfigureManager getPassword]] || ([ConfigureManager getPassword] == nil && [pw isEqualToString:@"abc"])) {
+                ShowPlayerCardsController *spc = [[ShowPlayerCardsController alloc] init];
+                [_currentViewController.navigationController pushViewController:spc animated:YES];
+                [spc release];
+            }
+            else {
+                self.whichAlert = ALERTVIEW_SHOWPLAYER;
+                [UIUtils showTextView:NSLS(@"kEntePassword2") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];        }
+        }
+    }
+    else if(self.whichAlert == ALERTVIEW_QUIT)
+    {
+        if (buttonIndex == 0) {
+            return;
         }
         else {
-            [UIUtils showTextView:NSLS(@"kEntePassword2") okButtonTitle:NSLS(@"kSure") cancelButtonTitle:NSLS(@"kCancel") delegate:self secureTextEntry:YES];        }
+            [_currentViewController.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
+    
+
 }
 
 - (void)clickSetting:(id)sender
@@ -147,7 +170,11 @@
 
 - (IBAction)clickQuit:(id)sender
 {
-    [_currentViewController.navigationController popToRootViewControllerAnimated:YES];
+    self.status = CLOSED;
+    self.whichAlert = ALERTVIEW_QUIT;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kAreYouSureQuitGame") delegate:self cancelButtonTitle:NSLS(@"kCancel") otherButtonTitles:NSLS(@"kSure"), nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)clickMainMenuButton:(id)sender

@@ -230,6 +230,13 @@
     ghostWordLabel.textColor = [ColorManager createGameColor];
     foolWordLabel.textColor = [ColorManager createGameColor];
     civilianWordLabel.textColor = [ColorManager createGameColor];
+    
+    if ([ConfigureManager getisOnceTips] == YES) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"kRemindMessage") delegate:self cancelButtonTitle:NSLS(@"kNotRemind") otherButtonTitles:NSLS(@"kContinueRemind"), nil];
+        [alert show];
+        [alert release];
+    }
+
 }
 
 - (void)viewDidUnload
@@ -385,5 +392,12 @@
     [self updateButtonStatus];
 }
 
+#pragma mark - UIAlertView delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0 ) {
+        [ConfigureManager setIsOnceTips:NO];
+    }
+}
 
 @end

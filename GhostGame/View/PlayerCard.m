@@ -211,7 +211,8 @@
     if (buttonIndex == 1) {
         //ok button
         NSString *pw = ((UITextField *)[alertView viewWithTag:kAlertTextViewTag]).text;
-        if ((pw == nil && self.passWord == nil) || (pw && [pw isEqualToString:self.passWord])) {
+        
+        if ([pw isEqualToString:[ConfigureManager getPassword]] || ([ConfigureManager getPassword] == nil && [pw isEqualToString:@"abc"])) {
             [self show];
         }else{
             //wrong password

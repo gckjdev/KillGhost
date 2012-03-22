@@ -32,6 +32,7 @@ enum MAINMENU_VIEW_STATUS {
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) BOOL isCustomPreviousAction;
 @property (retain,nonatomic) NSTimer *showTipsTimer;
+@property (nonatomic, assign) NSInteger whichAlert;
 
 - (id)init;
 - (void)show;
