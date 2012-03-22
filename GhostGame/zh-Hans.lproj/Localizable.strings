@@ -22,9 +22,9 @@
 "kMainButton4" = "帮助";
 "kMainButton5" = "退出";
 "kAreYouSureQuitGame" = "确定退出游戏吗?";
-"kRemindMessage"= "点击下面的灯泡有操作提示哦";
-"kNotRemind" = "不再提醒";
-"kContinueRemind" = "继续提醒";
+"kRemindMessage"= "温馨提示:点击底部的小灯泡按钮可以获得更多提示";
+"kNotRemind" = "下次不再提醒";
+"kContinueRemind" = "确定";
 "kTooLittle" = "人数不足哦，至少7个人！";
 "kTooMuch" = "人数太多，玩不了哦！建议分成几群人玩。";
 "kNotSetNumber" = "没设定人数哦";
@@ -59,7 +59,7 @@
 "kVote" = "投票";
 "kKillSomeone" = "确定淘汰%d号玩家?";
 "kNeedToPK" = "现在出现了%d个票数相同的玩家，需要进行陈述进行pk，陈述完毕之后投票选出谁最有可能是鬼。";
-"kNeedToVote" = "全部玩家都是0票，请点击牌进行投票";
+"kNeedToVote" = "还未对玩家进行投票，目前全部玩家都是0票，请点击牌进行投票";
 "kWrong" = "猜错了";
 "kRight" = "猜对了";
 "kQuitGame" = "退出游戏";
