@@ -16,6 +16,7 @@
 #import "LocaleUtils.h"
 #import "ConfigureManager.h"
 #import "ColorManager.h"
+#import <AudioToolbox/AudioServices.h> 
 
 @implementation ResultController
 @synthesize guessRightButton;
@@ -30,6 +31,7 @@
 @synthesize dialogView;
 @synthesize viewTitleLabel;
 @synthesize lightChangeTimer;
+@synthesize player;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -218,6 +220,10 @@
         
         if (result == ResultGhostWin) 
         {
+            if ([ConfigureManager getHaveSound]) {
+                [self playSound:@"ghost_win.mp3"];            
+            }
+            
             imageView.image = [UIImage imageNamed:@"ghost_win@2x.png"];
             resultLabel.text = NSLS(@"kGhostWin");
             //鬼胜出有两个理由
@@ -228,6 +234,11 @@
         }
         else if (result == ResultCivilianWin)
         {
+            if ([ConfigureManager getHaveSound]) {
+                [self playSound:@"civilian_win.mp3"];            
+            }
+            
+            [self playSound:@"civilian_win"];
             imageView.image = [UIImage imageNamed:@"civilian_win@2x.png"];
             resultLabel.text = NSLS(@"kCivilianWin");
             reasonLabel.text = NSLS(@"kAllGhostKilled");
@@ -266,6 +277,7 @@
     [self setDialogView:nil];
     [self setViewTitleLabel:nil];
     [self setLightChangeTimer:nil];
+    [self setPlayer:nil];
     [super viewDidUnload];
 }
 
@@ -289,6 +301,7 @@
     [dialogView release];
     [viewTitleLabel release];
     [lightChangeTimer release];
+    [player release];
     [super dealloc];
 }
 
@@ -339,6 +352,43 @@
     cngc.civilianWordTextField.text = @"";
     cngc.footerView.nextButton.hidden = YES;
     [self.navigationController popToViewController:cngc animated:YES];
+}
+
+- (void)playSound:(NSString *)fileName
+{
+    NSString *soundFilePath = nil;
+    
+    if (result == ResultGhostWin) {
+        soundFilePath = [[NSBundle mainBundle] pathForResource: @"ghost_win"
+                                        ofType: @"mp3"];
+    }else if(result == ResultCivilianWin){
+        soundFilePath = [[NSBundle mainBundle] pathForResource: @"civilian_win"
+                                        ofType: @"mp3"];
+    }
+    
+    NSURL *fileURL = [[NSURL alloc] initFileURLWithPath: soundFilePath];
+    
+    AVAudioPlayer *newPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL: fileURL error: nil];
+    [fileURL release];
+    
+    self.player = newPlayer;
+    [newPlayer release];
+    
+    [player prepareToPlay];
+    [player setDelegate: self];
+    
+    [self.player play];
+}
+
+#pragma mark AV Foundation delegate methods____________
+
+- (void) audioPlayerDidFinishPlaying: (AVAudioPlayer *) appSoundPlayer successfully: (BOOL) flag {
+}
+
+- (void) audioPlayerBeginInterruption: player {
+}
+
+- (void) audioPlayerEndInterruption: player {
 }
 
 @end

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FooterView.h"
 #import "DialogView.h"
+#import <AVFoundation/AVFoundation.h>
 
 @class PlayerCard;
 
-@interface ResultController : UIViewController
+@interface ResultController : UIViewController<AVAudioPlayerDelegate>
 
 @property (retain, nonatomic) UIButton *guessRightButton;
 @property (retain, nonatomic) UIButton *guessWrongButton;
@@ -26,6 +27,7 @@
 @property (retain, nonatomic) DialogView *dialogView;
 @property (retain, nonatomic) IBOutlet UILabel *viewTitleLabel;
 @property (retain, nonatomic) NSTimer *lightChangeTimer;
+@property (nonatomic,retain) AVAudioPlayer *player;
 
 - (void)continueGame:(id)sender;
 

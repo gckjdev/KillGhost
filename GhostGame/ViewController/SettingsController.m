@@ -70,7 +70,7 @@
     [self setTapGestureRecognizerEnable:YES];
 
     self.defaultTipsSwitch.on = [ConfigureManager getIsDefaultTips];
-    self.soundSwitch.on = [ConfigureManager getHaveSoung];
+    self.soundSwitch.on = [ConfigureManager getHaveSound];
     
     passwordField.text = [ConfigureManager getPassword];
     

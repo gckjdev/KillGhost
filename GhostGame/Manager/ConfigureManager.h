@@ -17,7 +17,7 @@
 + (void)setPassword:(NSString *)password;
 + (NSString *)getPassword;
 + (void)setHaveSound:(BOOL)haveSound;
-+ (BOOL)getHaveSoung;
++ (BOOL)getHaveSound;
 + (void)setIsDefaultTips:(BOOL)isDefaultTips;
 + (BOOL)getIsDefaultTips;
 @end

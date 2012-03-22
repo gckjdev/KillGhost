@@ -111,6 +111,7 @@
 		A3C8160514DF88E30022D8AE /* WordsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8160414DF88E30022D8AE /* WordsManager.m */; };
 		A3C8161C14DFD5BD0022D8AE /* PickerWordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */; };
 		A3C8161E14DFD6000022D8AE /* PickerWordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */; };
+		A3C82B0E1519A7C1003EBE50 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C82B0D1519A7C1003EBE50 /* StoreKit.framework */; };
 		A3CD06E31510535300EA3E42 /* DialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3CD06E21510535300EA3E42 /* DialogView.m */; };
 		A3D9E3CE14E108DA00BD0DCF /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */; };
 		A3D9E3CF14E108DA00BD0DCF /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D9E3CD14E108DA00BD0DCF /* HelpController.m */; };
@@ -120,6 +121,10 @@
 		A3E9EED114EBAC2D004B4130 /* ChangeVoteNumberController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E9EECF14EBAC2D004B4130 /* ChangeVoteNumberController.xib */; };
 		A3EC828114E8AA0E00AD4B66 /* ResultManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A3EC828014E8AA0E00AD4B66 /* ResultManager.m */; };
 		A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3ED053C14DA817300AC8C67 /* QuartzCore.framework */; };
+		A3F986F41518BE2E008D0447 /* civilian_win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3F986F21518BE2E008D0447 /* civilian_win.mp3 */; };
+		A3F986F51518BE2E008D0447 /* ghost_win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A3F986F31518BE2E008D0447 /* ghost_win.mp3 */; };
+		A3F986FA1518BF19008D0447 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F986F91518BF19008D0447 /* AudioToolbox.framework */; };
+		A3F986FC1518C2CA008D0447 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F986FB1518C2CA008D0447 /* AVFoundation.framework */; };
 		CA0A20B014DA690400577C02 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A114DA690400577C02 /* Game.m */; };
 		CA0A20B114DA690400577C02 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A314DA690400577C02 /* Player.m */; };
 		CA0A20B214DA690400577C02 /* CreateGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0A20A614DA690400577C02 /* CreateGameController.m */; };
@@ -296,6 +301,7 @@
 		A3C8161A14DFD5BA0022D8AE /* PickerWordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerWordsCell.h; sourceTree = "<group>"; };
 		A3C8161B14DFD5BB0022D8AE /* PickerWordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerWordsCell.m; sourceTree = "<group>"; };
 		A3C8161D14DFD5FE0022D8AE /* PickerWordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerWordsCell.xib; sourceTree = "<group>"; };
+		A3C82B0D1519A7C1003EBE50 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A3CD06E11510535300EA3E42 /* DialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogView.h; sourceTree = "<group>"; };
 		A3CD06E21510535300EA3E42 /* DialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogView.m; sourceTree = "<group>"; };
 		A3D9E3CB14E108DA00BD0DCF /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpController.xib; sourceTree = "<group>"; };
@@ -310,6 +316,10 @@
 		A3EC827F14E8AA0E00AD4B66 /* ResultManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultManager.h; sourceTree = "<group>"; };
 		A3EC828014E8AA0E00AD4B66 /* ResultManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultManager.m; sourceTree = "<group>"; };
 		A3ED053C14DA817300AC8C67 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A3F986F21518BE2E008D0447 /* civilian_win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = civilian_win.mp3; sourceTree = "<group>"; };
+		A3F986F31518BE2E008D0447 /* ghost_win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ghost_win.mp3; sourceTree = "<group>"; };
+		A3F986F91518BF19008D0447 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A3F986FB1518C2CA008D0447 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CA0A20A014DA690400577C02 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		CA0A20A114DA690400577C02 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		CA0A20A214DA690400577C02 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -386,6 +396,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3C82B0E1519A7C1003EBE50 /* StoreKit.framework in Frameworks */,
+				A3F986FC1518C2CA008D0447 /* AVFoundation.framework in Frameworks */,
+				A3F986FA1518BF19008D0447 /* AudioToolbox.framework in Frameworks */,
 				CAC931E114DFE6A3001258FD /* MessageUI.framework in Frameworks */,
 				A3ED053D14DA817300AC8C67 /* QuartzCore.framework in Frameworks */,
 				CAE8ED7814DA2FF70003B6A1 /* UIKit.framework in Frameworks */,
@@ -524,6 +537,15 @@
 			path = Icon;
 			sourceTree = "<group>";
 		};
+		A3F986F11518BE2E008D0447 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				A3F986F21518BE2E008D0447 /* civilian_win.mp3 */,
+				A3F986F31518BE2E008D0447 /* ghost_win.mp3 */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
 		CA0A209E14DA690400577C02 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +633,7 @@
 		CA0A20D014DA776800577C02 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A3F986F11518BE2E008D0447 /* sound */,
 				A3C46D671512FAB90013984A /* File */,
 				A3C46D691512FAB90013984A /* Icon */,
 				A37D80B914FF347800F301E8 /* Image */,
@@ -665,7 +688,6 @@
 		CAE8ED6814DA2FF60003B6A1 = {
 			isa = PBXGroup;
 			children = (
-				CAC931E014DFE6A3001258FD /* MessageUI.framework */,
 				CAE8ED7D14DA2FF70003B6A1 /* GhostGame */,
 				CAE8ED9D14DA2FF80003B6A1 /* GhostGameTests */,
 				CAE8ED7614DA2FF70003B6A1 /* Frameworks */,
@@ -685,6 +707,10 @@
 		CAE8ED7614DA2FF70003B6A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3C82B0D1519A7C1003EBE50 /* StoreKit.framework */,
+				A3F986FB1518C2CA008D0447 /* AVFoundation.framework */,
+				A3F986F91518BF19008D0447 /* AudioToolbox.framework */,
+				CAC931E014DFE6A3001258FD /* MessageUI.framework */,
 				A3ED053C14DA817300AC8C67 /* QuartzCore.framework */,
 				CAE8ED7714DA2FF70003B6A1 /* UIKit.framework */,
 				CAE8ED7914DA2FF70003B6A1 /* Foundation.framework */,
@@ -927,6 +953,8 @@
 				A3396D951514970A00C89860 /* triangle@2x.png in Resources */,
 				A3396D9B15149E0E00C89860 /* tips_box@2x.png in Resources */,
 				A36CA75F15187425004A24D7 /* Words.plist in Resources */,
+				A3F986F41518BE2E008D0447 /* civilian_win.mp3 in Resources */,
+				A3F986F51518BE2E008D0447 /* ghost_win.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

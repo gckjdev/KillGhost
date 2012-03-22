@@ -44,7 +44,7 @@
     [userDefaults setBool:haveSound forKey:KEY_HAVE_SOUND];
 }
 
-+ (BOOL)getHaveSoung
++ (BOOL)getHaveSound
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:KEY_HAVE_SOUND]) {
         return [[NSUserDefaults standardUserDefaults] boolForKey:KEY_HAVE_SOUND];
