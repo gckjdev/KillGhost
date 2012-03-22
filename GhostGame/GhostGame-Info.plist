@@ -13,6 +13,8 @@
 		<string>57.png</string>
 		<string>57@2x.png</string>
 	</array>
+	<key>CFBundleIconFile</key>
+	<string>57.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.orange.ghosthunter</string>
 	<key>CFBundleInfoDictionaryVersion</key>
