@@ -15,6 +15,8 @@
 #import "LocaleUtils.h"
 #import "CreateNewGameController.h"
 #import "ColorManager.h"
+#import "GADBannerView.h"
+#import "AdUtil.h"
 
 @implementation MainMenuController
 @synthesize startGameButton;
@@ -23,6 +25,7 @@
 @synthesize startGameLine;
 @synthesize settingLine;
 @synthesize helpLine;
+@synthesize bannerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -118,10 +121,22 @@
     [self setStartGameLine:nil];
     [self setSettingLine:nil];
     [self setHelpLine:nil];
+    [self setBannerView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (bannerView == nil){
+        bannerView = [AdUtil allocAdMobView:self];  
+    }
+    
+    [super viewDidAppear:animated];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -157,6 +172,7 @@
     [startGameLine release];
     [settingLine release];
     [helpLine release];
+    [bannerView release];
     [super dealloc];
 }
 

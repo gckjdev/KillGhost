@@ -7,11 +7,12 @@
 //
 
 #import "GhostGameAppDelegate.h"
-
 #import "MainMenuController.h"
+#import "MobClick.h"
+
+#define GHOSTGAME_UMENG_APP_KEY @"4fbb643f5270152dc500000e"
 
 @implementation GhostGameAppDelegate
-
 
 @synthesize window=_window;
 
@@ -19,6 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MobClick startWithAppkey:GHOSTGAME_UMENG_APP_KEY reportPolicy:REALTIME channelId:nil];
+    [MobClick updateOnlineConfig];
+    
     // Override point for customization after application launch.
     UINavigationController *rootViewController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     rootViewController.navigationBarHidden = YES;
